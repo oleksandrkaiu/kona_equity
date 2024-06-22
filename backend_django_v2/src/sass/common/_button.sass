@@ -1,0 +1,44 @@
+%reset-button-styles
+    display: inline-block
+    font-weight: 400
+    -webkit-appearance: none
+    appearance: none
+    background-color: transparent
+    border: none
+    text-decoration: none
+
+.button
+    @extend %reset-button-styles
+    font-size: 14px
+    text-align: center
+    color: #fff
+    background-color: var(--color-secondary)
+    padding: 7px 14px
+    border-radius: 8px
+    transition: background-color .2s ease-out
+
+    &:hover
+        color: #fff
+        background-color: var(--color-thirty)
+
+    &:disabled
+        background-color: var(--color-gray-secondary)
+
+    &--upper
+        text-transform: uppercase
+
+.button-inline
+    font-size: 14px
+    text-align: center
+    color: var(--color-black-primary)
+
+    &:hover
+        color: var(--color-black-primary)
+        text-decoration: underline
+
+    &--primary
+        color: var(--color-primary)
+        text-decoration: underline
+
+        &:hover
+            color: var(--color-primary)

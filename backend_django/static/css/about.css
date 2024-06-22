@@ -1,0 +1,397 @@
+.criteria{
+    background-color: #00D1C1;
+    background-image: url("/static/web_photos/white-overlay.svg");
+    background-size: 100% 110%;
+    background-repeat: no-repeat;
+}
+
+.avatars{
+    background-image: url("/static/web_photos/wcenter-overlay.svg") !important;
+    background-size: 110% 100% !important;
+    padding-bottom: 0;
+}
+
+.flacvf{
+    padding: 4% 9% 4% 0%;
+}
+
+.footer-clear{
+    margin-top: 0;
+}
+
+.spth{
+    padding-right: 5%;
+    padding-left: 5%;
+}
+
+.piku{
+    height: 75%;
+    margin: auto;
+}
+
+.mtkju{
+    padding-top: 10% !important;
+}
+
+.mekn{
+    font-size: 1.45vw;
+    line-height: 1.6vw;
+}
+
+.hof{
+    padding: 2% 4%;
+}
+
+.wcenter{
+    color: white !important;
+    text-align: center !important;
+    padding-top: 4%;
+    padding-bottom: 1%;
+}
+
+.mitu{
+    padding-top: 7% !important;
+}
+
+.coin{
+    text-align: center;
+    padding-top: 5%;
+    padding-bottom: 7%;
+
+}
+
+.boxuh{
+    width: 13%;
+    text-align: center !important;
+    margin-right: 43.5%;
+    margin-left: 43.5%;
+    padding: 12px;
+    color: #00D1C1 !important;
+    background: #FFFFFF;
+    border-radius: 30px;
+    font-family: std-medium !important;
+    font-weight: bold !important;
+}
+
+.boxuh:hover{
+    text-decoration: none;
+}
+
+.wcio{
+    padding: 2% 30%;
+}
+
+.picasd{
+    text-align: center !important;
+    margin:auto;
+    padding:0% 3% 10% 3%;
+}
+
+.picasd img{
+    padding: 10% 25%;
+    width: 100%;
+}
+
+.mkot{
+    border: none !important;
+}
+
+.menu-top{
+    background-color: #00D1C1;
+    margin: 0 !important;
+}
+
+.intro-about{
+    background-color: #00D1C1;
+}
+
+.ctext{
+    margin-top: auto !important;
+}
+
+.may-ask{
+    width: 46%;
+    padding: 5% 4% 4% 3%;
+    text-align: left !important;
+}
+
+.upb{
+    font-size: 3.125vw;
+    line-height: 3.5vw;
+    text-align: left;
+    font-weight: 900;
+    font-family: std-medium;
+    color: #383838;
+}
+
+.sjut{
+    padding-right: 7.8%;
+}
+
+.njhu{
+    padding-right: 1%;
+}
+
+.oouy{
+    background-color: #FCF5EB;
+}
+
+.oouy img{
+    width: 100%;
+}
+
+.flkio{
+    padding: 8% 9% 4% 0%;
+}
+
+.desk-work{
+    padding: 4% 5% 2% 2%;
+}
+
+.superman-work{
+    padding: 1% 2% 2% 5%;
+}
+
+.oouy p{
+    padding-top: 2%;
+}
+
+.lowb{
+    font-family: normie-stuff;
+    font-weight: 300;
+    font-size: 1.6vw;
+    line-height: 2.4vw;
+    text-align: left;
+}
+
+.vim{
+    padding: 5% 11% 5% 8%;
+}
+
+.vim img{
+    width: 100%;
+}
+
+.questions{
+    width: 54%;
+    background-color: #FF5A5F;
+    padding-top: 5%;
+}
+
+.accordion {
+    background-color: #FF5A5F;
+    color:white;
+    cursor: pointer;
+    border: none;
+    outline: none !important;
+    transition: 0.8s;
+    text-align: right;
+    margin: 0 !important;
+    padding-bottom: 5% !important;
+    border-top: 1px solid #FCF5EB;
+  }
+
+.q-text{
+    font-family: std-medium;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 1.875vw;
+    line-height: 140%;
+    color: #FCF5EB;
+    border-top: 1px solid #FCF5EB;
+    padding-top: 1.5%;
+    text-align: left;
+    padding-bottom: 1% !important;
+}
+
+.question{
+    margin: 0;
+    padding: 1.4% 7%;
+}
+
+.panel {
+    padding-top: 2% !important;
+    background-color: #FF5A5F;
+    display: none;
+    overflow: hidden;
+}
+
+.top-company{
+    margin-left: auto;
+}
+
+.marker-thing{
+    height: 100%;
+}
+
+.left-glide, .right-glide{
+    cursor: pointer;
+}
+
+.third{
+    width: 33.33%;
+}
+
+.siu{
+    width: 44%;
+}
+
+.siuu{
+    width: 56%;
+}
+
+@media only screen and (max-width: 768px){
+
+
+    .third{
+        width: 100%;
+    }
+
+    .ctext{
+        padding: 5% 8% !important;
+    }
+    .top-company{
+        margin-left: auto;
+    }
+    .may-ask{
+        width: 100% !important;
+        padding: 5% 5%;
+    }
+    .questions{
+        width: 100% !important;
+        padding-bottom: 8%;
+    }
+    .upb{
+        font-size: 8vw;
+        line-height: 7vw;
+        text-align: center;
+    }
+    .lowb{
+        font-size: 3.5vw;
+        line-height: 4vw;
+        text-align: center;
+        padding-top: 5%;
+    }
+    .q-text{
+        font-size: 3.75vw;
+        line-height: 4.2vw;
+        text-align: left;
+        padding-top: 5%;
+    }
+
+    .wcio{
+        padding: 2% 5% !important;
+    }
+
+    .picasd img{
+        padding-bottom: 2%;
+    }
+    .desk-work, .superman-work{
+        padding: 4% 3%;
+    }
+
+    .desk-work{
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -moz-box-orient: vertical;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        /* optional */
+        -webkit-box-align: start;
+        -moz-box-align: start;
+        -ms-flex-align: start;
+        -webkit-align-items: flex-start;
+        align-items: flex-start;
+    }
+
+    .sjut{
+        padding-right: 15px !important;
+        -webkit-box-ordinal-group: 2;
+        -moz-box-ordinal-group: 2;
+        -ms-flex-order: 2;
+        -webkit-order: 2;
+        order: 2;
+    }
+
+    .flacvf{
+        padding: 4%;
+        -webkit-box-ordinal-group: 1;
+        -moz-box-ordinal-group: 1;
+        -ms-flex-order: 1;
+        -webkit-order: 1;
+        order: 1;
+    }
+
+    .njhu{
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .hof .col-lg-3{
+        padding-top: 15%;
+    }
+    .mekn{
+        padding-top: 1%;
+    }
+
+    .coin{
+        text-align: center;
+        padding-top: 15%;
+        padding-bottom: 25%;
+
+    }
+    .boxuh{
+        width: 48%;
+        text-align: center !important;
+        margin-right: 26%;
+        margin-left: 26%;
+        padding: 12px;
+        color: #00D1C1 !important;
+        background: #FFFFFF;
+        border-radius: 30px;
+        font-family: std-medium !important;
+        font-weight: bold !important;
+        font-size: 4.5vw;
+        line-height: 5vw;
+    }
+
+    .avatars, .criteria{
+        background-image: none !important;
+    }
+    .intro-about{
+        padding-bottom: 8%;
+    }
+}
+
+@media only screen and (min-width:769px) and (max-width:991px){
+    .piku{
+        height: 60% ;
+    }
+    .marker-thing{
+        width: 20% !important;
+
+    }
+    .carousel-mid{
+        width: 60% !important;
+    }
+}
+
+@media only screen and (max-width:575px){
+    .upb{
+        font-size: 9.5vw;
+        line-height: 10.5vw;
+    }
+    .lowb{
+        font-size: 4.5vw;
+        line-height: 6vw;
+    }
+    .q-text{
+        font-size: 4.5vw;
+        line-height: 6vw;
+    }
+
+}

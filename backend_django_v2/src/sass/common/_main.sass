@@ -1,0 +1,90 @@
+$color-primary: #00d1c2
+$color-secondary: #007a86
+$color-thirty: #00626b
+$color-success: #8de177
+$color-danger: #ff5c60
+$color-black-primary: #565a5c
+$color-black-secondary: #383838
+$color-gray-primary: #9ca199
+$color-gray-secondary: #e0e0e0
+
+:root
+    --color-primary: #{$color-primary}
+    --color-secondary: #{$color-secondary}
+    --color-thirty: #{$color-thirty}
+    --color-success: #{$color-success}
+    --color-danger: #{$color-danger}
+    --color-black-primary: #{$color-black-primary}
+    --color-black-secondary: #{$color-black-secondary}
+    --color-grey-primary: #{$color-gray-primary}
+    --color-gray-secondary: #{$color-gray-secondary}
+
+html
+    -webkit-font-smoothing: antialiased
+    -moz-osx-font-smoothing: grayscale
+    font-size: 16px
+
+body
+    font-family: 'Circular Air', sans-serif
+    line-height: 1.42
+    font-weight: 400
+    color: var(--color-black-primary)
+
+*,
+*::before,
+*::after
+    box-sizing: border-box
+    outline-color: var(--color-primary)
+
+img
+    height: auto
+    max-width: 100%
+
+iframe
+    max-width: 100%
+
+a
+    color: var(--color-primary)
+    text-decoration: underline
+    transition: color .2s ease
+
+    &:hover
+        color: var(--color-thirty)
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+    font-weight: 400
+
+.container
+    width: 1260px
+    max-width: 100%
+    padding: 0 20px
+    margin: 0 auto
+
+.preload *
+    transition: none !important
+
+.overflow-hidden
+    overflow: hidden !important
+
+.custom-scrollbar
+    scrollbar-width: thin
+    scrollbar-color: #eee #6d6d6d
+
+    &::-webkit-scrollbar
+        background-color: #eee
+        width: 4px
+        height: 4px
+
+    &::-webkit-scrollbar-thumb
+        background-color: #6d6d6d
+        width: 4px
+        height: 4px
+
+.hide-tablet-le
+    @include tablet-le
+        display: none !important

@@ -1,0 +1,47 @@
+.section-head-tooltip
+    &__body
+        width: 100%
+        flex: 0 0 100%
+        max-width: 100%
+        display: none
+
+    &__open-button
+        @extend %reset-button-styles
+        position: relative
+        right: -5px
+        top: -2px
+        display: inline-block
+        width: 16px
+        height: 16px
+        border-radius: 100px
+        background-color: var(--color-secondary)
+        background-size: 6px 9px
+        background-position: center
+        background-repeat: no-repeat
+        background-image: url(images/icons/question.svg)
+        transition: transform .2s ease-out, opacity .2s ease-out
+        cursor: pointer
+
+        &:hover
+            transform: translateY(-1px)
+
+    &__close-button
+        opacity: 0
+        transition: opacity .2s ease-out
+
+    &__text
+        display: block
+        font-size: 14px
+        color: #fff
+        font-family: 'Circular Std', sans-serif
+
+    &--active
+        .section-head-tooltip
+            &__open-button
+                opacity: 0
+
+            &__close-button
+                opacity: 1
+
+            &__body
+                display: block

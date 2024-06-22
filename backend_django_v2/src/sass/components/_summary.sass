@@ -1,0 +1,61 @@
+.summary
+    &__body
+        display: grid
+        grid-template-columns: 62fr 96fr
+        grid-gap: 24px
+
+        @include big-tablet-le
+            grid-template-columns: 1fr
+            grid-gap: 32px
+
+        @include phone-le
+            grid-gap: 24px
+
+        &:not(:first-child)
+            margin-top: 24px
+
+    &__secondary
+        display: grid
+        grid-template-columns: 1fr
+        grid-gap: 40px
+
+        @include big-tablet-le
+            grid-gap: 24px
+
+    &__title
+        margin: 0
+        font-family: 'Circular Std', sans-serif
+        font-size: 16px
+        color: var(--color-black-secondary)
+
+        &:not(:last-child)
+            margin-bottom: 14px
+
+    &__description
+        font-size: 14px
+        margin: 0
+
+    &__signs
+        margin: 0
+        padding: 0
+        list-style: none
+        display: grid
+        grid-template-columns: 1fr
+        grid-gap: 20px
+
+    &__signs-item
+        font-size: 14px
+
+        &--plus
+            padding-left: 24px
+            background-image: url(images/icons/plus.svg)
+            background-position: top 2px left
+            background-repeat: no-repeat
+            background-size: 16px
+
+        &--minus
+            padding-left: 24px
+            background-image: url(images/icons/minus.svg)
+            background-position: top 2px left
+            background-repeat: no-repeat
+            background-size: 16px

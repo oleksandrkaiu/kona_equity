@@ -1,0 +1,826 @@
+{% extends "base_generic.html" %}
+{% load static %}
+
+{% block title %}
+<title>{{title}}</title>
+{% endblock %}
+
+{% block meta %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css"/>
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<link rel="stylesheet" href="{% static 'css/menusearch.css' %}">
+<link rel="stylesheet" href="{% static 'css/find.css' %}">
+<meta name="format-detection" content="telephone=no">
+<meta name="description" content="Click to see the list of {{meta}}. Kona Equity provides all the data on their revenue, employees, and location for FREE.">
+<script type="text/javascript">
+  (function(e,t){var n=e.amplitude||{_q:[],_iq:{}};var r=t.createElement("script")
+  ;r.type="text/javascript"
+  ;r.integrity="sha384-tzcaaCH5+KXD4sGaDozev6oElQhsVfbJvdi3//c2YvbY02LrNlbpGdt3Wq4rWonS"
+  ;r.crossOrigin="anonymous";r.async=true
+  ;r.src="https://cdn.amplitude.com/libs/amplitude-8.5.0-min.gz.js"
+  ;r.onload=function(){if(!e.amplitude.runQueuedFunctions){
+  console.log("[Amplitude] Error: could not load SDK")}}
+  ;var i=t.getElementsByTagName("script")[0];i.parentNode.insertBefore(r,i)
+  ;function s(e,t){e.prototype[t]=function(){
+  this._q.push([t].concat(Array.prototype.slice.call(arguments,0)));return this}}
+  var o=function(){this._q=[];return this}
+  ;var a=["add","append","clearAll","prepend","set","setOnce","unset","preInsert","postInsert","remove"]
+  ;for(var c=0;c<a.length;c++){s(o,a[c])}n.Identify=o;var u=function(){this._q=[]
+  ;return this}
+  ;var l=["setProductId","setQuantity","setPrice","setRevenueType","setEventProperties"]
+  ;for(var p=0;p<l.length;p++){s(u,l[p])}n.Revenue=u
+  ;var d=["init","logEvent","logRevenue","setUserId","setUserProperties","setOptOut","setVersionName","setDomain","setDeviceId","enableTracking","setGlobalUserProperties","identify","clearUserProperties","setGroup","logRevenueV2","regenerateDeviceId","groupIdentify","onInit","logEventWithTimestamp","logEventWithGroups","setSessionId","resetSessionId"]
+  ;function v(e){function t(t){e[t]=function(){
+  e._q.push([t].concat(Array.prototype.slice.call(arguments,0)))}}
+  for(var n=0;n<d.length;n++){t(d[n])}}v(n);n.getInstance=function(e){
+  e=(!e||e.length===0?"$default_instance":e).toLowerCase()
+  ;if(!Object.prototype.hasOwnProperty.call(n._iq,e)){n._iq[e]={_q:[]};v(n._iq[e])
+  }return n._iq[e]};e.amplitude=n})(window,document);
+
+  amplitude.getInstance().init("be66799cc85da3545fc1acf9144ee66a");
+</script>
+<script>
+var eventProperties = {
+ 'page': window.location.pathname
+};
+amplitude.getInstance().logEvent('categorypage:shown', eventProperties);
+</script>
+<style>
+    title{
+        text-transform: capitalize;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="bg-2" style="z-index: -1; right: 0px; left: 0px;"></div>
+<div class="container-fluid row menu-top py-1">
+    <div class="wex"></div>
+    <div class="logo-home"><a href="/"><img src="{% static 'profile_photos/logo.png' %}"></div></a>
+    <div style="width: 7%;"></div>
+    <div id="menu-bar" class="row">
+        <div class="navnone">
+            <div class="home-hover row quart">
+                <a href="/">Home</a>
+            </div>
+            <div class="home-under under row"><img src="{% static 'web_photos/marker.svg' %}" ></div>
+        </div>
+        <div class="spacing navnone"></div>
+        <div class="navnone">
+            <div class="about-hover row quart">
+                <a class="" href="/about/">About</a>
+            </div>
+            <div class="about-under under row"><img src="{% static 'web_photos/marker.svg' %}" ></div>
+        </div>
+        <div class="spacing navnone"></div>
+        <div class="navnone">
+            <div class="contact-hover row quart">
+                <a href="/contact/">Contact us</a>
+            </div>
+            <div class="contact-under under row"><img src="{% static 'web_photos/marker.svg' %}" ></div>
+        </div>
+        <div class="spacing xced"></div>
+        <div>
+            <div class="dropdown row">
+                <div class="top-hover dropbtn quart">
+                    <span>Industries</span>
+                </div>
+                <div class="under row" style="visibility: hidden;"><img src="{% static 'web_photos/marker.svg' %}" ></div>
+                <div class="dropdown-content">
+                    {% for a in dc %}
+                    <a href="{{a.link}}">{{a.name}}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="ex-spacing"></div>
+        <div>
+            <div class="row quart">
+                <a href="/find/">Explore</a>
+            </div>
+            <div class="current under row"><img src="{% static 'web_photos/marker.svg' %}" ></div>
+        </div>
+    </div>
+    {% if rauth %}
+    <div id="hidden-menu" class="col-1">
+    {% else %}
+    <div id="hidden-menu" class="col-1" style="padding-left: 20%;">
+    {% endif %}
+        <a onclick="openNav()"><img src="{% static 'web_photos/mobile-menu.svg' %}"></a>
+    </div>
+    {% if rauth is None %}
+    <button id="login" type="button" data-toggle="modal" data-target="#LoginModal" class="quart my-auto pbot cuta"><span class="hvra">Login</span></button>
+    <button id="signup" type="button" data-toggle="modal" data-target="#SignupModal" class="quart my-auto pbot bbpotp hvra">Sign up!!</button>
+    {% else %}
+    <div id="profile-disp" class="my-auto">
+        <img id="profile-img" class="my-auto" src="/media/{{rauth}}" onerror="this.src='/static/profile_photos/default-avatar.svg'">
+        <svg id="pdown" width="20" height="8" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4.87903 5.81354L0.548901 0.563538L9.20916 0.563538L4.87903 5.81354Z" fill="white"/>
+        </svg>
+        <div id="profile-menu" class="dropdown-content">
+            <a href="/dashboard/">Edit Profile</a>
+            <a href="/watchlist/">My Watchlist</a>
+            <a id="logmeout" href="JavaScript:Void(0);">Logout</a>
+        </div>
+    </div>
+    {% endif %}
+</div>
+<div class = "container-fluid">
+    <div class="row">
+        <div class="col-lg-10 ctext my-auto" style="margin-bottom: 0% !important;">
+            <div class="row m-text">
+                {{heading}}
+            </div>
+            <div class="row min-text">
+                Empowering your search for the healthiest, profitable and growing companies.
+            </div>
+        </div>
+    </div>
+<div class="row justify-content-center">
+    <div id="showBoi" class="col-12">
+        <form>
+            <div class="row mb-4 justify-content-center">
+                <div class="col-11 col-lg-8">
+                    <div class="row">
+                        <div id="searchDiv" class="col-10 col-lg-11 my-auto pt-1 pr-0">
+                            <div class="form-group m-0" style="height: 42px;">
+                                <input type="search" class="form-control search-box h-100" id="searchy" placeholder="Search" style="background-color: white;">
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-2"  style="position:absolute;right:0;">
+                            <button type="button" id="filterDown" class="btn btn-outline-darl btn-lg btn-block h-50 st-btn" style="border-radius: 25px;">Filter&nbsp;<i class="m-0  arrow down"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-11 col-lg-8">
+        <div id="slidyBoi" class="card shadow pr-4 pt-4 pl-4 r-25 pb-0" style="display:none;">
+            <div class="card-body pb-0">
+                <div class="row justify-content-center">
+                    <div class="col p-0">
+                        <form>
+                            <div class="row mb-4">
+                                <div id="searchDiv" class="col-6 col-lg-10 my-auto pt-1 pr-0" >
+                                    <div class="form-group m-0" style="height: 42px;">
+                                        <input type="search" class="form-control h-100 search-box" id="searchhy" placeholder="Search" style="background-color: white;">
+                                    </div>
+                                </div>
+                                <div class="col-6 col-lg-2"  style="position:absolute;right:0;">
+                                    <button type="button" id="filterUp" class="btn btn-outline-darl btn-lg btn-block h-50 st-btn" style="border-radius: 25px;">Filter&nbsp;<i class="m-0 arrow up"></i></button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div id="dropdowns" class="col-6">
+                                    {% if 'state' in history %}
+                                     <button id="droppys" type="button" class="btn btn-block btn-lg dropdown-toggle droppy" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-show="{{history.state.show}}" data-back="{{history.state.back}}">
+                                        Select State
+                                    </button>
+                                    {% else %}
+                                    <button id="droppys" type="button" class="btn btn-block btn-lg dropdown-toggle droppy" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-show="" data-back="">
+                                        Select State
+                                    </button>
+                                    {% endif %}
+                                      <div class="dropdown-menu scrollable-menu">
+                                        <input id="sinput" class="dropdown-item" placeholder="Search">
+                                        <a id="clearit" class="dropdown-item" href="javascript:;" data-value="nulls">Clear Selection</a>
+                                        {% for x, y in state.items %}
+                                        <a class="dropdown-item" href="javascript:;" data-value="{{x}}">{{y}}</a>
+                                        {% endfor %}
+                                      </div>
+                                </div>
+                                <div id="dropdowni" class="col-6" style="margin-bottom: 2%;">
+                                    {% if 'industry' in history %}
+                                     <button id="droppyi" type="button" class="btn btn-block btn-lg dropdown-toggle droppy" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-show="{{history.industry.show}}" data-back="{{history.industry.back}}">
+                                        Select Industry
+                                      </button>
+                                      {% else %}
+                                      <button id="droppyi" type="button" class="btn btn-block btn-lg dropdown-toggle droppy" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-show="" data-back="">
+                                        Select Industry
+                                      </button>
+                                      {% endif %}
+                                      <div class="dropdown-menu scrollable-menu">
+                                        <input id="indinput" class="dropdown-item" placeholder="Search">
+                                        <a id="clearit" class="dropdown-item" href="javascript:;" data-value="nulls">Clear Selection</a>
+                                        {% for x, y in industry.items %}
+                                        <a class="dropdown-item" href="javascript:;" data-value="{{y}}">{{x}}</a>
+                                        {% endfor %}
+                                      </div>
+                                </div>
+                            </div>
+                            <div id="rev-slider" class="form-group">
+                                <div class="row">
+                                    <div class="col-12 uptext">
+                                        Revenue
+                                    </div>
+                                    <div class="col"><input type="text" id="revenue-slider" class="js-range-slider pad-side" name="revenue" value=""/></div>
+                                </div>
+                            </div>
+                            <div id="emp-slider" class="form-group">
+                                <div class="row">
+                                    <div class="col-12 uptext">
+                                        Employees
+                                    </div>
+                                    <div class="col"><input type="text" id="employee-slider" class="js-range-slider pad-side" name="employees" value=""/></div>
+                                </div>
+                            </div>
+                            <div id="gee-slider" class="form-group mb-4">
+                                <div class="row">
+                                    <div class="col-12 uptext">
+                                        G score
+                                    </div>
+                                    <div class="col"><input type="text" id="g-slider" class="js-range-slider pad-side" name="gscore" value=""/></div>
+                                </div>
+                            </div>
+                            <div class="form-group mt-4 p-4">
+                                <div class="row justify-content-between">
+                                    <div class="col-6 col-lg-2">
+                                        <button id="clrbtn" type="button" class="btn btn-block btn-lg st2-btn" style="border-radius: 25px;">Clear</button>
+                                    </div>
+                                    <div class="col-6 col-lg-2">
+                                        <button id="filter-btn" type="button" class="btn btn-block btn-lg st2-btn" style="border-radius: 25px;">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class = "row justify-content-center blob">
+    <div class = "col-12 col-md-10">
+        <div class="row">
+            {% for x, y in args.items %}
+            {% if x != "page" %}
+            <div class="fake-b floaty-bois">
+            {% if x == "gn" %}
+            G Score &#8805;&nbsp;
+            {% elif x == "gx" %}
+            G Score &#8804;&nbsp;
+            {% elif x == "arn" %}
+            Revenue &#8805;&nbsp;
+            {% elif x == "arx" %}
+            Revenue &#8804;&nbsp;
+            {% elif x == "empx" %}
+            Employees &#8804;&nbsp;
+            {% elif x == "empn" %}
+            Employees &#8805;&nbsp;
+            {% elif x == "search" %}
+            Search:&nbsp;
+            {% endif %}
+                {{y}}
+                <span class="button on-click" data-identifier="{{x}}" style="position: relative;top: 0px;float: right;right: -9px; font-size: 22px;">×</span>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="row excess"></div>
+
+<div class = "row">
+    <div id="indicator" class = "col-12 col-md-5">{{pager}}</div>
+</div>
+
+
+<div class="d-none d-sm-block w-100">
+    <div class="row justify-content-center">
+        <div class="col-sm-10">
+            <div id="starter" class="table-header row text-center">
+                <div class="s-lt w-20" ><p class="my-auto mx-auto">Company Name</p></div>
+                <div class="w-13"><p class="my-auto mx-auto">Industry</p></div>
+                <div class="w-14"><p class="my-auto mx-auto">Google Places Industry</p></div>
+                <div class="w-20"><p class="my-auto mx-auto">Address</p></div>
+                <div class="w-10"><p class="my-auto mx-auto">Revenue</p></div>
+                <div class="w-13"><p class="my-auto mx-auto">Employees</p></div>
+                <div class="s-rt w-10" ><p class="my-auto mx-auto">G Score</p></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        {% for company in page_obj %}
+        <div class="row row-stuff justify-content-center clra">
+            <div class="col-11 col-sm-10">
+                <div class="card-mm">
+                    <div class="ccol-5" style="background-color: #FF5A5F; position: absolute; top: 0; left: 0; height: 100%; border-radius: 1.25rem 0 0 1.25rem;"></div>
+                    <div class="row sing-row">
+                        <div id="c_name" class="mmb-4 ccol-5"></div>
+                        <div class="cname col-7 w-20 my-auto" style="display:inline-block;">
+                            {% if company.fav %}
+                                <div class="row searchBDir fav listing yes" data-id="{{company.id}}" data-selected="true">
+                            {% else %}
+                                <div class="row searchBDir fav listing no" data-id="{{company.id}}" data-selected="false">
+                            {% endif %}
+                            </div>
+                            <a target="_blank" href="/company/{{company.identifier}}/" class = "p-0 name-bold">{{company.name}}</a>
+                            <a target="_blank" href="https://{{company.domain}}" rel="nofollow" class="p-0 domain-not-bold ow-break-word">{{company.domain}}</a>
+                        </div>
+                        <hr class="d-block d-sm-none">
+                        <div id="c_industry" class="mmb-4 ccol-5"></div>
+                        <div class="col-7 w-13 text-catalog my-auto">
+                            {% if "industry" in args %}
+                                <div class="ori-black fix_underscore ow-break-word">
+                                    {{company.industry}}
+                                </div>
+                            {% else %}
+                                {% if company.industry %}
+                                    <a href="#" data-identifier="industry" data-value="{{company.industry}}" class="fix_underscore fix_slug mx-auto link-col ow-break-word">
+                                        {{company.industry}}
+                                    </a>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                        <hr class="d-block d-sm-none">
+                        <div id="c_gind" class="mmb-4 ccol-5"></div>
+                        <div class="col-7 w-14 text-catalog my-auto">
+                            {% if "google_industry" in args %}
+                                <div class="ow-break-word">
+                                    {{company.google_industry}}
+                                </div>
+                            {% else %}
+                                {% if company.google_industry %}
+                                    <a href="#" data-identifier="google_industry" data-value="{{company.google_industry}}" class="fix_urls mx-auto link-col ow-break-word">
+                                        {{company.google_industry}}
+                                    </a>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                        <hr class="d-block d-sm-none">
+                        <div id="c_add" class="mmb-4 ccol-5"></div>
+                        <div class="col-7 w-20 fix_address mx-auto ow-break-word text-catalog my-auto ori-black">
+                            {% load nospaces %}
+                            {% spaceless %}
+                            {% if company.address_2 %}
+                            <div style="display: inline;">{{company.address_2}}</div>
+                            {% endif %}
+                            {% if company.address and company.address_2 %}
+                            <div style="display: inline;">, {{company.address}}</div>
+                            {% else %}
+                            {% if company.address %}
+                            <div style="display: inline;">{{company.address}}</div>
+                            {% endif %}
+                            {% endif %}
+                            {% if "city" in args %}
+                                <div style="display: inline;">, {{company.city}}</div>{% if company.state %},{% endif %}
+                            {% else %}
+                            {% if company.city %}
+                            , <a href="#" data-identifier="city" data-value="{{company.city}}" class="fix_urls link-col">{{company.city}}</a>{% if company.state %},{% endif %}
+                            {% endif %}
+                            {% endif %}
+                            {% if "state" in args %}
+                            <div style="display: inline;"> {{company.state}}</div>
+                            {% else %}
+                            {% if company.state %}
+                            <a href="#" data-identifier="state" data-value="{{company.state}}" class="fix_slug link-col">{{company.state}}</a>
+                            {% endif %}
+                            {% endif %}
+                             {{company.postal}}
+                            {% endspaceless %}
+                        </div>
+                        <hr class="d-block d-sm-none">
+                        <div id="c_rev" class="mmb-4 ccol-5 my-auto"></div>
+                        <div class="col-7 w-10 mx-auto ow-break-word text-catalog my-auto">
+                            {% if company.annual_revenue %}
+                                <div class="abbreviate">
+                                    {{company.annual_revenue}}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <hr class="d-block d-sm-none">
+                        <div id="c_emp" class="mmb-4 ccol-5 my-auto"></div>
+                        <div class="col-7 w-13 mx-auto ow-break-word text-catalog my-auto">
+                            {% if company.num_emp %}
+                                <div class="abbreviate">
+                                    {{company.num_emp}}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <hr class="d-block d-sm-none">
+                        <div id="c_gstuff" class="mmb-4 ccol-5 my-auto"></div>
+                        <div class="col-7 w-10 mx-auto ow-break-word text-catalog my-auto">
+                            {% if company.g_true is not None %}
+                                <div>
+                                    {{company.g_true}}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<div class="row excess"></div>
+
+{% load cache %}
+{% cache 86400 pagi ckey %}
+<div class="row">
+    <div class="col-12 col-lg-12">
+        <nav>
+            <div class="pagination">
+            <ul class="justify-content-center" style="padding-left: 0px;">
+            {% if pbj.has_previous %}
+            <li class="page-item">
+            <a class="pg-link prevpag" href="1" aria-label="Previous">
+                <img src = "{% static 'web_photos/prev.svg' %}">
+                <span class="sr-only">begin</span>
+            </a>
+            </li>
+            {% endif %}
+
+
+            {% for n in pbj.page_range %}
+            {% if pbj.number == n %}
+                <li class="page-item active">
+                <span class="pg-link itemizer">{{ n }}<span class="sr-only">(current)</span></span>
+                </li>
+            {% else %}
+                <li class="page-item"><a class="pg-link itemizer" href="{{ n }}">{{ n }}</a></li>
+            {% endif %}
+            {% endfor %}
+
+            {% if pbj.has_next %}
+            <li class="page-item">
+                <a class="pg-link prevpag" href="{{pbj.total_pages}}" aria-label="Next">
+                    <img src = "{% static 'web_photos/next.svg' %}">
+                <span class="sr-only">end</span>
+                </a>
+            </li>
+            {% endif %}
+            </ul>
+        </div>
+        </nav>
+    </div>
+</div>
+{% endcache %}
+
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'js/find.js' %}"></script>
+<script src="{% static 'js/autocomplete.js' %}"></script>
+<script src="{% static 'js/utils.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
+<script>
+function main(){
+
+     var elem = document.getElementById("searchy");
+    elem.addEventListener("keypress", function (e){
+        if (e.keyCode == 13){
+            e.preventDefault();
+            var elem = document.getElementById("searchy");
+            if (elem.value != ""){
+                var href = removeParam("page", insertParam("search", elem.value))
+                window.location.href = href
+            }
+        }
+    });
+
+    var elem = document.getElementById("searchhy");
+    elem.addEventListener("keypress", function (e){
+        if (e.keyCode == 13){
+            e.preventDefault();
+            var elem = document.getElementById("searchhy");
+            if (elem.value != ""){
+                var href = removeParam("page", insertParam("search", elem.value))
+                window.location.href = href
+            }
+        }
+    });
+
+    var elems = document.getElementsByClassName("pg-link")
+    for (var i = 0; i < elems.length; i++){
+        href = elems[i].getAttribute("href")
+        href = elems[i].setAttribute("href", insertParam("page", href))
+    }
+
+    $(".dropdown").click(function(e){
+        e.stopPropagation()
+        $(this).find(".dropdown-content").css("display", "block");
+    });
+
+    $(document).on("click", function(event){
+        var n = $(".dropdown-content").css("display");
+        if (n == "block"){
+            $(".dropdown-content").css("display", "none")
+        }
+    });
+    $(".dropdown").hover(function(){
+        $(this).find(".dropdown-content").css("display", "block");
+    },function(){
+        $(this).find(".dropdown-content").css("display", "none");
+    });
+
+    $("#searchy").val("");
+    $("#searchhy").val("");
+
+    $("#sinput").focus(function(e){
+        $("#droppys").addClass("mich");
+    });
+
+    $("#sinput").blur(function(){
+        $("#droppys").removeClass("mich");
+    });
+
+    $("#sinput").on("input focus", function(){
+        var text = $(this).val()
+        searchy($(this), text)
+    });
+
+    $("#indinput").focus(function(e){
+        $("#droppyi").addClass("mich");
+    });
+
+    $("#indinput").blur(function(){
+        $("#droppyi").removeClass("mich");
+    });
+
+    $("#indinput").on("input focus", function(){
+        var text = $(this).val()
+        searchy($(this), text)
+    });
+
+    highlight($('#droppys'));
+    highlight($('#droppyi'));
+    $("#clrbtn").click(function(){
+        window.location.href = "/find/"
+    });
+    $(".dropdown-item").click(function(){
+        var attr = $(this).attr("data-value")
+        var show = $(this).html()
+        var p = $(this).parent().parent().children("button")[0]
+        if (attr == "nulli"){
+            clear($(p), "Industry")
+        }
+        else if (attr == "nulls"){
+            clear($(p), "State")
+        }
+        else{
+            $(p).attr("data-show", show)
+            $(p).attr("data-back", attr)
+            highlight($(p))
+        }
+    });
+
+    var inp = document.getElementById("id_input")
+    autocomplete(inp);
+
+    dropys();
+    logmeout();
+    openSome();
+    validato();
+    checkSome();
+    favCheck();
+    popitUp();
+    mobileSignup();
+
+    var ar_min = 100000;
+    var ar_max = 52000000000;
+    var em_min = 1;
+    var em_max = 75000;
+    var g_min = 0;
+    var g_max = 8;
+
+    var se = new URL(window.location.href).searchParams
+    var arn = delog(Number(se.get("arn")), ar_min, ar_max)
+    if (!arn){arn = ar_min}
+    var arx = delog(Number(se.get("arx")), ar_min, ar_max)
+    if (!arx){arx = ar_max}
+    var empn = delog(Number(se.get("empn")), em_min, em_max)
+    if (!empn){empn = em_min}
+    var empx = delog(Number(se.get("empx")), em_min, em_max)
+    if (!empx){empx = em_max}
+    var gn = Number(se.get("gn"))
+    if (!gn){gn=g_min}
+    var gx = parseInt(se.get("gx"))
+    if (!gx){gx=g_max}
+
+
+    $("#filterUp").click(function(){
+        $("#searchy").val($("#searchhy").val())
+        $("#slidyBoi").slideUp(400, function() {
+            $("#showBoi").fadeIn();
+        });
+    });
+    $("#droppyi").blur(function(){
+        $('this').dropdown('hide');
+    })
+    $("#droppys").blur(function(){
+        $('this').dropdown('hide');
+    })
+    $("#dropdowni").on('hidden.bs.dropdown', function () {
+            $(this).find("button").blur();
+    });
+    $("#dropdowns").on('hidden.bs.dropdown', function () {
+            $(this).find("button").blur();
+    });
+    $("#filterDown").click(function(){
+        $("#searchhy").val($("#searchy").val())
+        $("#showBoi").fadeOut(200, function() {
+            $("#slidyBoi").slideDown(400, function() {
+                $(".droppy+.dropdown-menu").css('width', $(".droppy").outerWidth());
+            });
+        });
+    });
+    $("#revenue-slider").ionRangeSlider({
+        type: "double",
+        skin: "round",
+        prettify: function (n) {
+            return abbreviate_number(logify(n, ar_min, ar_max));
+        },
+        grid: true,
+        min: ar_min,
+        max: ar_max,
+        from: parseInt(arn),
+        to: parseInt(arx),
+        hide_min_max: true,
+        prefix: ""
+    });
+
+    $("#employee-slider").ionRangeSlider({
+        type: "double",
+        skin: "round",
+        prettify: function (n) {
+            return abbreviate_number(logify(n, em_min, em_max));
+        },
+        grid: true,
+        min: em_min,
+        max: em_max,
+        from: parseInt(empn),
+        to: parseInt(empx),
+        hide_min_max: true,
+        prefix: ""
+    });
+
+    $("#g-slider").ionRangeSlider({
+        type: "double",
+        skin: "round",
+        prettify: function (n) {
+            return abbreviate_number(n);
+        },
+        grid: true,
+        min: g_min,
+        max: g_max,
+        from: gn,
+        to: gx,
+        hide_min_max: true,
+        step: 1,
+        values: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+        prefix: ""
+    });
+
+    var btnn = $("#filter-btn")
+    btnn.on("click", function(){
+        buffer = []
+        removal = []
+        var ids = ["#revenue-slider", "#employee-slider", "#g-slider"];
+        var keys = ["ar", "emp", "g"];
+        for (var i = 0; i < ids.length; i++){
+            var inp = $(ids[i]);
+            var data = inp.data('ionRangeSlider').result;
+            if (data.from != data.min){
+                buffer.push({
+                    "key": keys[i] + "n",
+                    "value": logify(data.from, data.min, data.max)
+                })
+            }
+            else{
+                removal.push(keys[i] + "n")
+            }
+            if (data.to != data.max){
+                buffer.push({
+                    "key": keys[i] + "x",
+                    "value": logify(data.to, data.min, data.max)
+                })
+            }
+            else{
+                removal.push(keys[i] + "x")
+            }
+        }
+        var curl = "{{request.get_full_path}}".split("amp;").join("")
+        for (var i = 0; i < removal.length; i++){
+            curl = removeParam(removal[i], curl)
+        }
+        for(var i = 0; i < buffer.length; i++){
+            curl = removeParam(buffer[i].key, curl)
+            if (curl.includes("?")){
+            curl = curl + "&" + buffer[i].key + "=" + buffer[i].value
+            }
+            else{
+            curl = curl + "?" + buffer[i].key + "=" + buffer[i].value
+            }
+        }
+        curl = removeParam("search", curl)
+        if (curl.includes("?")){
+            var args = curl.split("?")[1]
+        }
+        else{
+            var args = ""
+        }
+        var ni = $("#droppyi").attr("data-back")
+        var ns = $("#droppys").attr("data-back")
+        var mk = "/"
+        if (ni != ""){
+            mk += ni
+        }
+        mk += "--"
+        if (ns != ""){
+            mk += ns
+        }
+        ind = $("#searchhy").val()
+        if (args == ""){
+            if(ind == ""){
+                curl = "/find" + mk
+            }
+            else{
+                curl = "/find" + mk + "?"
+                curl += "search=" + ind
+            }
+        }
+        else{
+            if (ind == ""){
+                curl = "/find" + mk + "?" + args
+            }
+            else{
+                curl = "/find" + mk + "?" + args
+                curl += "&search=" + ind
+            }
+
+        }
+        window.location.href = removeParam("page", curl)
+
+    })
+    latch();
+    $(window).resize(function(){
+        latch();
+    })
+
+    var elems = document.getElementsByClassName("fix_urls");
+    for (var i = 0; i < elems.length; i++){
+        var ident = elems[i].getAttribute("data-identifier");
+        var href = elems[i].getAttribute("data-value");
+        elems[i].setAttribute("href", removeParam("page", insertParam(ident, encodeURIComponent(href))));
+    }
+
+    var elems = document.getElementsByClassName("fix_slug");
+    for (var i = 0; i < elems.length; i++){
+        var ident = elems[i].getAttribute("data-identifier");
+        var href = elems[i].getAttribute("data-value");
+        href = href.split("_").join(" ");
+        href = href.split(" ").join("-");
+        href = href.split("/").join("__");
+        if (ident != "state"){
+            href = href.toLowerCase();
+        }
+        elems[i].setAttribute("href", removeParam("page", insertSlug(ident, encodeURIComponent(href))));
+    }
+
+    var elems = document.getElementsByClassName("fix_underscore");
+    for (var i = 0; i < elems.length; i++){
+        var text = elems[i].innerHTML;
+        text = text.trim().split("_").join(" ").toLowerCase()
+        elems[i].innerHTML = text;
+    }
+
+    var elems = document.getElementsByClassName("fix_address");
+    for (var i = 0; i < elems.length; i++){
+        var text = elems[i].innerHTML;
+        text = text.trim()
+        if(text.startsWith(",")){text = text.substring(1);}
+        elems[i].innerHTML = text.replace(/\s+,/ ,',');
+    }
+
+    var elems = document.getElementsByClassName("on-click");
+    for (var i = 0; i < elems.length; i++){
+        elems[i].addEventListener("click", function(){
+            var attr = this.getAttribute("data-identifier");
+            if (attr == "industry" || attr == "state"){
+                attr = removeParam("page", removeSlug(attr))
+                window.location.href = attr
+            }
+            else{
+                attr = removeParam("page", removeParam(attr, document.location.href));
+                window.location.href = attr;
+            }
+        });
+    }
+}
+if (window.addEventListener) {
+      window.addEventListener('load', main);
+   } else if (window.attachEvent) {
+      window.attachEvent('onload', main);
+   } else {
+      window.onload = main;
+   }
+</script>
+{% endblock %}

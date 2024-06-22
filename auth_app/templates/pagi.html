@@ -1,0 +1,68 @@
+{% load static %}
+<div class="col-12 col-lg-12 p-0">
+    <nav>
+        <div class="pagination">
+        <ul class="justify-content-center" style="padding-left: 0px;">
+        {% if page_obj.has_previous %}
+        <li class="page-item">
+        <a class="pg-link prevpag ajax-page" href="JavaScript:Void(0);" data-href="1" aria-label="Previous">
+            <img src = "{% static 'web_photos/b-prev.svg' %}">
+            <span class="sr-only">begin</span>
+        </a>
+        </li>
+        {% endif %}
+
+        {% for n in page_obj.paginator.page_range %}
+        {% if page_obj.number == n %}
+            <li class="page-item active">
+            <span class="pg-link itemizer" style="background-color: #00D1C1 !important;">{{ n }}<span class="sr-only">(current)</span></span>
+            </li>
+        {% elif n > page_obj.number|add:'-3' and n < page_obj.number|add:'3' %}
+            <li class="page-item"><a class="ajax-page pg-link itemizer" href="JavaScript:Void(0);" data-href="{{ n }}">{{ n }}</a></li>
+        {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+        <li class="page-item">
+            <a class="pg-link prevpag ajax-page" href="JavaScript:Void(0);" data-href="{{page_obj.paginator.num_pages}}" aria-label="Next">
+                <img src = "{% static 'web_photos/b-next.svg' %}">
+            <span class="sr-only">end</span>
+            </a>
+        </li>
+        {% endif %}
+        </ul>
+    </div>
+    </nav>
+</div>
+<script src="{% static 'js/watchlist.js' %}" async></script>
+<script>
+    $(".ajax-page").click(function(e){
+        $("#append").html(loadingDiv)
+        $("#pagination").html("")
+        var data = $(".buzz")[0]
+        data = $(data).attr("id")
+        page = $(this).attr("data-href")
+        $.ajax({
+              headers: { "X-CSRFToken": "{{csrf_token}}" },
+              url: "{% url 'company_supplier' %}",
+              type: "POST",
+              data: {
+                command: data,
+                page: page
+              },
+              dataType: "json",
+              success: function(jsonData) {
+                if (jsonData.status == "empty"){
+                  $("#append").html(emptyDiv);
+                }
+                else{
+                  $("#append").html(jsonData.companies);
+                  $("#pagination").html(jsonData.pagination);
+                  favCheck();
+                }
+              },
+              error: function(jsonData) {
+              }
+            });
+      });
+</script>

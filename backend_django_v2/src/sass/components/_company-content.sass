@@ -1,0 +1,40 @@
+.company-content
+    &__inner
+        padding: 64px 0
+        display: grid
+        grid-template-columns: 280px 1fr
+        grid-gap: 130px
+
+        @include big-tablet-le
+            grid-gap: 32px
+
+        @include tablet-le
+            grid-template-columns: 230px 1fr
+
+        @include phone-le
+            grid-template-columns: 100%
+            grid-gap: 8px
+
+    &__primary-sidebar
+        display: grid
+        grid-template-columns: 100%
+        align-items: start
+        align-content: start
+        grid-gap: 24px
+
+    &__main
+        display: grid
+        grid-template-columns: 100%
+        align-items: start
+        align-content: start
+        grid-gap: 16px
+
+    &__secondary-sidebar
+        display: none
+
+        @include tablet-le
+            display: block
+            grid-column: 2 / 2 span
+
+        @include phone-le
+            grid-column: 1 / 1 span

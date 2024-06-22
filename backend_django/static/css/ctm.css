@@ -1,0 +1,82 @@
+@media (min-width: 992px) {
+    .w-lg-600px {
+        width: 600px !important;
+        margin: auto;
+    }
+}
+.lgtit-01{
+    font-weight: 700;
+    font-size: 30px;
+    font-style: normal;
+    color: #383838;
+}
+
+.lgtit-02{
+    font-weight: 700;
+    font-size: 22px;
+    font-style: normal;
+    color: #383838;
+}
+
+.mdtit-01{
+    font-weight: 500;
+    font-size: 15px;
+    font-style: normal;
+    color: #394152;
+}
+.mdtit-02{
+    font-weight: 500;
+    font-size: 12px;
+    font-style: normal;
+    color: #394152;
+}
+.mdtit-03{
+    font-weight: 900;
+    font-size: 15px;
+    font-style: normal;
+    color: #383838;
+}
+.mdtit-04{
+    font-weight: 500;
+    font-size: 15px;
+    font-style: normal;
+    color: #ffffff;
+}
+.mdtit-err{
+    font-weight: 500;
+    font-size: 15px;
+    font-style: normal;
+    color: #EF5959;
+}
+
+.inp-01{
+    background-color: #ffffff !important;
+}
+.inp-01::placeholder {
+    font-size: 14px;
+}
+.w-300px {
+    width: 300px !important;
+    margin: auto;
+}
+.btn-01 {
+    width: 100%;
+    color: #ffffff;
+    background-color: #007A86;
+    border-color: #007A86;
+}
+.mt-10 {
+    margin-top: 10px!important;
+}
+.success-mark{
+    width: 300px;
+}
+.success-feed{
+    display: none;
+}
+.error-feed{
+    display: none;
+}
+.rounded-logo{
+    border-radius: 50%;;
+}

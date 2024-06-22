@@ -1,0 +1,175 @@
+.header-drop-menu
+    display: grid
+    grid-template-columns: 1fr
+    grid-gap: 24px
+    position: absolute
+    z-index: 10
+    top: 100%
+    left: 0
+    width: 100%
+    max-height: calc(90vh - 64px)
+    padding: 30px 60px 70px
+    border-radius: 0 0 30px 30px
+    background-color: #fff
+    visibility: hidden
+    opacity: 0
+    transform: translateY(-10px)
+    box-shadow: 0 1px 8px rgba(#000, .1)
+    transition: visibility .3s ease-out, opacity .2s ease-out, transform .2s ease-out
+
+.header
+    position: relative
+
+    &__inner
+        display: grid
+        align-items: center
+        grid-template-columns: repeat(2, 1fr)
+        padding: 12px 0
+        grid-gap: 16px
+
+        @include tablet-le
+            grid-template-columns: 1fr
+            padding: 0
+            grid-gap: 0
+
+        @include phone-le
+            grid-template-columns: 30px 1fr
+            grid-gap: 16px
+            padding: 12px 0
+
+    &__wrapper
+        background-color: #fff
+        box-shadow: 0 0 3px rgba(#000, .25)
+
+        @include phone-le
+            position: relative
+            z-index: 100
+
+    &__main
+        display: grid
+        grid-template-columns: 30px 1fr
+        align-items: center
+
+        @include tablet-le
+            padding: 12px 28px
+
+        @include phone-le
+            padding: 0
+
+    &__secondary
+        display: grid
+        grid-template-columns: 280px max-content
+        align-items: center
+        justify-content: end
+        grid-gap: 32px
+
+        @include tablet-le
+            background-color: #FAFAFA
+            margin-left: -20px
+            margin-right: -20px
+            padding: 8px 48px
+            grid-template-columns: 1fr max-content
+            border-top: 2px solid #eee
+
+        @include phone-le
+            margin-left: 0
+            margin-right: 0
+            padding: 0
+            border-top: none
+            background-color: transparent
+            grid-gap: 32px
+
+    &__nav
+        justify-self: end
+
+        @include phone-le
+            justify-self: center
+
+    &__main-nav
+        @include phone-le
+            display: none
+
+    &__nav-list
+        margin: 0
+        padding: 0
+        list-style: none
+        display: grid
+        grid-template-columns: repeat(4, max-content)
+        grid-gap: 60px
+
+        @include big-tablet-le
+            grid-gap: 40px
+
+        @include phone-le
+            grid-template-columns: 1fr
+            grid-gap: 14px
+
+    &__nav-item
+        @include phone-le
+            text-align: center
+
+    &__nav-link
+        font-size: 14px
+        color: var(--color-black-secondary)
+
+        @include phone-le
+            font-size: 24px
+
+        &:hover
+            color: var(--color-black-secondary)
+            text-decoration: underline
+
+    &__menu-button
+        display: none
+
+        @include phone-le
+            display: flex
+
+    &__search
+        position: relative
+
+    &__main-search
+        transition: opacity .2s ease-out
+
+    &__search-input
+        display: block
+        width: 100%
+
+    &__search-button
+        @extend %reset-button-styles
+        width: 14px
+        height: 14px
+        background: transparent url(images/icons/search.svg) center / contain no-repeat
+        position: absolute
+        z-index: 1
+        right: 10px
+        top: 50%
+        transform: translateY(-50%)
+
+    &__controls
+        display: grid
+        grid-template-columns: repeat(2, max-content)
+        align-items: center
+        grid-gap: 32px
+
+    &__main-controls
+        @include phone-le
+            display: none
+
+    &__controls-button
+        min-width: 110px
+
+    &__controls-item
+        display: grid
+        grid-template-columns: 1fr
+        grid-gap: 2px
+
+    &--opened
+        .header-drop-menu
+            visibility: visible
+            opacity: 1
+            transform: translateY(0)
+
+        .header
+            &__main-search
+                opacity: 0

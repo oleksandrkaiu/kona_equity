@@ -1,0 +1,144 @@
+.popup
+    position: fixed
+    z-index: 100
+    left: 0
+    top: 0
+    width: 100%
+    height: 100%
+    background-color: rgba(#000, .2)
+    display: none
+    align-items: center
+    justify-content: center
+    padding: 70px 0
+
+    @include tablet-le
+        padding: 60px 0
+
+    @include phone-le
+        padding: 50px 0
+
+    &__close
+        @extend %reset-button-styles
+        width: 16px
+        height: 16px
+        position: absolute
+        z-index: 1
+        top: 24px
+        right: 24px
+        background: transparent url(images/icons/close-color.svg) center / contain no-repeat
+        transition: opacity .2s ease-out
+        cursor: pointer
+
+        &:hover
+            opacity: .8
+
+    &__wrapper
+        position: relative
+        display: flex
+        background-color: #fff
+        border-radius: 30px
+        padding: 64px 0
+        width: 470px
+        max-width: 90%
+        max-height: 100%
+        box-shadow: 0 0 6px rgba(#000, .25)
+
+        &--medium
+            width: 660px
+
+        &--fullw
+            width: 100%
+
+    &__inner
+        overflow: auto
+        flex: 0 0 100%
+        width: 100%
+        max-width: 100%
+        min-height: 0
+
+        &--with-p
+            padding: 0 15px
+
+    &__form
+        width: 280px
+        max-width: 100%
+        margin: 0 auto
+
+        &:not(:first-child)
+            margin-top: 24px
+
+        &--big
+            width: 1100px
+
+            @include tablet-le
+                width: 334px
+
+            @include phone-le
+                width: 280px
+
+    &__text
+        width: 450px
+        max-width: 100%
+        margin: 0 auto
+
+        @include phone-le
+            width: 230px
+
+        &--small
+            width: 280px
+
+            @include phone-le
+                width: 230px
+
+        &--medium
+            width: 480px
+
+            @include phone-le
+                width: 230px
+
+    &--active
+        display: flex
+
+    &--tablet-le-bottom
+        @include tablet-le
+            width: 100%
+            padding: 60px 0 0
+            align-items: flex-end
+
+        @include phone-le
+            padding: 50px 0 0
+
+        .popup
+            &__wrapper
+                max-width: 100%
+
+                @include tablet-le
+                    width: 100%
+                    border-radius: 30px 30px 0 0
+
+                @include phone-le
+                    padding: 32px 0
+
+    &--bottom
+        padding: 70px 0 0
+        align-items: flex-end
+
+        @include tablet-le
+            padding: 60px 0 0
+
+        @include phone-le
+            padding: 50px 0 0
+
+        .popup
+            &__wrapper
+                max-width: 100%
+                border-radius: 30px 30px 0 0
+
+    &--pos-bottom
+        top: auto
+        height: auto
+        bottom: 0
+        padding: 0
+
+    &--transparent
+        background-color: transparent

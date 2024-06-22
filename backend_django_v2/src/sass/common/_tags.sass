@@ -1,0 +1,29 @@
+.tags
+    margin: 0
+    padding: 0
+    list-style: none
+    display: flex
+    flex-wrap: wrap
+
+    &__item
+        margin-bottom: 6px
+
+        &:not(:last-child)
+            margin-right: 4px
+
+    &__link
+        display: inline-block
+        font-size: 16px
+        box-shadow: 0 0 3px rgba(#000, .25)
+        padding: 4px 14px
+        border-radius: 10px
+        background-color: #fff
+        color: var(--color-black-secondary)
+        text-decoration: none
+        transition: transform .2s ease-out, box-shadow .2s ease-out
+
+        &:hover
+            color: var(--color-black-secondary)
+            text-decoration: underline
+            box-shadow: 0 1px 4px rgba(#000, .25)
+            transform: translateY(-1px)

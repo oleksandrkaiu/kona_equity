@@ -1,0 +1,30 @@
+User-Agent: AhrefsBot
+Disallow: /
+
+User-Agent: BLEXBot
+Disallow: /
+
+User-Agent: SemrushBot-BA
+Disallow: /
+
+User-Agent: SemrushBot
+Disallow: /
+
+User-Agent: MJ12bot
+Disallow: /
+
+User-Agent: rogerbot
+Disallow: /
+
+User-Agent: DotBot
+Disallow: /
+
+User-Agent: DataForSeoBot
+Disallow: /
+
+User-Agent: PetalBot
+Disallow: /
+
+User-Agent: *
+Disallow:
+Sitemap: https://www.konaequity.com/sitemap.xml

@@ -1,0 +1,1101 @@
+{% extends "base_generic.html" %}
+{% load static %}
+
+{% block title %}
+    <title> {{company.name}} - ${{revenue_abbreviation}} | KonaEquity.com</title>
+{% endblock %}
+
+
+{% block meta %}
+<meta property="og:title" content="{{company.name}} - {{company.annual_revenue}} Revenue | KonaEquity.com">
+<meta name="description" content="Discover {{company.name}} ({{company.domain}}) located in {{company.city}}, {{company.state}}, profitability and growth compared to their industry and so much more.">
+<meta property="og:description" content="Discover {{company.name}} ({{company.domain}}) located in {{company.city}}, {{company.state}}, profitability and growth compared to their industry and so much more.">
+<meta property="og:type" content="website">
+<meta name="keywords" content="{{company.name}}, Kona Equity, Kona, Private Equity, web summary, employee history, revenue history, acquirer, acquisition">
+<meta property="og:keywords" content="{{company.name}}, Kona Equity, Kona, Private Equity, web summary, employee history, revenue history, acquirer, acquisition">
+<meta property="og:image" content="{% static 'profile_photos/favicon.ico' %}">
+<meta name="robots" content="index, follow">
+<meta name="format-detection" content="telephone=no">
+<meta property="og:site_name" content="Kona Equity">
+<meta property="og:url" content="https://konaequity.com/company/{{company.identifier}}/">
+<link rel="canonical" content="https://konaequity.com/company/{{company.identifier}}/">
+<link rel="canonical" content="https://konaequity.com/company/{{company.identifier}}/">
+<link rel="stylesheet" href="{% static 'css/find.css' %}">
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<link rel="stylesheet" href="{% static 'css/menusearch.css' %}">
+
+<!-- schema -->
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "legalname": "{{company.name}}",
+    "image": "https://logo.clearbit.com/{{company.domain}}",
+    "url": "https://www.konaequity.com/company/{{company.identifier}}/",
+    {% if company.description %}
+    "description":"{{company.description}}",
+    {% endif %}
+    {% if company.year_founded %}
+    "foundingDate":"{{company.year_founded}}",
+    {% endif %}
+    {% if company.num_emp %}
+    "numberOfEmployees":"{{company.num_emp}}",
+    {% endif %}
+    {% if company.naics %}
+    "naics":"{{company.naics}}",
+    {% endif %}
+    {% if company.sic %}
+    "isicV4":"{{company.sic}}",
+    {% endif %}
+    "address": {
+      "@type": "PostalAddress",
+      {% if company.address_2 %}
+      "streetAddress": "{{company.address_2}}",
+      {% endif %}
+      {% if company.address %}
+      "addressLocality": "{{company.address}}",
+      {% endif %}
+      {% if company.state %}
+      "addressRegion": "{{company.state}}",
+      {% endif %}
+      {% if company.postal %}
+      "postalCode": "{{company.postal}}",
+      {% endif %}
+      {% if company.country %}
+      "addressCountry": "{{company.country}}",
+      {% endif %}
+    "sameAs": [
+      {% if company.fb_page %}
+      "{{company.fb_page}}",
+      {% endif %}
+      {% if company.li_page %}
+      "{{company.li_page}}",
+      {% endif %}
+      {% if company.twitter_handle %}
+      "https://www.twitter.com/{{company.twitter_handle}}"
+      {% endif %}
+    ]
+    }
+  }
+  </script>
+<style>
+    .general-info-cards a{
+        color:black;
+    }
+    li{
+        float: none;
+    }
+    strong{
+      font-family: std-medium;
+    }
+    .next-step-list a{
+      color: #007a87;
+    }
+    .next-step-list a:hover{
+      text-decoration: underline;
+    }
+    .spacing{
+        width: 8.5%;
+    }
+    .ex-spacing{
+        width: 12%;
+    }
+    #top-search{
+        margin-right: 0;
+        margin-bottom: 2%;
+        width: 27%;
+        margin-left: 0;
+    }
+    #ind_inputautocomplete-list{
+        top: auto;
+        left: auto;
+        right: auto;
+        position: absolute;
+        width: 16%;
+        margin: 0;
+    }
+    @media screen and (max-width: 660px){
+        .ex-spacing{
+            width: 25%;
+        }
+        #top-search{
+            display: none;
+        }
+    }
+</style>
+<link
+    rel="icon"
+    href="/static/profile_photos/favicon.ico"
+    type="image/gif"
+    sizes="32x32"
+/>
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid row menu-top shadow-sm py-1 fixed-top" style="max-height: 70px;">
+    <div class="wex"></div>
+    <div class="logo-home"><a href="/"><img src="{% static 'profile_photos/logo.png' %}"></div></a>
+    <div style="width: 5%;"></div>
+    <div id="menu-bar" class="row">
+        <div class="navnone">
+            <div class="home-hover row quart">
+                <a href="/">Home</a>
+            </div>
+            <div class="home-under under row"><img src="{% static 'web_photos/marker.svg' %}" ></div>
+        </div>
+        <div class="spacing navnone"></div>
+        <div class="navnone">
+            <div class="row about-hover quart">
+                <a href="/about/">About</a>
+            </div>
+            <div class="about-under under row"><img src="{% static 'web_photos/marker.svg' %}" ></div>
+        </div>
+        <div class="spacing navnone"></div>
+        <div class="navnone">
+            <div class="contact-hover row quart">
+                <a href="/contact/">Contact us</a>
+            </div>
+            <div class="contact-under under row"><img src="{% static 'web_photos/marker.svg' %}" ></div>
+        </div>
+        <div class="spacing xced"></div>
+        <div>
+            <div class="dropdown row">
+                <div class="top-hover dropbtn quart">
+                    <span>Industries</span>
+                </div>
+                <div class="under row" style="visibility: hidden;"><img src="{% static 'web_photos/marker.svg' %}" ></div>
+                <div class="dropdown-content">
+                    {% for a in dc %}
+                    <a href="{{a.link}}">{{a.name}}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="ex-spacing"></div>
+        <div>
+            <div class="search-hover row quart">
+                <a href="/find/">Explore</a>
+            </div>
+            <div class="search-under under row"><img src="{% static 'web_photos/marker.svg' %}" ></div>
+        </div>
+        <div class="spacing navnone"></div>
+        <div id="top-search" class="just-there">
+            <input id="ind_input" class="search-box form-control" type="text" placeholder="Find companies">
+        </div>
+    </div>
+    {% if rauth %}
+    <div id="hidden-menu" class="col-1" style="padding-left: 10%;">
+    {% else %}
+    <div id="hidden-menu" class="col-1" style="padding-left: 20%;">
+    {% endif %}
+        <a onclick="openNav()"><img src="{% static 'web_photos/mobile-menu.svg' %}"></a>
+    </div>
+
+    {% if rauth is None %}
+    <button onclick="onclick_login()" type="button" class="quart my-auto pbot cuta"><span class="hvra">Login</span></button>
+    <button onclick="onclick_signup()" type="button" class="quart my-auto pbot bbpotp hvra">Sign up</button>
+    {% else %}
+    <div id="profile-disp" class="my-auto">
+        <img id="profile-img" class="my-auto" src="/static/{{rauth}}" onerror="this.src='/static/profile_photos/default-avatar.svg'">
+        <svg id="pdown" width="20" height="8" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4.87903 5.81354L0.548901 0.563538L9.20916 0.563538L4.87903 5.81354Z" fill="white"/>
+        </svg>
+        <div id="profile-menu" class="dropdown-content">
+            <a href="/dashboard/">Edit Profile</a>
+            <a href="/watchlist/">My Watchlist</a>
+            <a id="logmeout" href="JavaScript:Void(0);">Logout</a>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+    <div class="container-fluid bg-2 company-page" style="position: relative;">
+      <div class="row pt-5">
+
+        <!-- company page side bar -->
+        <sidebar class="col-12 col-lg-4 pb-5" style="font-family: std-medium;">
+          <div class="row mx-4 mb-4 col-11 offset-1 row company-sider-intro">
+            <div class="competitors ">
+              <h2>{{company.name}}</h2>
+              <p>
+                Do you like the<br />
+                company? Save it!
+              </p>
+            </div>
+            <div class="ml-5 ml-lg-1 ml-xl-5 sider-save">
+              {% if company.fav %}
+              <img class="fav" data-id="{{company.id}}" data-selected="true" src="{% static 'save_company/saved.svg' %}" alt="save company" style="cursor: pointer;margin-top: -4px;" />
+              {% else %}
+              <img class="fav" data-id="{{company.id}}" data-selected="false" src="{% static 'save_company/save.svg' %}" alt="save company" style="cursor: pointer;margin-top: -4px;" />
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="competitors col-lg-11 col-12 offset-lg-1" style="max-width:96%">
+            <h2>Competitors</h2>
+            <div class="competitor-cards row">
+              {% for e in comps %}
+              <div class="col-4 p-2" {% if ' ' not in e.name %}style="word-break: break-all;{% endif %}">
+                <div class="card-body">
+                  <a href="/company/{{e.identifier}}">
+                    <div
+                      class="competitor-card-front d-flex flex-column justify-content-between align-items-center"
+                    >
+                      <img
+                        src="https://logo.clearbit.com/{{e.domain}}"
+                        onerror="this.src='/static/profile_photos/generic.png'"
+                        alt="{{e.name}} logo"
+                      />
+                      <h3 class="competitor-name">{{e.name}}</h3>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </sidebar>
+        <!-- end of company main sidebar -->
+
+        <!-- company page main  -->
+        <main class="col-12 offset-lg-4 col-lg-8 bg-light company-main" style="height: auto;">
+          <!-- company main section intro -->
+          <div
+            class="card-body row mx-3 my-4 mt-5 px-lg-5 pb-0 px-0 save-company"
+          >
+            <div class="col-lg-5  col-md-12">
+              <img
+                class="illustration"
+                src="{% static 'save_company/illustration.svg' %}"
+                alt="illustration"
+              />
+            </div>
+            <div class="col-lg-7 pl-5 col-md-12 row flex-nowrap">
+              <div class="col-md-11 col-10">
+                <h2>{{company.name}} in {{company.city}}, {{company.state}}</h2>
+                <p>
+                  You can add a company to your
+                  <strong>Saved companies</strong> to get updates.
+                </p>
+              </div>
+              <div class="col-md-1 col-2">
+              {% if company.fav %}
+              <img class="fav" data-id="{{company.id}}" data-selected="true" src="{% static 'save_company/saved.svg' %}" alt="save company" style="cursor: pointer;" />
+              {% else %}
+              <img class="fav" data-id="{{company.id}}" data-selected="false" src="{% static 'save_company/save.svg' %}" alt="save company" style="cursor: pointer;" />
+              {% endif %}
+              </div>
+            </div>
+          </div>
+          <!-- end of company main section intro -->
+          <!-- general info cards -->
+          <div class="general-info-cards mx-3 my-4 row">
+            <div class="col-md-3 col-6 p-2">
+              <div class="card-body update-card">
+                <img src="{% static 'web_photos/deadline.svg' %}" alt="update" />
+                <h6>Last Updated</h6>
+                <p>{{buffer.lmod}}</p>
+              </div>
+            </div>
+            {% if company.state or company.city %}
+            <a href="/find/--{{company.state}}/?city={{company.city}}" target="_blank" class="col-md-3 col-6 p-2">
+              <div class="card-body location-card">
+                <img src="{% static 'web_photos/global.svg' %}" alt="global" />
+                <h6>Location</h6>
+                <p>{{company.city}}, {{company.state}}</p>
+              </div>
+            </a>
+            {% endif %}
+            {% if company.industry %}
+            <a href="/find/{{go.industry}}--/" target="_blank" class="col-md-3 col-6 p-2">
+              <div class="card-body category-card">
+                <img src="{% static 'web_photos/bcase.svg' %}" alt="briefcase" />
+                <h6>Category</h6>
+                <p>{{company.industry}}</p>
+              </div>
+            </a>
+            {% endif %}
+            {% if company.google_industry %}
+            <a href="/find/?google_industry={{go.google}}" target="_blank" class="col-md-3 col-6 p-2">
+              <div class="card-body industry-card">
+                <img src="{% static 'web_photos/cheque.svg' %}" alt="cheque" />
+                <h6>Industry</h6>
+                <p>{{company.google_industry}}</p>
+              </div>
+            </a>
+            {% endif %}
+          </div>
+          <!-- end of general info cards -->
+          <!-- summary card -->
+          <div class="card-body py-5 px-lg-5 mx-3 my-4">
+            <h2 class="card-title c-h"><span class="dynamo"></span> Summary</h2>
+            <div class="row d-flex align-items-center mb-3 pl-2 pr-2">
+              <div class="col-6 col-sm-2 d-flex justify-content-center p-2">
+                <div
+                  class="d-flex embed-responsive embed-responsive-1by1 rounded-circle w-75"
+                >
+                  <img
+                    id="p_photo"
+                    class="embed-responsive-item"
+                    src="https://logo.clearbit.com/{{company.domain}}"
+                    onerror="this.src='/static/profile_photos/generic.png'"
+                    alt="{{company.name}} logo"
+                  />
+                </div>
+              </div>
+              <div class="col-6 col-sm-3 p-2 n-n">
+                <h6 class="i-h">Name</h6>
+                {{company.name}}
+              </div>
+              <div class="col-12 col-sm-3 p-2 n-n">
+                <h6 class="i-h">Domain</h6>
+                <div>
+                  <a
+                    style="color: #00d1c1; text-decoration: underline"
+                    rel="nofollow"
+                    href="https://{{company.domain}}"
+                    target="_blank"
+                    >{{company.domain}}</a>
+                </div>
+              </div>
+              {% if company.year_founded %}
+              <div class="col-12 col-sm-3 p-2 n-n">
+                <h6 class="i-h">Year founded</h6>
+                {{company.year_founded}}
+              </div>
+              {% endif %}
+            </div>
+            <div class="row pr-4">
+              <div class="col-12">
+                {% if company.description %}
+                <h6 class="i-h">Description</h6>
+                {% endif %}
+                <div class="text-justify n-n">
+                  {% if company.description %}
+                  <p class="boldify mb-4">
+                    {{company.description}}
+                  </p>
+                  {% endif %}
+                  <h6 class="i-h strengths mb-4">Strengths</h6>
+                  <ul class="strengths-list mb-4">
+                    {% for s in sng %}
+                    <li>{{s}}</li>
+                    {% endfor %}
+                  </ul>
+                  <h6 class="i-h">Weaknesses</h6>
+                  <ul class="weaknesses-list">
+                    {% for w in wek %}
+                    <li>{{w}}</li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end of summary card -->
+          <!-- annual revenue card  -->
+          <div class="card-body annual-revenue-card py-5 px-lg-5 mx-3 my-4">
+            <h2 class="card-title c-h"><span class="dynamo"></span>Annual Revenue</h2>
+            <div class="mb-2">
+              <h4 class="b-h font-def" style="font-size:calc(12px + 5vw);">
+                <b>$</b><b class="ins_comm">{{company.annual_revenue}}</b>
+              </h4>
+            </div>
+            <div class="row pl-2 pr-2">
+              {% if company.revenue_per_employee != "-" %}
+              <div class="col-12 col-sm-4 p-2 n-n">
+                <p>Revenue per employee</p>
+
+                <h3 class="font-def b-nn">
+                  <b
+                    ><div class="float-left">$</div>
+                    <div class="float-left ins_comm">{{company.revenue_per_employee}}</div></b
+                  >
+                </h3>
+              </div>
+              {% endif %}
+              {% if company.revenue_variance != "-" %}
+              <div class="col-12 col-sm-4 p-2 n-n">
+                <p>Variance of revenue growth</p>
+
+                <h3 class="font-def b-nn">
+                  <b><div class="float-left">{{company.revenue_variance}}</div></b>
+                </h3>
+              </div>
+              {% endif %}
+            </div>
+            <div class="row pl-2 pr-2">
+              {% if company.a_revenue_since_founding != "-" %}
+              <div class="col-12 p-2 n-n">
+                <p>Annual revenue growth since founding</p>
+
+                <h3 class="font-def b-nn">
+                  <b
+                    ><div class="float-left">$</div>
+                    <div class="float-left ins_comm">{{company.a_revenue_since_founding}}</div></b
+                  >
+                </h3>
+              </div>
+              {% endif %}
+              {% if company.revenue_growth_first_to_current != "-" %}
+              <div class="col-12 p-2 n-n" style="z-index: 100">
+                <p>Revenue growth rate from first known quarter to current</p>
+                <h3 class="font-def b-nn">
+                  <b><div class="float-left">{{company.revenue_growth_first_to_current}} %</div></b>
+                </h3>
+              </div>
+              {% endif %}
+            </div>
+            {% if buffer.go_revenue %}
+            <div id="ccanvas" class="container" style="margin-top:5%">
+              <div style="position: relative;">
+                  <canvas id="revenueChartShadow" style="position: absolute;left: 0;top: 0; z-index: 0;"></canvas>
+                  <canvas id="revenueChart" style="position: relative; z-index: 1;"></canvas>
+              </div>
+          </div>
+          {% endif %}
+          </div>
+          <!-- end of annual revenue card  -->
+          <!-- employee count card  -->
+          <div class="card-body annual-revenue-card py-5 px-lg-5 mx-3 my-4" style="color: #FF5A5F;">
+            <h2 class="card-title c-h" style="color: black;"><span class="dynamo"></span>Employee Count</h2>
+            <div class="mb-2">
+              <h4 class="b-h font-red" style="font-size:calc(12px + 5vw);">
+                <b class="ins_comm">{{company.num_emp}}</b>
+                <b>employees</b>
+              </h4>
+            </div>
+            <div class="row pl-2 pr-2">
+              {% if company.churn_employees != "-" %}
+              <div class="col-12 col-sm-4 p-2 n-n">
+                <p>Churn employees</p>
+
+                <h3 class="font-red b-nn">
+                  <b>
+                    <div class="float-left ins_comm" style="color: #FF5A5F;">{{company.churn_employees}}</div></b
+                  >
+                </h3>
+              </div>
+              {% endif %}
+              {% if company.churn_rate != "-" %}
+              <div class="col-12 col-sm-4 p-2 n-n">
+                <p>Churn rate percentage</p>
+
+                <h3 class="font-red b-nn">
+                  <b><div class="float-left" style="color: #FF5A5F;">{{company.churn_rate}} %</div></b>
+                </h3>
+              </div>
+              {% endif %}
+            </div>
+            <div class="row pl-2 pr-2">
+              {% if company.emp_growth_first_to_current != "-" %}
+              <div class="col-12 p-2 n-n">
+                <p>Employee growth rate from first known quarter to current</p>
+
+                <h3 class="font-red b-nn">
+                  <b>
+                    <div class="float-left" style="color: #FF5A5F;">{{company.emp_growth_first_to_current}} %</div></b
+                  >
+                </h3>
+              </div>
+              {% endif %}
+              {% if company.current_employees != "-" %}
+              <div class="col-12 p-2 n-n" style="z-index: 100">
+                <p>Current employees on Linkedin</p>
+                <h3 class="font-red b-nn">
+                  <b><div class="float-left" style="color: #FF5A5F;">{{company.current_employees}}</div></b>
+                </h3>
+              </div>
+              {% endif %}
+            </div>
+            {% if buffer.go_employee %}
+            <div id="ecanvas" class="container" style="margin-top:5%">
+              <div style="position: relative;">
+                  <canvas id="employeeChartShadow" style="position: absolute;left: 0;top: 0; z-index: 0;"></canvas>
+                  <canvas id="employeeChart" style="position: relative; z-index: 1;"></canvas>
+              </div>
+          </div>
+          {% endif %}
+          </div>
+          <!-- end of employee count card  -->
+          <!-- G score card -->
+          <div class="card-body g-score-card py-5 px-lg-5 mx-3 my-4">
+            <h2 class="card-title c-h"><span class="dynamo"></span>G Score</h2>
+            <div class="my-5 row justify-content-center">
+                <img class="embed-responsive-item" src="{% static 'dougnut/' %}{{company.g_true}}.svg" alt="G Score" style="width:88%; max-width:415px;" />
+            </div>
+            <div class="d-flex flex-column mt-4 h-100">
+              {% for g in buffer.g_data %}
+              <div class="row">
+                <div class="col-12 col-sm-1 my-auto p-1 ml-2 mr-3">
+                <h4><b class="g-s" style="color: {{g.color}}">{{g.name}}</b></h4>
+                </div>
+                <div class="col-12 col-sm col-sm n-n p-0 my-auto">
+                  <p>{{g.desc}}</p>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          <!-- end of G score card -->
+
+          <!-- web-analysis-card -->
+          {% if company.rank != "-" or company.page_views != "-" or company.daily_time != "-" or company.bounce_rate != "-" %}
+          <div class="card-body py-5 px-lg-5 mx-3 my-4">
+            <h2 class="card-title c-h"><span class="dynamo"></span>Web Analysis</h2>
+            <div class="row mt-5">
+                {% if company.rank != "-" %}
+              <div class="key-information-item m-2 col-5">
+                <p>Rank</p>
+                <h2>{{company.rank}}</h2>
+              </div>
+              {% endif %}
+              {% if company.page_views != "-" %}
+              <div class="key-information-item m-2 col-5">
+                <p>Page views per visitor</p>
+                <h2>{{company.page_views}}</h2>
+              </div>
+              {% endif %}
+              {% if company.daily_time != "-" %}
+              <div class="key-information-item m-2 col-5">
+                <p>Daily time</p>
+                <h2>{{company.daily_time}}</h2>
+              </div>
+              {% endif %}
+              {% if company.bounce_rate != "-" %}
+              <div class="key-information-item m-2 col-5">
+                <p>Bounce Rate</p>
+                <h2>{{company.bounce_rate}}</h2>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+          {% endif %}
+          <!-- end of web analysis card -->
+          <!-- location card -->
+          <div class="card-body py-5 px-lg-5 mx-3 my-4">
+            <h2 class="card-title c-h"><span class="dynamo"></span>Location</h2>
+            <div class="d-flex flex-column h-100">
+              <div class="row my-4">
+                <div class="col-lg-6 offset-lg-3 col-md-12 offset-md-0">
+                  <div class="container p-2 mb-2">
+                    <img
+                      src="{% static 'continents/North_America.svg' %}"
+                      width="100%"
+                      height="100%"
+                      alt="continent"
+                    />
+                  </div>
+
+                  <div class="row offset-lg-1 flex-nowrap justify-content-center ">
+                    <div class="float-left col-1 m-1">
+                      <img src="{% static 'web_photos/loc.png' %}" alt="location" />
+                    </div>
+                    <p>
+                      {{company.address}}&nbsp;{{company.address_2}}<br/>
+                      {% spaceless %}
+                      {% if company.city %}
+                      <a class="clra" href="/find/--/?city={{company.city}}">{{company.city}}</a>{% if company.state %},{% endif %}
+                      {% else %}
+                      {{company.city}}{% if company.state %},{% endif %}
+                      {% endif %}
+                      {% if company.state %}
+                      <a class="clra" href="/find/--{{company.state}}">{{company.state}}</a>
+                      {% else %}
+                      {{company.state}}
+                      {% endif %}
+                      {% endspaceless %}
+                      &nbsp;{{company.postal}}<br/>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end of location card -->
+          <!-- ideal fit card  -->
+          <div class="card-body pt-4 mx-3 px-lg-5 my-4 ideal-fit-card row">
+            <div class="col-lg-6 p-lg-0">
+              <h2 class="my-4">Ideal Fit Acquirer</h2>
+              <h4>Best Private Equity firm</h4>
+              <p class="mb-4">{{company.best_equity}}</p>
+              <p>
+                Kona Equity can help connect
+                <strong style="font-family: std-medium;">{{company.name}}</strong> to
+                <strong style="font-family: std-medium;"> {{company.best_equity}}</strong>
+                to discuss future partnerships, facilitate mergers and
+                acquisitions conversations, financing events, and thoughts on
+                the future.
+              </p>
+              <p class="mb-4">
+                {% if buffer.fInd and buffer.fIndCount > 0 %}
+                Kona Equity has <strong><a class="clra" style="color: white; font-family: std-medium; text-decoration: underline;" href="{{buffer.fGo}}"><span class="ins_comm">{{buffer.fIndCount}}</span> similar {{buffer.fInd}}</a></strong> {{buffer.ftag}} if you're interested in seeing other companies.
+                {% endif %}
+              </p>
+              <a href="/contact/" class="start-now-btn" style="font-family: std-medium;">Start Now</a>
+            </div>
+
+            <div class="col-lg-6">
+              <img
+                class="ideal-fit-image"
+                src="{% static 'web_photos/ideal-fit.svg' %}"
+                data-image-width="391"
+                data-image-height="462"
+              />
+            </div>
+
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- P3Display1 -->
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-2897891114358897"
+                data-ad-slot="2023755190"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+          </div>
+          <!-- end of ideal fit card  -->
+
+          <!-- key information card -->
+          {% if keys.items %}
+          <div class="card-body py-5 px-lg-5 mx-3 my-4">
+            <h2 class="card-title c-h"><span class="dynamo"></span>Key Information</h2>
+            <div class="row mt-5">
+              {% for k, e in keys.items %}
+              <div class="key-information-item m-2 col-md-5 col-12">
+                <p>{{k}}:</p>
+                <h2>{{e}}</h2>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          {% endif %}
+          <!-- end of key information card -->
+
+          <!-- next step card -->
+          <div class="card-body py-5 px-lg-5 mx-3 my-4">
+            <h2 class="card-title c-h"><span class="dynamo"></span>Next step</h2>
+            <ul class="next-step-list mt-5">
+              <li>{% if rauth %}<a id="notify" class="fav" href="javascript:void(0)" data-id="{{company.id}}" data-selected="true" style="cursor: pointer;">{% else %}<a id="notify" class="fav" href="javascript:void(0)" data-id="{{company.id}}" data-selected="false" style="cursor: pointer;">{% endif %}Save <strong>{{company.name}}</strong> to your company watchlist</a></li>
+              {% if company.industry %}
+              <li><a href="/find/{{go.industry}}--/" target="_blank">Explore other companies in the <strong>{{company.industry}}</strong> category</a></li>
+              {% endif %}
+              {% if company.google_industry %}
+              <li><a href="/find/?google_industry={{go.google}}" target="_blank">Explore other companies in the <strong>{{company.google_industry}}</strong> industry</a></li>
+              {% endif %}
+              {% if company.city %}
+              <li><a href="/find/--{{company.state}}/?city={{company.city}}" target="_blank">Explore other companies in <strong>{{company.city}}</strong></a></li>
+              {% endif %}
+              {% if company.state %}
+              <li><a href="/find/--{{company.state}}/" target="_blank">Explore other companies in <strong>{{go.state}}</strong></a></li>
+              {% endif %}
+            </ul>
+          </div>
+          <!-- end of next step card -->
+        </main>
+        <!-- end of company page main  -->
+      </div>
+    </div>
+    {% endblock %}
+
+    {% block script %}
+    <script src="{% static 'js/autocomplete.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <script src="{% static 'js/utils.js' %}"></script>
+    <script src="{% static 'js/auth.js' %}"></script>
+    <script>
+      var i = 1;
+      $(".dynamo").each(function(obj, elem){
+        $(elem).html(i.toString());
+        i += 1;
+      })
+    </script>
+    <script>
+
+      function numberWithCommas(x) {
+        if (!x || x==null || x=="None")
+        {
+            return "-";
+        }
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      }
+
+      function abbreviate_number(num) {
+      if (num === null) { return null; }
+      if (num === 0) { return '0'; }
+      fixed = 2
+      var b = (num).toPrecision(2).split("e"),
+          k = b.length === 1 ? 0 : Math.floor(Math.min(b[1].slice(1), 14) / 3),
+          c = k < 1 ? num.toFixed(0 + fixed) : (num / Math.pow(10, k * 3) ).toFixed(1 + fixed),
+          d = c < 0 ? c : Math.abs(c),
+          e = d + " " + ['', 'K', 'M', 'B', 'T'][k];
+      return e;
+      }
+
+      function favy(){
+      $(".fav").click(function(){
+        {% if request.user.is_authenticated %}
+        var kl = parseInt($(this).attr("data-id"));
+        var go = $(this).attr("data-selected");
+        if ($(this).attr("id") == "notify"){
+          go = "false";
+        }
+        var p = this;
+
+        if (go == "true"){
+            $.ajax({
+            headers: { "X-CSRFToken": "{{csrf_token}}" },
+            url : "{% url 'remfav' %}",
+            type : "POST",
+            data : {
+                id: kl
+            },
+            dataType: "json",
+            success: function(response){
+                if (response.status == "success"){
+                  $(".fav").attr("data-selected", "false")
+                    $("img.fav").attr("src", "{% static 'save_company/save.svg' %}")
+                }
+            }
+        });
+        }
+        else{
+            $.ajax({
+            headers: { "X-CSRFToken": "{{csrf_token}}" },
+            url : "{% url 'addfav' %}",
+            type : "POST",
+            data : {
+                id: kl
+            },
+            dataType: "json",
+            success: function(response){
+                if (response.status == "success"){
+                    $(".fav").attr("data-selected", "true")
+                    $("img.fav").attr("src", "{% static 'save_company/saved.svg' %}")
+                }
+            }
+        });
+    }
+    {% else %}
+    $("#SignupModal").modal("show");
+    {% endif %}
+    });
+    }
+
+      function main(){
+        var value = document.getElementsByClassName("ins_comm");
+        for(var i = 0; i < value.length; i++) {
+            value[i].innerHTML = numberWithCommas(parseInt(value[i].innerHTML));
+        }
+
+        favy();
+        popitUp();
+        logmeout();
+        dropys();
+        openSome();
+        validato();
+        checkSome();
+        mobileSignup();
+
+        autocomplete(document.getElementById('ind_input'));
+        autocomplete(document.getElementById('id_input'));
+
+        const chart_data = "{{buffer.cs_chart_data}}";
+        const chart_labels = "{{buffer.cs_chart_labels}}";
+        var chartLabels = chart_labels.split(",");
+        var chartData = [];
+        if (chart_data) {chartData = chart_data.split(",").map(x=>+x);}
+
+        const e_data = "{{buffer.e_chart_data}}";
+        const e_labels = "{{buffer.e_chart_labels}}";
+        var eLabels = e_labels.split(",");
+        var eData = [];
+        if (e_data) {eData = e_data.split(",").map(x=>+x);}
+
+        {% if buffer.go_revenue %}
+        var ctx = document.getElementById('revenueChart').getContext('2d');
+          var config = {
+            type: 'line',
+            data: {
+              labels: chartLabels,
+              datasets: [
+                {
+                  label: 'Revenue',
+                  backgroundColor: '#00D1C1',
+                  borderColor: '#00D1C1',
+                  data: chartData,
+                  fill: false,
+                },
+              ],
+            },
+            options: {
+              layout: {
+                padding: {
+                  top: 5,
+                  left: 5,
+                  right: 5,
+                  bottom: 10,
+                },
+              },
+              legend: {
+                display: false,
+              },
+              responsive: true,
+              tooltips: {
+                mode: 'index',
+                intersect: false,
+                callbacks: {
+                  label: function (tooltipItem, data) {
+                    var label = data.datasets[tooltipItem.datasetIndex].label || '';
+
+                    if (label) {
+                      label += ': ';
+                    }
+                    label += abbreviate_number(tooltipItem.yLabel);
+                    return label;
+                  },
+                },
+              },
+              hover: {
+                mode: 'nearest',
+                intersect: true,
+              },
+              scales: {
+                xAxes: [
+                  {
+                    gridLines: {
+                      display: false,
+                    },
+                    display: true,
+                    scaleLabel: {
+                      display: true,
+                      labelString: 'Quarter',
+                    },
+                  },
+                ],
+                yAxes: [
+                  {
+                    gridLines: {
+                      display: false,
+                    },
+                    display: false,
+                    scaleLabel: {
+                      display: true,
+                      labelString: 'Revenue',
+                    },
+                  },
+                ],
+              },
+            },
+          };
+          new Chart(ctx, config);
+
+          var configShadow = {
+            type: 'line',
+            data: {
+              labels: chartLabels,
+              datasets: [
+                {
+                  label: 'Revenue',
+                  backgroundColor: '#00D1C1',
+                  borderColor: '#00D1C1',
+                  borderWidth: 1,
+                  data: chartData,
+                  fill: false,
+                },
+              ],
+            },
+            options: {
+              layout: {
+                padding: {
+                  top: 25,
+                  left: 25,
+                  right: 25,
+                  bottom: 70,
+                },
+              },
+              legend: {
+                display: false,
+              },
+              tooltips: {
+                enabled: false,
+              },
+              responsive: true,
+              elements: {
+                point: {
+                  radius: 0,
+                  hitRadius: 0,
+                  hoverRadius: 0,
+                },
+              },
+              scales: {
+                xAxes: [
+                  {
+                    display: false,
+                  },
+                ],
+                yAxes: [
+                  {
+                    display: false,
+                  },
+                ],
+              },
+            },
+          };
+
+          var ctxShadow = document
+            .getElementById('revenueChartShadow')
+            .getContext('2d');
+          new Chart(ctxShadow, configShadow);
+      {% endif %}
+
+      {% if buffer.go_employee %}
+      var cty = document.getElementById('employeeChart').getContext('2d');
+          var econfig = {
+            type: 'line',
+            data: {
+              labels: eLabels,
+              datasets: [
+                {
+                  label: 'Employees',
+                  backgroundColor: '#FF5A5F',
+                  borderColor: '#FF5A5F',
+                  data: eData,
+                  fill: false,
+                },
+              ],
+            },
+            options: {
+              layout: {
+                padding: {
+                  top: 5,
+                  left: 5,
+                  right: 5,
+                  bottom: 10,
+                },
+              },
+              legend: {
+                display: false,
+              },
+              responsive: true,
+              tooltips: {
+                mode: 'index',
+                intersect: false,
+                callbacks: {
+                  label: function (tooltipItem, data) {
+                    var label = data.datasets[tooltipItem.datasetIndex].label || '';
+
+                    if (label) {
+                      label += ': ';
+                    }
+                    label += abbreviate_number(tooltipItem.yLabel);
+                    return label;
+                  },
+                },
+              },
+              hover: {
+                mode: 'nearest',
+                intersect: true,
+              },
+              scales: {
+                xAxes: [
+                  {
+                    gridLines: {
+                      display: false,
+                    },
+                    display: true,
+                    scaleLabel: {
+                      display: true,
+                      labelString: 'Quarter',
+                    },
+                  },
+                ],
+                yAxes: [
+                  {
+                    gridLines: {
+                      display: false,
+                    },
+                    display: false,
+                    scaleLabel: {
+                      display: true,
+                      labelString: 'Revenue',
+                    },
+                  },
+                ],
+              },
+            },
+          };
+          new Chart(cty, econfig);
+
+          var econfigShadow = {
+            type: 'line',
+            data: {
+              labels: eLabels,
+              datasets: [
+                {
+                  label: 'Employee',
+                  backgroundColor: '#FF5A5F',
+                  borderColor: '#FF5A5F',
+                  borderWidth: 1,
+                  data: eData,
+                  fill: false,
+                },
+              ],
+            },
+            options: {
+              layout: {
+                padding: {
+                  top: 25,
+                  left: 25,
+                  right: 25,
+                  bottom: 70,
+                },
+              },
+              legend: {
+                display: false,
+              },
+              tooltips: {
+                enabled: false,
+              },
+              responsive: true,
+              elements: {
+                point: {
+                  radius: 0,
+                  hitRadius: 0,
+                  hoverRadius: 0,
+                },
+              },
+              scales: {
+                xAxes: [
+                  {
+                    display: false,
+                  },
+                ],
+                yAxes: [
+                  {
+                    display: false,
+                  },
+                ],
+              },
+            },
+          };
+
+          var ctyShadow = document
+            .getElementById('employeeChartShadow')
+            .getContext('2d');
+          new Chart(ctyShadow, econfigShadow);
+        {% endif %}
+      }
+
+      if (window.addEventListener) {
+          window.addEventListener('load', main);
+      } else if (window.attachEvent) {
+          window.attachEvent('onload', main);
+      } else {
+          window.onload = main;
+      }
+    </script>
+    {% endblock %}

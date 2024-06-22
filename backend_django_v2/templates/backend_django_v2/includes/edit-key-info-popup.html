@@ -1,0 +1,146 @@
+<div id="key-info-modal" class="popup popup--tablet-le-bottom">
+    <div class="popup__wrapper">
+        <button class="js-popup-close popup__close"></button>
+        <div class="custom-scrollbar popup__inner popup__inner--with-p">
+            <div class="popup-form popup__form">
+                <div class="popup-form__head">
+                    <h2 class="popup-form__title">Edit Key Information</h2>
+                </div>
+                <form id="editKeyInfo">
+                    {% csrf_token %}
+                    <input type="hidden" name="edit_type" value="keys">
+
+                    <div class="popup-form__body">
+                        <div class="popup-form__item">
+                            <label class="popup-form__label">Company’s name</label>
+                            <input type="text" class="input popup-form__input" placeholder="Company’s name"
+                                value="{{keys.Name}}" name="Name">
+                        </div>
+                        <div class="popup-form__item">
+                            <label class="popup-form__label">Category</label>
+                            <input type="text" class="input popup-form__input" placeholder="Category"
+                                value="{{keys.Category}}" name="Category">
+                        </div>
+                        <div class="popup-form__item">
+                            <label class="popup-form__label">Industry</label>
+                            <input type="text" class="input popup-form__input" placeholder="Industry"
+                                value="{{keys.Industry}}" name="Industry">
+                        </div>
+                        <div class="popup-form__item">
+                            <label class="popup-form__label">Website</label>
+                            <input type="text" class="input popup-form__input" placeholder="www.website.com"
+                                value="{{keys.Website}}" name="Website">
+                        </div>
+                        <div class="popup-form__item">
+                            <label class="popup-form__label">Facebook</label>
+                            <input type="text" class="input popup-form__input" placeholder="www.facebook.com"
+                                value="{{keys.Facebook}}" name="Facebook">
+                        </div>
+                        <div class="popup-form__item">
+                            <label class="popup-form__label">LinkedIn</label>
+                            <input type="text" class="input popup-form__input" placeholder="www.linkedin.com"
+                                value="{{keys.LinkedIn}}" name="LinkedIn">
+                        </div>
+                        <div class="popup-form__item">
+                            <label class="popup-form__label">Twitter</label>
+                            <input type="text" class="input popup-form__input" placeholder="www.twitter.com"
+                                value="{{keys.Twitter}}" name="Twitter">
+                        </div>
+                        <div class="popup-form__item">
+                            <label class="popup-form__label">Tags</label>
+                            <input type="text" class="input popup-form__input"
+                                placeholder="#category, #industry, #field" value="{{keys.Tags}}" name="Tags">
+                            <p class="popup-form__help-text">Please, write tags using semi colons</p>
+                        </div>
+                        <div class="popup-form__item">
+                            <label class="popup-form__label">SIC</label>
+                            <input type="text" class="input popup-form__input" placeholder="0100" value="{{keys.SIC}}"
+                                name="SIC">
+                        </div>
+                        <div class="popup-form__item">
+                            <label class="popup-form__label">NAICS</label>
+                            <input type="text" class="input popup-form__input" placeholder="11" value="{{keys.NAICS}}"
+                                name="NAICS">
+                        </div>
+                    </div>
+                    <div class="popup-form__controls">
+                        <button class="button popup-form__controls-item">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    var url = "{% url 'backend_django_v2:edit_company' id=company.id %}"
+
+    $(document).ready(function () {
+
+        var successModal = document.querySelector("#editSuccessModal");
+        var modals = document.querySelectorAll('.popup');
+
+        function closeAllModals() {
+            modals.forEach(modal => {
+                modal.classList.remove('popup--active');
+            });
+        }
+
+        function openSuccessModal() {
+            successModal.classList.add('popup--active');
+        }
+
+
+        var data = {
+            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+            edit_type: 'keys',
+        };
+        var originalData = {
+            Name: '{{keys.Name}}',
+            Category: '{{keys.Category}}',
+            Industry: '{{keys.Industry}}',
+            Website: '{{keys.Website}}',
+            Facebook: '{{keys.Facebook}}',
+            LinkedIn: '{{keys.LinkedIn}}',
+            Twitter: '{{keys.Twitter}}',
+            Tags: '{{keys.Tags}}',
+            SIC: '{{keys.SIC}}',
+            NAICS: '{{keys.NAICS}}',
+        };
+
+
+        $('#editKeyInfo input').keyup(function () {
+            var key = $(this).attr('name');
+            if (originalData[key] === $(this).val() || $(this).val() === '') {
+                delete data[key];
+            } else {
+                data[key] = $(this).val();
+            }
+        });
+
+        $('#editKeyInfo').on('submit', function (e) {
+            e.preventDefault();
+            if (Object.keys(data).length <= 2) {
+                alert('Please, make modifications to some fields');
+                return;
+            }
+            $.ajax({
+                url: url,
+                method: 'POST',
+                data: data,
+                success: function (response) {
+                    if (response.status === 'success') {
+                        closeAllModals();
+                        openSuccessModal();
+                        console.log('Success');
+                    } else {
+                        alert('Something went wrong');
+                        console.log('Error');
+                    }
+                }
+            });
+        });
+    });
+</script>

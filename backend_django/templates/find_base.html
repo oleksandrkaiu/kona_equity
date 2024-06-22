@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-GXS2W1JXVR"></script>
+      <script>
+         window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments);}
+         gtag('js', new Date());
+         gtag('config', 'G-GXS2W1JXVR');
+      </script>
+      <script type="text/javascript">
+         (function(e,t){var n=e.amplitude||{_q:[],_iq:{}};var r=t.createElement("script")
+         ;r.type="text/javascript"
+         ;r.integrity="sha384-tzcaaCH5+KXD4sGaDozev6oElQhsVfbJvdi3//c2YvbY02LrNlbpGdt3Wq4rWonS"
+         ;r.crossOrigin="anonymous";r.async=true
+         ;r.src="https://cdn.amplitude.com/libs/amplitude-8.5.0-min.gz.js"
+         ;r.onload=function(){if(!e.amplitude.runQueuedFunctions){
+         console.log("[Amplitude] Error: could not load SDK")}}
+         ;var i=t.getElementsByTagName("script")[0];i.parentNode.insertBefore(r,i)
+         ;function s(e,t){e.prototype[t]=function(){
+         this._q.push([t].concat(Array.prototype.slice.call(arguments,0)));return this}}
+         var o=function(){this._q=[];return this}
+         ;var a=["add","append","clearAll","prepend","set","setOnce","unset","preInsert","postInsert","remove"]
+         ;for(var c=0;c<a.length;c++){s(o,a[c])}n.Identify=o;var u=function(){this._q=[]
+         ;return this}
+         ;var l=["setProductId","setQuantity","setPrice","setRevenueType","setEventProperties"]
+         ;for(var p=0;p<l.length;p++){s(u,l[p])}n.Revenue=u
+         ;var d=["init","logEvent","logRevenue","setUserId","setUserProperties","setOptOut","setVersionName","setDomain","setDeviceId","enableTracking","setGlobalUserProperties","identify","clearUserProperties","setGroup","logRevenueV2","regenerateDeviceId","groupIdentify","onInit","logEventWithTimestamp","logEventWithGroups","setSessionId","resetSessionId"]
+         ;function v(e){function t(t){e[t]=function(){
+         e._q.push([t].concat(Array.prototype.slice.call(arguments,0)))}}
+         for(var n=0;n<d.length;n++){t(d[n])}}v(n);n.getInstance=function(e){
+         e=(!e||e.length===0?"$default_instance":e).toLowerCase()
+         ;if(!Object.prototype.hasOwnProperty.call(n._iq,e)){n._iq[e]={_q:[]};v(n._iq[e])
+         }return n._iq[e]};e.amplitude=n})(window,document);
+         
+         amplitude.getInstance().init("be66799cc85da3545fc1acf9144ee66a");
+      </script>
+      <script>
+         var eventProperties = {
+          'page': window.location.href
+         };
+         amplitude.getInstance().logEvent('categorypage:shown', eventProperties);
+      </script>
+      <script src="https://www.googleoptimize.com/optimize.js?id=OPT-P69KL7V"></script>
+      <!-- Clarity tracking code for https://www.konaequity.com/ -->
+      <script>
+         (function(c,l,a,r,i,t,y){
+             c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+             t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+             y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+         })(window, document, "clarity", "script", "56y5lp4wnt");
+      </script>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+      <!--=============== BOXICONS ===============-->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+      {% block title %}{% endblock %}
+      {% load static %}
+      <link rel="stylesheet" href="{% static 'css/find/carousel.css' %}">
+      <link rel="stylesheet" href="{% static 'css/find/main.css' %}">
+      <link rel="stylesheet" href="{% static 'css/loading.css' %}">
+      <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+      <link rel="stylesheet" href="{% static 'backend_django_v2/prepared/popup.css' %}">
+      <link rel="stylesheet" href="{% static 'css/ion.rangeSlider.min.css' %}">
+      <link rel="icon" href="{% static 'profile_photos/favicon.ico' %}" type="image/gif" sizes="32x32">
+      <link rel="apple-touch-icon" href="{% static 'profile_photos/logo.png' %}">
+      <script>
+         Url = "{% url 'ajax_autocomplete' %}"
+         loadingTag = '<div style="color: #ffffff" class="la-ball-scale-pulse mx-auto my-auto"><div></div><div></div></div>'
+      </script>
+      {% block meta %}{% endblock %}
+      {% if pop %}
+      <style>
+         .input {
+         color:rgb(86,90,92)!important;
+         }
+         #calltoaction{
+         position: fixed;
+         bottom: 0;
+         width: 100%;
+         background-color: rgba(0, 122, 135, 0.8);
+         z-index: 1000;
+         border-radius: 15px 15px 0px 0px;
+         display: none;
+         }
+         #popup-close{
+         background-image: url('/static/web_photos/popup-close.svg');
+         top: 20%;
+         right: 2%;
+         width: 10px;
+         cursor: pointer;
+         }
+         .bbpotp, .cuta{
+         width: 8.5%;
+         justify-content: center;
+         }
+      </style>
+      {% endif %}
+      <form id="logout" method="post" action="{% url 'account_logout' %}">
+         {% csrf_token %}
+         {% if redirect_field_value %}
+         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+         {% endif %}
+      </form>
+   </head>
+   <body>
+      {% include "new_header.html" %}
+      {% block content %}{% endblock content %}
+      {% include "includes/footer.html" %}
+      <script src="{% static 'js/find/jquery-3.3.1.min.js' %}"></script>
+      <script src="{% static 'js/find/jquery-migrate-3.0.0.min.js' %}"></script>
+      <script src=" https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+      <script src=" https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+      <script src="{% static 'js/find/jquery.backstretch.min.js' %}"></script>
+      <script src="{% static 'js/find/wow.min.js' %}"></script>
+      <script src="{% static 'js/find/scripts.js' %}"></script>
+      <script src="{% static 'js/freemails.js' %}"></script>
+      {% if not request.user.is_authenticated %}
+      {% include 'backend_django_v2/includes/join-popup.html' %}
+      {% include 'backend_django_v2/includes/sign-up-popup.html' %}
+      {% include 'backend_django_v2/includes/sign-in-popup.html' %}
+      <script>
+         var visit_count = localStorage.getItem('visit_count');
+         if (visit_count == null){
+           localStorage.setItem('visit_count', 1);
+           visit_count = 1;
+         } else {
+           visit_count = parseInt(visit_count) + 1;
+           localStorage.setItem('visit_count', visit_count);
+         }
+         
+         if(visit_count >= 3){
+           $("#join-popup").addClass("popup--active--animation");
+         }
+         $("#claimCompanyHeader").hide();
+         
+         var password_hidden = true;
+         
+         $('.display-password').click(function(){
+             password_hidden = !password_hidden;
+             if(!password_hidden) {
+                 $('.password-input__input').attr('type', 'text2');
+             } else {
+                 $('.password-input__input').attr('type', 'password')
+             }
+         });
+         
+         var modals = document.querySelectorAll('.popup');
+         var signinModal = document.querySelector(`#sign-in-modal`);
+         var signUpModal = document.querySelector(`#sign-up-modal`);
+         
+         function closeAllModals() {
+             modals.forEach(modal => {
+             modal.classList.remove('popup--active');
+             modal.classList.remove('popup--active--animation');
+             });
+         }
+         
+         function openSignUpModal() {
+             closeAllModals();
+             signUpModal.classList.add('popup--active');
+             closeJoinPopUp();
+         }
+         
+         function closeJoinPopUp() {
+             $("#join-popup").removeClass("popup--active--animation");
+         }
+         
+         function openSignInModal() {
+             closeAllModals();
+             signinModal.classList.add('popup--active');
+             closeJoinPopUp();
+         }
+      </script>
+      {% endif %}
+      <script>
+         var popupCloses = document.querySelectorAll('.popup__close');
+           popupCloses.forEach(popupClose => {
+             popupClose.addEventListener('click', (e) => {
+               e.preventDefault();
+               var parent = e.target.closest('.popup');
+               parent.classList.remove('popup--active');
+               parent.classList.remove('popup--active--animation');
+             });
+           });
+         
+           var searchTimer = null;
+           var searchInput = document.querySelector("#searchText");
+           searchInput.addEventListener("input", function (e) {
+             clearTimeout(searchTimer);
+             searchTimer = setTimeout(function () {
+               search(searchInput.value);
+             }, 350);
+           });
+         
+           var searchUrl = "{% url 'ajax_autocomplete' %}";
+           var searchResultContainer = document.querySelector("#searchResult");
+         
+           function removeAllChildNodes(parent) {
+             while (parent.firstChild) {
+               parent.removeChild(parent.firstChild);
+             }
+           }
+         
+           var searchResult = [];
+         
+           $("#searchText").focusin(function () {
+             if (!searchResult || searchResult.length === 0) {
+               return;
+             }
+             $("#searchResult").show();
+           });
+         
+           $("#searchText").focusout(function () {
+             setTimeout(function () {
+               $("#searchResult").hide();
+             }, 500);
+           });
+         
+         
+           function search(query) {
+             var a, b;
+         
+             if (!query) {
+               removeAllChildNodes(searchResultContainer);
+               searchResult = [];
+               $("#searchResult").hide();
+               return;
+             }
+         
+             $.ajax({
+               url: searchUrl,
+               data: {
+                 'search': query
+               },
+               dataType: 'json',
+               success: function (data) {
+                 arr = data.list;
+                 removeAllChildNodes(searchResultContainer);
+                 if (arr.length === 0) {
+                   a = document.createElement("div");
+                   a.className = "searchResultItem";
+                   a.innerHTML =
+                     `<img src="/static/profile_photos/generic.png" <span class="noSearchResult">No Results</span>`;
+                   searchResultContainer.appendChild(a);
+                   searchResult = [a];
+                   $("#searchText").trigger("focusin");
+                 }
+                 a = document.createElement("DIV");
+                 a.setAttribute("class", "searchResultItem");
+                 a.innerHTML = ` <a
+                           href="/find/--/?${arr[i].name}"><img src="/static/web_photos/category.svg" onerror="this.src='/static/web_photos/category.svg'"/><span>Company names containing insurance</span></a>`;
+                 searchResultContainer.appendChild(a);
+         
+                 a = document.createElement("DIV");
+                 a.setAttribute("class", "searchResultItem");
+         
+         
+                 a.innerHTML = ` <a
+                           href="/find/--/?desc=${arr[i].name}"><img src="/static/web_photos/gps.svg" onerror="this.src='/static/web_photos/gps.svg'"/><span>Pages containing insurance</span></a>`;
+         
+                 searchResultContainer.appendChild(a);
+         
+                 for (i = 0; i < arr.length; i++) {
+                   var firstIndex = arr[i].name.toLowerCase().indexOf(query);
+                   var textLength = query.length;
+                   var highlightedText = arr[i].name.substring(0, firstIndex) + "<strong>" + arr[i].name.substring(firstIndex, firstIndex + textLength) + "</strong>" + arr[i].name.substring(firstIndex + textLength);
+                   a = document.createElement("DIV");
+                   a.setAttribute("class", "searchResultItem");
+                   a.innerHTML = ` <a
+                             href="/find/--/?categories=${arr[i].name}"><img src="/static/web_photos/menu.svg" onerror="this.src='/static/web_photos/menu.svg'"/><span>${highlightedText}</span></a>`;
+                   searchResultContainer.appendChild(a);
+                 }
+                 searchResult = arr || [];
+                 $("#searchText").trigger("focusin");
+               }
+             });
+           }
+         
+           $("#hamburgerMenu").click(function () {
+             if ($('.header-drop-menu').css('visibility') == 'hidden') {
+               $('.header-drop-menu').css('visibility', 'visible');
+               $('.header-drop-menu').css('opacity', '1');
+             } else {
+               $('.header-drop-menu').css('visibility', 'hidden');
+               $('.header-drop-menu').css('opacity', '0');
+             }
+         
+           });
+         
+           $(".logmeout").click(function () {
+             $("#logout").submit();
+           });
+         
+      </script>
+      {% block script %}{% endblock %}
+      <script>
+         function create_post() {
+         var fd = new FormData($("#signup_form").get(0));
+         $("#disabled").html(loadingTag);
+         $.ajax({
+             url : "{% url 'register' %}",
+             type : "POST",
+             contentType: false,
+             processData: false,
+             data : fd,
+             success: function(response) {
+             var jsonResponse = response;
+             console.log(jsonResponse)
+             if (response["errors"] == "None"){
+                 location.reload();
+             }
+             $("input").each(function(){
+                 var name = $(this).attr("name");
+                 $(".form-group p").css("color", "red");
+                 if(name == "csrfmiddlewaretoken")
+                 return;
+         
+                 for(x in jsonResponse["errors"][name]){
+                 var cap = $(this).siblings(".searchBDir");
+                 $(cap).attr("class", "searchBDir");
+                 $(cap).addClass("wrong");
+                 $(this).css("border", "2px solid #FF5A5F");
+                 var error = jsonResponse["errors"][name][x];
+                 $("#"+name+"_errors").append(error + '\n');
+                 }
+             })
+             $("#disabled").html("Continue");
+             },
+             error: function(response){
+                 alert("Something went wrong. Please try again later.")
+             }
+         });
+         }
+         
+         function login_post() {
+         var fd = new FormData($("#login_form").get(0));
+         $("#disabledl").html(loadingTag);
+         $("#invalid_login").html("")
+         $.ajax({
+             url : "{% url 'account_login' %}",
+             type : "POST",
+             contentType: false,
+             processData: false,
+             data : fd,
+             success: function(response) {
+                 location.reload();
+             },
+             error: function(response){
+             var jsonResponse = response["responseJSON"];
+             $("#invalid_login").html("Invalid credentials. Please try again.");
+             $("#disabledl").html("Continue");
+             }
+         
+         });
+         }
+         
+         function handleFileSelect(evt) {
+         reader = new FileReader();
+         reader.onloadstart = function(){
+             var k = $("#file-upload-button");
+             $(k).html("Loading...");
+             $(k).css("background-color", "#00D1C1");
+             $(k).css("opacity", 0.5);
+             $(k).css("border-color", "#00D1C1");
+         }
+         reader.onload = function(e){
+             var k = $("#file-upload-button");
+             $('#profile-picture').attr('src', e.target.result);
+             setTimeout(function(){
+                 if (Validate(document.getElementById("id_profile_photo"))){
+                 $(k).html("Done");
+                 $(k).css("background-color", "#8CE071");
+                 $(k).css("opacity", "1.0");
+                 $(k).css("border-color", "#8CE071");
+             }
+             else{
+                 $(k).html("Add photo");
+                 $(k).css("background-color", "#FF5A5F");
+                 $(k).css("opacity", "1.0");
+                 $(k).css("border-color", "#FF5A5F");
+             }
+             }, 350)
+         }
+         reader.readAsDataURL(evt.target.files[0]);
+         }
+         
+         function favCheck(){
+         $(".fav").click(function(){
+         {% if request.user.is_authenticated %}
+         var kl = parseInt($(this).attr("data-id"));
+         var go = $(this).attr("data-selected");
+         var p = this;
+         
+         if (go == "true"){
+             $.ajax({
+             headers: { "X-CSRFToken": "{{csrf_token}}" },
+             url : "{% url 'remfav' %}",
+             type : "POST",
+             data : {
+                 id: kl
+             },
+             dataType: "json",
+             success: function(response){
+                 if (response.status == "success"){
+                     $(p).attr("data-selected", "false");
+                     $(p).removeClass("yes");
+                     $(p).addClass("no");
+                 }
+             }
+         });
+         }
+         else{
+             $.ajax({
+             headers: { "X-CSRFToken": "{{csrf_token}}" },
+             url : "{% url 'addfav' %}",
+             type : "POST",
+             data : {
+                 id: kl
+             },
+             dataType: "json",
+             success: function(response){
+                 if (response.status == "success"){
+         
+                     $(p).attr("data-selected", "true");
+                     $(p).removeClass("no");
+                     $(p).addClass("yes");
+                 }
+             }
+         });
+         }
+         {% else %}
+         $("#SignupModal").modal("show");
+         {% endif %}
+         });
+         }
+         function popitUp(){
+         {% if pop %}
+         $("#calltoaction").slideToggle(600);
+         // $("#popup-close").on("click", function(){
+         //     $("#calltoaction").slideToggle(600);
+         // });
+         {% else %}
+         console.log("No pop. Until next time.");
+         {% endif %}
+         }
+         function openNav() {
+         document.getElementById("myNav").style.height = "100%";
+         element = document.getElementsByTagName("body")[0];
+         element.classList.add("noscroll");
+         }
+         
+         function closeNav() {
+         document.getElementById("myNav").style.height = "0%";
+         element = document.getElementsByTagName("body")[0];
+         element.classList.remove("noscroll");
+         }
+         urlReg = "{% url 'register' %}"
+      </script>
+      <script type="text/javascript"> window.urlReg = "{% url 'register' %}" </script>
+   </body>
+</html>

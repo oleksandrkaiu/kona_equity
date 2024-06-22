@@ -1,0 +1,409 @@
+{% extends "base_generic.html" %}
+{% load static %}
+
+{% block title %}
+<title>Contact Us | Kona Equity</title>
+{% endblock %}
+
+{% block meta %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<link rel="stylesheet" href="{% static 'css/menusearch.css' %}">
+<link rel="stylesheet" href="{% static 'css/find.css' %}">
+<link rel="stylesheet" href="{% static 'css/contact-us.css' %}">
+<link rel="stylesheet" href="{% static 'backend_django_v2/prepared/main.css' %}">
+<meta name="description" content="Contact Kona Equity for general inquiries, editing companies, data access, or finding an acquirer for your business.">
+<script type="text/javascript">
+  (function(e,t){var n=e.amplitude||{_q:[],_iq:{}};var r=t.createElement("script")
+  ;r.type="text/javascript"
+  ;r.integrity="sha384-tzcaaCH5+KXD4sGaDozev6oElQhsVfbJvdi3//c2YvbY02LrNlbpGdt3Wq4rWonS"
+  ;r.crossOrigin="anonymous";r.async=true
+  ;r.src="https://cdn.amplitude.com/libs/amplitude-8.5.0-min.gz.js"
+  ;r.onload=function(){if(!e.amplitude.runQueuedFunctions){
+  console.log("[Amplitude] Error: could not load SDK")}}
+  ;var i=t.getElementsByTagName("script")[0];i.parentNode.insertBefore(r,i)
+  ;function s(e,t){e.prototype[t]=function(){
+  this._q.push([t].concat(Array.prototype.slice.call(arguments,0)));return this}}
+  var o=function(){this._q=[];return this}
+  ;var a=["add","append","clearAll","prepend","set","setOnce","unset","preInsert","postInsert","remove"]
+  ;for(var c=0;c<a.length;c++){s(o,a[c])}n.Identify=o;var u=function(){this._q=[]
+  ;return this}
+  ;var l=["setProductId","setQuantity","setPrice","setRevenueType","setEventProperties"]
+  ;for(var p=0;p<l.length;p++){s(u,l[p])}n.Revenue=u
+  ;var d=["init","logEvent","logRevenue","setUserId","setUserProperties","setOptOut","setVersionName","setDomain","setDeviceId","enableTracking","setGlobalUserProperties","identify","clearUserProperties","setGroup","logRevenueV2","regenerateDeviceId","groupIdentify","onInit","logEventWithTimestamp","logEventWithGroups","setSessionId","resetSessionId"]
+  ;function v(e){function t(t){e[t]=function(){
+  e._q.push([t].concat(Array.prototype.slice.call(arguments,0)))}}
+  for(var n=0;n<d.length;n++){t(d[n])}}v(n);n.getInstance=function(e){
+  e=(!e||e.length===0?"$default_instance":e).toLowerCase()
+  ;if(!Object.prototype.hasOwnProperty.call(n._iq,e)){n._iq[e]={_q:[]};v(n._iq[e])
+  }return n._iq[e]};e.amplitude=n})(window,document);
+
+  amplitude.getInstance().init("be66799cc85da3545fc1acf9144ee66a");
+</script>
+<script>
+var eventProperties = {
+ 'page': window.location.pathname
+};
+amplitude.getInstance().logEvent('contactpage:shown', eventProperties);
+</script>
+<style>
+        .logo-homeword {
+        color: white;
+        width: 15%;
+        font-family: 'big-heading';
+        font-size: 24px;
+        min-width: 184px;
+        letter-spacing: -1px;
+    }
+    .navbar-brand {
+        display: inline-block;
+        padding-top: 0.3125rem;
+        padding-bottom: 0.3125rem;
+        margin-right: 1rem;
+        font-size: 1.25rem;
+        line-height: inherit;
+        white-space: nowrap;
+    }
+    .navbar {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        padding: 0.5rem 1rem;
+    }
+    .nav-item.quart a{
+        color:#383838;
+    }
+    @media only screen and (min-width: 768px){
+    .whiteish{
+        padding-right:40px!important;
+        }
+    }
+
+    body{background:white;}
+    .custom-card-title{display:block;text-align:center;font-size:28px;padding-bottom:6px;}
+    .card-body{
+        padding:54px 0px;
+    }
+    .custom-card{border:#007A86 solid 58px;border-radius:0px;}
+    .custom-select, .custom-form-input input[type='text']{border-radius:8px;}
+    .whiteish {
+    color: #6B6F76!important;
+}
+    .secondcolumn{padding-right:6%;}
+    @media only screen and (max-width: 768px){
+            .firstcolumn{display:none;}
+            .secondcolumn{width:100%;max-width:100%;flex:100%;padding-right:0px!important;}
+            .custom-card {border: #007A86 solid 16px;}
+            .custom-form-input{max-width:90%;}
+            .smallskew{padding-right:0px!important;}
+        }
+::placeholder {color:#282A30;opacity:1!important;}
+.custom-form-submit{background: linear-gradient(90deg, #078E9B 6.9%, #0D8A96 47.8%, #007A86 80.39%);border:0px;}
+.custom-select, .custom-form-input input[type='text'], .custom-form-input textarea {border-color: #DFDFE2;}
+.custom-form-input input[type='text']::placeholder, .custom-form-input textarea::placeholder, .custom-select {color:#282A30;}
+.navbar-light .navbar-toggler-icon {
+    background-image: url(https://www.konaequity.com/static/web_photos/burgermenu2.svg);
+}
+
+</style>
+{% endblock meta %}
+
+{% block content %}
+<nav class="navbar navbar-expand-md navbar-light" style="padding-left: 6%; padding-right: 6%;background-color:white;">
+    <a class="navbar-brand logo-home logo-homeword" href="/" style="color: #383838; font-size: 2rem; text-decoration: none;">Kona Equity</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse mx-md-auto" id="navbarSupportedContent">
+        <ul class="nav navbar-nav mx-sm-auto">
+            <li class="nav-item quart mx-auto" style="text-align: center !important;">
+                <a class="nav-link whiteish" href="/about/">About</a>
+            </li>
+
+            <li class="nav-item quart mx-auto drop-custom">
+                <div class="dropdown">
+                    <a class="dropbtn whiteish" href="/find/">Explore</a>
+                    <div class="dropdown-content">
+                        {% for a in dc %}
+                        <a href="{{a.link}}" class="dropdowns">{{a.name}}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item quart mx-auto" style="text-align: center !important;">
+                <a class="nav-link whiteish" href="/premium/">Premium</a>
+            </li>
+            <li class="nav-item quart mx-auto" style="text-align: center !important;">
+                <a class="nav-link whiteish" href="/contact/">Contact us</a>
+            </li>
+        </ul>
+
+        <ul class="navbar-nav nav ml-auto pull-sm-right justify-content-center">
+            {% if not request.user.is_authenticated %}
+            <li class="nav-item active quart mx-auto">
+                <a class="nav-link" href="/login" style="cursor: pointer !important;">Login</a>
+            </li>
+
+            <li class="nav-item quart mx-auto">
+                <a class="nav-link text-center" href="/signup/cold-join" style="width: 100px; background-color: white; color: #007a86 !important; margin-left: 10px; border-radius: 25px;">
+                    Sign up
+                </a>
+            </li>
+            {% else %}
+            <li class="nav-item quart mx-auto" style="text-align: center !important;">
+                <a class="nav-link" href="/dashboard/">Edit profile</a>
+            </li>
+            <li class="nav-item quart mx-auto" style="text-align: center !important;">
+                <a class="nav-link" href="/watchlist/">Prospects</a>
+            </li>
+            <li class="nav-item quart mx-auto" style="text-align: center !important;">
+                <a class="nav-link logmeout" href="JavaScript:void(0);">Logout</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+
+    <div class="container-fluid mb-5 px-0">
+        <div class="row mx-0" style="padding:4% 0%;">
+            <div class="col-6 mb-1 mb-md-3 mb-md-0 firstcolumn" style="padding-left:6%;">
+                <h1 class="mb-5" style="font-family: std-bold;font-size: 72px;line-height: 84px;color: #383838;margin-top: 9%;">Get in touch</h1>
+                <div style="height:20%;"></div>
+                <p style="font-size:24px;max-width:600px;">
+                    For information that needs correcting please use the edit option on the company page. We will work through edits typically within a week.
+                </p>
+                <div style="position:absolute;bottom:0;right:0;background-color:#060606;color:white;width:200px;font-size:64px;text-align:center;"><img src="{% static '/web_photos/question3.svg' %}" style="margin: 0 auto;display: block;padding: 36px;"></div>
+            </div>
+            <div class="col-6 pl-0 secondcolumn">
+                <div class="col-12 pl-0 mb-1 mb-md-3 mb-md-0 smallskew" style="margin-top: 32px;">
+                    <div class="card custom-card" style="height: auto;">
+                        <div class="card-body">
+                            <div class="row d-flex justify-content-center align-items-center">
+                                <div class="col-12 col-md-10 custom-form-input">
+                                    <h5 class="card-title custom-card-title mb-4 pl-3">Contact Us</h5>
+                                    <form name="contact-form" method="POST" action="/contact/">
+                                        {% csrf_token %}
+                                        <input type="text" name="name" class="pl-4 mb-3 form-control" placeholder="Full Name" style="height: 56px" required>
+                                        <input type="text" name="email" class="pl-4 mb-3 form-control" placeholder="Email" style="height: 56px" required>
+                                        <div class="input-group mb-3">
+                                            <select class="custom-select pl-4" name="purpose" style="height: 56px" required>
+                                                <option disabled hidden selected>Please let us know how can we help</option>
+                                                <option value="1">Editing company pages</option>
+                                                <option value="2">Adding your business {% if request.user.profile.paid %}{% else %}(Premium Required){% endif %}</option>
+                                                <option value="3">Data access</option>
+                                                <option value="4">General Inquiry</option>
+                                            </select>
+                                        </div>
+                                        <textarea class="pl-4 mb-3 form-control custom-form-text-area" name="message" placeholder="Message" style="height: 130px"></textarea>
+                                        <input id="contact-submit" type="submit" class="btn mb-5 form-control custom-form-submit" value="Submit" style="height: 40px">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="submit-success-modal" tabindex="-1" role="dialog" aria-labelledby="submit-success-modalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Contact request received</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {% if submitted == 1 %}
+                    Your message has been successfully submitted. We will be in contact shortly.
+                    {% elif submitted == 2 %}
+                    There was something wrong with your request. Please try again. :(
+                    {% elif submitted == 3 %}
+                    Could not validate request. Please try again.
+                    {% endif %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Okay</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock content %}
+
+    {% block script %}
+    <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
+    <script src="{% static 'js/autocomplete.js' %}"></script>
+    <script src="{% static 'js/utils.js' %}"></script>
+    <script>
+function main(){
+    {% if submitted != 0 %}
+        $('#submit-success-modal').modal('show');
+    {% endif %}
+
+    dropys();
+    openSome();
+    validato();
+    checkSome();
+    popitUp();
+    mobileSignup();
+    logmeout();
+
+    if (window.addEventListener) {
+      window.addEventListener('load', main);
+   } else if (window.attachEvent) {
+      window.attachEvent('onload', main);
+   } else {
+      window.onload = main;
+   }
+</script>
+    <script>
+const joinModal = document.querySelector("#join-popup");
+  const signinModal = document.querySelector(`#sign-in-modal`);
+  const signUpModal = document.querySelector(`#sign-up-modal`);
+  const signInBeforeEditModal = document.querySelector('#signInBeforeEdit');
+  const signInBeforeSaveModal = document.querySelector('#signin-before-save');
+  const dislikeModal = document.querySelector('#dislikePopup');
+  const likeModal = document.querySelector('#likePopup');
+  const modals = document.querySelectorAll('.popup');
+    function validateSignUp() {
+        var val = $('#signUpForm input[name="password1"]').val()
+        var valemail = $('#signUpForm input[name="email"]').val()
+
+        console.log(val, valemail);
+        if ($('#signUpForm input[name="first_name"]').val().length > 0 &&
+            $('#signUpForm input[name="last_name"]').val().length > 0 &&
+            /(.+)@(.+){2,}\.(.+){2,}/.test(valemail) &&
+            valemail.length > 0 &&
+            val.length >= 8 &&
+            !freeEmails.includes(valemail.split("@")[1]) &&
+            $('#signUpForm input[name="password2"]').val() == val) {
+            return true;
+        }
+        return false;
+    }
+
+    $(document).ready(function () {
+        $('#signUpForm').on('submit', function (event) {
+            event.preventDefault();
+            console.log("form submitted!")
+            signUp();
+        });
+        (function () {
+            let agreement = $('#signUpForm input[name="agreement"]').prop('checked');
+            let disable = false;
+
+            $('#signUpForm input[name="agreement"]').change(function () {
+                agreement = $(this).is(':checked');
+                if (!agreement || disable) {
+                    $('#signUpSubmit').attr('disabled',
+                        'disabled'
+                    ); // updated according to http://stackoverflow.com/questions/7637790/how-to-remove-disabled-attribute-with-jquery-ie
+                } else {
+                    $('#signUpSubmit').removeAttr(
+                        'disabled'
+                    ); // updated according to http://stackoverflow.com/questions/7637790/how-to-remove-disabled-attribute-with-jquery-ie
+                }
+            });
+
+            $('#signUpForm input').keyup(function () {
+                disable = !validateSignUp();
+
+                if (disable || !agreement) {
+                    $('#signUpSubmit').attr('disabled',
+                        'disabled'
+                    ); // updated according to http://stackoverflow.com/questions/7637790/how-to-remove-disabled-attribute-with-jquery-ie
+                } else {
+                    $('#signUpSubmit').removeAttr(
+                        'disabled'
+                    ); // updated according to http://stackoverflow.com/questions/7637790/how-to-remove-disabled-attribute-with-jquery-ie
+                }
+            });
+        })()
+
+        function signUp() {
+
+            if (!validateSignUp() || !$('#signUpForm input[name="agreement"]').prop('checked')) {
+                return;
+            }
+            $(".signup-errors").each(function () {
+                $(this).text("");
+            });
+            var fd = new FormData($('#signUpForm').get(0));
+            $.ajax({
+                url: "{% url 'register' %}",
+                type: "POST",
+                contentType: false,
+                processData: false,
+                data: fd,
+                success: function (response) {
+                    var jsonResponse = response;
+                    console.log(jsonResponse)
+                    if (response["errors"] == "None") {
+                        location.reload();
+                    }
+                    $("input").each(function () {
+                        var name = $(this).attr("name");
+                        $(".form-group p").css("color", "red");
+                        if (name == "csrfmiddlewaretoken")
+                            return;
+
+                        for (x in jsonResponse["errors"][name]) {
+                            $("#signup-" + name + "-errors").text(jsonResponse["errors"][
+                                name
+                            ][x]);
+                        }
+                    })
+                },
+                error: function (response) {
+                    console.log(response);
+                    alert("Something went wrong. Please try again later.")
+                }
+            });
+        }
+
+
+    });
+    function closeJoinPopUp() {
+    joinModal.classList.remove("popup--active")
+  }
+
+    function openSignUpModal() {
+    closeAllModals();
+    signUpModal.classList.add('popup--active');
+    closeJoinPopUp();
+  }
+
+  const signUpButtons = document.querySelectorAll('.sign-up-btn');
+    signUpButtons.forEach(signUpButton => {
+      signUpButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        openSignUpModal();
+      });
+    });
+    const popupCloses = document.querySelectorAll('.popup__close');
+  popupCloses.forEach(popupClose => {
+    popupClose.addEventListener('click', (e) => {
+      e.preventDefault();
+      const parent = e.target.closest('.popup');
+      parent.classList.remove('popup--active');
+      parent.classList.remove('popup--active--animation');
+    });
+  });
+
+    function closeAllModals() {
+modals.forEach(modal => {
+modal.classList.remove('popup--active');
+});
+}
+</script>
+{% endblock %}

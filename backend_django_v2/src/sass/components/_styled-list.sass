@@ -1,0 +1,26 @@
+.styled-list
+    margin: 0
+    padding: 0
+    list-style: none
+    display: grid
+    grid-template-columns: 1fr
+    grid-gap: 24px
+
+    @include big-tablet-le
+        grid-gap: 16px
+
+    &__item
+        display: flex
+        align-items: center
+        align-items: flex-start
+        font-size: 14px
+
+    &__item-label
+        font-size: 14px
+        font-weight: 400
+        color: var(--color-primary)
+        font-family: 'Circular Std', sans-serif
+        margin-right: 20px
+
+        @include big-tablet-le
+            margin-right: 16px

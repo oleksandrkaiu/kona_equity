@@ -1,0 +1,60 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'backend_django_v2/prepared/footer.css' %}">
+
+<footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__main">
+          <div class="footer__info">
+            <a href="#" class="footer__info-main">
+              <picture class="logo">
+                <img src="{% static 'backend_django_v2/images/main/logo-light.svg' %}" alt="Kona Equity logo"
+                  class="logo__img" />
+              </picture>
+            </a>
+            <div class="footer__info-secondary">
+              <h2 class="footer__info-title">Kona Equity</h2>
+              <p class="footer__info-copyright">2022</p>
+              <a href="/privacy/" class="footer__link footer__info-link">Privacy Policy</a>
+            </div>
+          </div>
+
+          <nav class="footer__primary-nav">
+            <ul class="footer__primary-nav-list">
+              <li class="footer__primary-nav-item">
+                <a href="/" class="footer__link footer__primary-nav-link">Home</a>
+              </li>
+              <li class="footer__primary-nav-item">
+                <a href="/about/" class="footer__link footer__primary-nav-link">About</a>
+              </li>
+              <li class="footer__primary-nav-item">
+                <a href="/contact/" class="footer__link footer__primary-nav-link">Contact us</a>
+              </li>
+              <li class="
+                  footer__primary-nav-item footer__primary-nav-item--only-phone
+                ">
+                <a href="/privacy/" class="footer__link footer__primary-nav-link">Privacy Policy</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <div class="footer__secondary">
+          <h3 class="footer__secondary-title">Explore popular industries</h3>
+
+          <nav class="footer__nav">
+            <ul class="footer__nav-list">
+              {% for a in dc %}
+              <li class="footer__nav-item">
+                <a href="{{a.link}}" class="footer__link footer__nav-link">{{a.name}}</a>
+              </li>
+              {% endfor %}
+
+            </ul>
+          </nav>
+        </div>
+
+        <p class="footer__copyright">2022</p>
+      </div>
+    </div>
+  </footer>

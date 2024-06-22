@@ -1,0 +1,386 @@
+Fri, May 06
+Georgi Iljin 1:07 PM
+Hi.
+I am a full stack web developer.
+I've rich experience about Django, jquery.
+I have checked your site.
+So I aill add search filter below Gscore and send the jquery request for industry.
+Django backend will get the query and excute sql query so that find all industries containning the parameter.
+I will use your https://www.konaequity.com/find/--TX/?google_industry=Chiropractor url.
+For now search url is like that so I can add more parameter behind of query.
+https://www.konaequity.com/find/--/?arn=3100740&arx=45992644&empn=117&empx=323&gn=4&gx=7&name=TestGorilla&google_industry=Chiropractor
+I want to discuss it more over chat. Kindly initiate a personal conversation to discuss more in detail.
+Thank you for your time.
+
+View details
+Chiropractor Companies in Texas
+Click to see the list of Chiropractor companies in Texas. Kona Equity provides all the data on their revenue, employees, and location for FREE.
+Chiropractor Companies in the United States
+Click to see the list of Chiropractor companies in the United States. Kona Equity provides all the data on their revenue, employees, and location for FREE.
+JR
+Joey R 1:07 PM
+Hi how are you?
+
+https://www.loom.com/share/b5f7296a3e01415081e54564bcdd9763
+
+
+Georgi Iljin 1:16 PM
+Hi
+
+Thank you for your offer.
+
+JR
+Joey R 1:19 PM
+I’m a bit concerned by your English. I think it might be a communication barrier so when you are writing please try to be careful with what you are trying to say
+
+Georgi Iljin 1:20 PM
+I see.
+
+I can implement your idea.
+
+JR
+Joey R 1:23 PM
+Great. How would you handle the 4,000 industries?
+
+Georgi Iljin 1:25 PM
+Pagination will be used.
+
+If there is an issue with db I will find the fastest way to excute queries.
+
+Such as fulltext search etc.
+
+One question.
+
+Are you using mysql?
+
+Even though there are 4000 industries I can solve this issue using index and pagination.
+
+JR
+Joey R 1:29 PM
+I dont think pagination is the right approach. That is not very elegant
+
+yes mysql
+
+if you try to sign up for a google my business account, you can see how they implement full text search to look for industries
+
+Georgi Iljin 1:31 PM
+I see.
+
+I will check now.
+
+For now if I type "test" text in the search input box auto complete drop down will be appeared.
+
+Where can I find the full text search example?
+
+JR
+Joey R 1:41 PM
+https://www.google.com/business/
+
+Google Business Profile - Get Listed on Google
+List your business on Google with a free Business Profile (formerly Google my Business). Turn people who find you on Search & Maps into new customers.
+when you go through the sign up flow there is a page that asks you for your industry and then you start typing and it shows you your options
+
+Georgi Iljin 1:43 PM
+I see. Thanks.
+
+Georgi Iljin 1:52 PM
+I checked.
+
+So what is your plan?
+
+I think only 4000 counts are not problem.
+
+I can implement quick search function.
+
+JR
+Joey R 1:56 PM
+okay
+
+do you have any examples of anything you have built that is similar?
+
+Georgi Iljin 1:58 PM
+https://creator.clubflyers.com
+
+Clubflyers Creator
+This is my past project.
+
+Georgi Iljin 2:03 PM
+https://creator.clubflyers.com/home/templates
+
+Clubflyers Creator
+You can find design templates with keyword.
+
+JR
+Joey R 2:05 PM
+okay
+
+are you clear on the project requirements?
+
+Georgi Iljin 2:06 PM
+Yes.
+
+One question only.
+
+Regardign keyword "Chiropractor"
+
+Need to find all industries with a title or description containing this keyword?
+
+JR
+Joey R 2:10 PM
+https://propellic.com/blog/google-my-business-categories/
+
+Propellic
+Google My Business Categories List [Updated for 2021] | PCL® 
+There are 3920 Google My Business categories. Need help figuring out which one you belong in? Search our list with these guidelines.
+So underneath the box that says select category, there is another box that says select industry. A user clicks into that box and starts typing "chir" - the option that would be present would be chiropractor. But if they just typed in "chi" it would show first the results that have chi at the beginning like Chicken Hatchery, Chicken Restaurant, Chicken Shop, etc
+
+Georgi Iljin 2:15 PM
+I see.
+
+You are meaning auto compelete. Correct?
+
+JR
+Joey R 2:16 PM
+yes
+
+you can see if they clicked chicken shop, it would work too
+
+https://www.konaequity.com/find/?google_industry=Chicken%20shop
+
+Chicken shop Companies in the United States
+Click to see the list of Chicken shop companies in the United States. Kona Equity provides all the data on their revenue, employees, and location for FREE.
+Georgi Iljin 2:17 PM
+I see.
+
+The search result page is finished.
+
+I have to implelment add industry category filter and auto complete within 4000 categores.
+
+Correct?
+
+JR
+Joey R 2:19 PM
+yes
+
+Georgi Iljin 2:19 PM
+I got it.
+
+JR
+Joey R 2:19 PM
+and to make it work with the search parameters
+
+Georgi Iljin 2:19 PM
+Oh. I see.
+
+JR
+Joey R 2:20 PM
+in a very clean code that is maintainable for the next developer
+
+Georgi Iljin 2:21 PM
+I see.
+
+I will.
+
+JR
+Joey R 2:22 PM
+okay any other questions?
+
+Georgi Iljin 2:22 PM
+No.
+
+If i have any question I will let you know.
+
+JR
+Joey R 2:23 PM
+how do you plan on adding the 4000 industries?
+
+Georgi Iljin 2:24 PM
+I will create new table having these categories.
+
+Then there is no spped issue.
+
+JR
+Joey R 2:25 PM
+is that a better solution than a python file?
+
+Georgi Iljin 2:25 PM
+Same.
+
+Read file file vs DB.
+
+I prefer database table for maintenance.
+
+JR
+Joey R 2:28 PM
+I would prefer a python file because our database is capricious haha. Meaning we had a developer delete a migrations file and I'm afraid about any major database problems or outtages.
+
+Our testing site shares a database with our production site, by the way. So I can't have any testing really on our databases that break anything
+
+we have 2.3 million company record
+
+and the site gets almost 5,000 people visiting a day
+
+Georgi Iljin 2:29 PM
+I see.
+
+I understand.
+
+My working shouldnot affect your business.
+
+I will do that.
+
+JR
+Joey R 2:31 PM
+Okay. Last thing. Can you resummarize everything in this task back to me? That way I will know we are on the same page.
+
+Georgi Iljin 2:32 PM
+Okay.
+
+I will explain.
+
+First I will add filter input box that reflects industry category.
+
+When use inputs keywords auto completed text hints from 4000 categories.
+
+will be shown.
+
+After we click one categorry item and click search button it will take us to category search page.
+
+Like that.
+
+https://www.konaequity.com/find/--TX/?google_industry=Chiropractor&page=6
+
+The 4000 recordes will be stored in file so that my work doesn't affect the live service and clean code for maintenance.
+
+That's all.
+
+JR
+Joey R 2:35 PM
+BEAUTIFUL
+
+Georgi Iljin 2:35 PM
+Thanks.
+
+JR
+Joey R 2:35 PM
+thank you
+
+let's do this
+
+whats your github?
+
+Georgi Iljin 2:36 PM
+Just a momnet.
+
+https://github.com/GeorgiI37
+
+GitHub
+GeorgiI37 - Overview
+GeorgiI37 has 11 repositories available. Follow their code on GitHub.
+JR
+Joey R 2:40 PM
+i invited you to our github
+
+Georgi Iljin 2:40 PM
+Thanks I will check now.
+
+JR
+Joey R sent an offer
+
+ 2:41 PM
+Aloha django + jquery devs -
+
+Looking to hire a javascript expert to add an additional filter to our website, The website is growing quite fast and we just passed a million pageviews.
+
+The page that we are trying to improve is https://www.konaequity.com/find/ & this page has many variations depending on the users search parameters.
+
+To give you an idea of how the page is used, investors come to our site because they have an investment thesis and they want to build a list of companies that could be potential investments. So a user may say I want to find chiropractors in texas.
+
+Currently our backend has the capability to run that search but we are missing a filter to allow users to run that query.
+
+This job is to add a new filter for industries. Example:
+
+https://www.konaequity.com/find/--TX/?google_industry=Chiropractor
+
+There are 4,000 of these industries like Chiropractor so we need to load the options in a way that doesn't slow down the page and a method where users can search through all of the industries easily. This filter should appear when a user clicks show filters and then it should be placed under the filter that says select category.
+
+Pretty simple and straightforward task. I am looking for someone who is okay working with messy code and has excellent written communication.
+
+To ensure, that you have read this entire post, please use the word industries. I will only be responding to applicants that use the word industries. Thank you.
+
+Milestone 1: Jquery + django adding a new search filter
+
+View details
+Company Search in the United States
+Click to see the list of companies in the United States. Kona Equity provides all the data on their revenue, employees, and location for FREE.
+Chiropractor Companies in Texas
+Click to see the list of Chiropractor companies in Texas. Kona Equity provides all the data on their revenue, employees, and location for FREE.
+I will give you the testing site account details next
+
+Georgi Iljin 2:46 PM
+Thanks.
+
+Georgi Iljin accepted an offer
+
+ 2:49 PM
+Thank you for your offer. I will do my best.
+
+View details
+JR
+Joey R 2:50 PM
+We host our site through pythonanywhere.com
+username: Konaequity2
+password: Maui2022
+
+Host, run, and code Python in the cloud: PythonAnywhere
+Host, run, and code Python in the cloud: PythonAnywhere
+That is our test site
+
+Georgi Iljin 2:51 PM
+I see.
+
+JR
+Joey R 2:51 PM
+use a new branch for your changes on github
+
+I will review it before moving it to master
+
+the template is in backend_django/new_listings.html
+
+Georgi Iljin 2:52 PM
+Okay.
+
+Thanks.
+
+If Ihave question I will let you know.
+
+JR
+Joey R 2:54 PM
+okay there are some files that are different between github and the testing site pythonanywhere. Shouldn't be any problems. Github is actually more synced than the testing site so if you see any decripencies go with github
+
+Georgi Iljin 2:55 PM
+I see.
+
+JR
+Joey R 2:55 PM
+Also this is a testing page I was working on - try not to overwrite it please
+
+Pasted File at May 6, 2022 1:55 AM.png 
+
+Georgi Iljin 2:56 PM
+Okay.
+
+JR
+Joey R 3:14 PM
+Were you able to log in to the testing site?
+
+Georgi Iljin 3:39 PM
+Sorry for the late.
+
+I can login.
+
+I am in.
+
+JR
+Joey R 3:41 PM
+Good!

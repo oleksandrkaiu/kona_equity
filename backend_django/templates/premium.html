@@ -1,0 +1,886 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kona Equity Premium - The Ultimate Search Tool</title>
+    <meta name="description" content="Kona Equity Premium provides unparalleled information and access for investors, marketers, and sales.
+    Find companies by robust filters, source proprietary deals, and unlock contacts - all within an ultra-modern, streamlined user experience.">
+    <link rel="canonical" href="https://www.konaequity.com/premium/">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'backend_django_v2/prepared/main.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/acquire.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css">
+    <link rel="icon" href="/static/profile_photos/favicon.ico" type="image/gif" sizes="32x32">
+    <script src="https://js.stripe.com/v3/"></script>
+    <style>
+        .check {
+            vertical-align: middle!important;
+        }
+
+        .tick {
+            max-width: 25px;
+        }
+
+        .untick {
+            max-width: 25px;
+        }
+
+        .accordion-btn.btn.accordion-toggle:hover {
+            color: #fff!important;
+        }
+
+        a.button.cta-btn:hover {
+            text-decoration: none!important;
+        }
+
+        .active-premium {
+            border: 1px solid #007a86;
+            outline: none;
+            height: 40px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .active-premium:focus {
+            border: 1px solid #007a86;
+        }
+
+        select#companies {
+            background: url("http://i.stack.imgur.com/RGBNj.png") no-repeat center right;
+        }
+
+.searchdemo p { justify-content: center; align-items: center; color: #383838; } .searchdemo p { font-size: 36px; letter-spacing: -1px; text-align: center; overflow: hidden; font-family: 'std-medium'; } .searchdemo p span.typed-text { font-weight: normal; color: #00D1C2; } .searchdemo p span.cursor { display: inline-block; background-color: #ccc; margin-left: 0.1rem; width: 3px; animation: blink 1s infinite; } .searchdemo p span.cursor.typing { animation: none; } @keyframes blink { 0% { background-color: #ccc; } 49% { background-color: #ccc; } 50% { background-color: transparent; } 99% { background-color: transparent; } 100% { background-color: #ccc; } } .top { animation-name: fade; animation-timing-function: ease-in-out; animation-iteration-count: infinite; animation-duration: 8s; animation-direction: alternate; } @keyframes fade { 0% { opacity: 1; } 25% { opacity: 1; } 75% { opacity: 0; } 100% { opacity: 0; } } .gradientbox{position:relative;z-index:-1;} .gradientbox img{position:absolute;} .whitebackgroundbox{background-color:white;max-width:80%;margin:0 auto;} .contentbox{width:100%;padding-top: 20%;} .gradientbox img, .whitebackgroundbox{border-radius:8px;} .top, .bottom{width:425px;height:300px;box-shadow:0px 4px 18px rgb(0 0 0 / 10%)} .searchdemo{margin-top: 24px;padding:16px;box-shadow: 0px 16px 70px rgb(0 0 0 / 50%);}
+    </style>
+    <script async="" src="https://www.clarity.ms/eus2/s/0.6.21/clarity.js"></script>
+    <script async="" src="https://www.clarity.ms/tag/56y5lp4wnt"></script>
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-163184927-1"></script>
+      <!-- Clarity tracking code for https://www.konaequity.com/ -->
+      <script>
+          (function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "56y5lp4wnt");
+      </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GXS2W1JXVR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-GXS2W1JXVR');
+    </script>
+    <script src="https://www.googleoptimize.com/optimize.js?id=OPT-P69KL7V"></script>
+    <script>
+        (function(c, l, a, r, i, t, y) {
+            c[a] = c[a] || function() {
+                (c[a].q = c[a].q || []).push(arguments)
+            };
+            t = l.createElement(r);
+            t.async = 1;
+            t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0];
+            y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "56y5lp4wnt");
+    </script>
+    <script>
+    (function (e, t) {
+        var n = e.amplitude || { _q: [], _iq: {} };
+        var r = t.createElement("script");
+        r.type = "text/javascript";
+        r.integrity = "sha384-tzcaaCH5+KXD4sGaDozev6oElQhsVfbJvdi3//c2YvbY02LrNlbpGdt3Wq4rWonS";
+        r.crossOrigin = "anonymous";
+        r.async = true;
+        r.src = "https://cdn.amplitude.com/libs/amplitude-8.5.0-min.gz.js";
+        r.onload = function () {
+            if (!e.amplitude.runQueuedFunctions) {
+                console.log("[Amplitude] Error: could not load SDK");
+            }
+        };
+        var i = t.getElementsByTagName("script")[0];
+        i.parentNode.insertBefore(r, i);
+        function s(e, t) {
+            e.prototype[t] = function () {
+                this._q.push([t].concat(Array.prototype.slice.call(arguments, 0)));
+                return this;
+            };
+        }
+        var o = function () {
+            this._q = [];
+            return this;
+        };
+        var a = ["add", "append", "clearAll", "prepend", "set", "setOnce", "unset", "preInsert", "postInsert", "remove"];
+        for (var c = 0; c < a.length; c++) {
+            s(o, a[c]);
+        }
+        n.Identify = o;
+        var u = function () {
+            this._q = [];
+            return this;
+        };
+        var l = ["setProductId", "setQuantity", "setPrice", "setRevenueType", "setEventProperties"];
+        for (var p = 0; p < l.length; p++) {
+            s(u, l[p]);
+        }
+        n.Revenue = u;
+        var d = [
+            "init",
+            "logEvent",
+            "logRevenue",
+            "setUserId",
+            "setUserProperties",
+            "setOptOut",
+            "setVersionName",
+            "setDomain",
+            "setDeviceId",
+            "enableTracking",
+            "setGlobalUserProperties",
+            "identify",
+            "clearUserProperties",
+            "setGroup",
+            "logRevenueV2",
+            "regenerateDeviceId",
+            "groupIdentify",
+            "onInit",
+            "logEventWithTimestamp",
+            "logEventWithGroups",
+            "setSessionId",
+            "resetSessionId",
+        ];
+        function v(e) {
+            function t(t) {
+                e[t] = function () {
+                    e._q.push([t].concat(Array.prototype.slice.call(arguments, 0)));
+                };
+            }
+            for (var n = 0; n < d.length; n++) {
+                t(d[n]);
+            }
+        }
+        v(n);
+        n.getInstance = function (e) {
+            e = (!e || e.length === 0 ? "$default_instance" : e).toLowerCase();
+            if (!Object.prototype.hasOwnProperty.call(n._iq, e)) {
+                n._iq[e] = { _q: [] };
+                v(n._iq[e]);
+            }
+            return n._iq[e];
+        };
+        e.amplitude = n;
+    })(window, document);
+
+    amplitude.getInstance().init("be66799cc85da3545fc1acf9144ee66a");
+</script>
+<script>
+    var eventProperties = {
+        page: window.location.pathname,
+    };
+    amplitude.getInstance().logEvent("premiumpage:shown", eventProperties);
+</script>
+    <form id="logout" method="post" action="{% url 'account_logout' %}">
+        {% csrf_token %} {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" /> {% endif %}
+    </form>
+</head>
+
+<body>
+    <div>
+        <header class="header">
+            <div class="header__wrapper">
+                <div class="container">
+                    <div class="header__inner">
+                        <div class="header__main">
+                            <a href="https://www.konaequity.com/" class="header__logo">
+                                <picture class="logo">
+                                    <img src="{% static 'profile_photos/blue-logo.svg' %}" alt="Kona Equity logo" class="logo__img" onclick="window.location.href='/';">
+                                </picture>
+                            </a>
+                            <nav class="header__nav header__main-nav">
+                                <ul class="header__nav-list">
+                                    <li class="header__nav-item">
+                                        <a href="/about/" class="header__nav-link">About</a>
+                                    </li>
+
+                                    <li class="header__nav-item">
+                                        <a href="/find/" class="header__nav-link">Explore</a>
+                                    </li>
+                                    <li class="header__nav-item">
+                                        <a href="/premium/" class="header__nav-link">Premium</a>
+                                    </li>
+                                    <li class="header__nav-item">
+                                        <a href="/contact/" class="header__nav-link">Contact us</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+
+                        <div class="header__secondary">
+                            <form style="position: relative;" id="searchBar" action="/find/--/" method="GET" class="search-form header__search header__main-search">
+                                <input type="hidden" name="csrfmiddlewaretoken" value="xud1rRhxYIQyDs0of9CPm0kDQWKC9kZghIm27SGDeGOoTrPAkYTggih2uTpogRDq">
+                                <input id="searchText" class="input header__search-input" placeholder="Find companies" type="text">
+                                <button class="header__search-button" type="submit"></button>
+                                <div id="searchResult" class="searchDropDown">
+
+                                </div>
+                            </form>
+
+
+                            {% if request.user.is_authenticated %}
+                            <div class="header__controls header__main-controls">
+                                <div class="header__controls-item">
+                                    <a href="{% url 'dashboard' %}" class="button-inline">Profile</a>
+                                </div>
+                                <div class="header__controls-item">
+                                    <a href="{% url 'watchlist' %}" class="button-inline">Prospects</a>
+                                </div>
+                                <div class="header__controls-item">
+                                    <a href="javascript:void(0)" class="button-inline logmeout">Logout</a>
+                                </div>
+
+                            </div>
+                            {% else %}
+                            <div class="header__controls header__main-controls">
+                                <div class="header__controls-item">
+                                    <a href="/login" class="button-inline sign-in-btn">Sign in</a>
+                                </div>
+                                <div class="header__controls-item">
+                                    <a href="/signup/cold-join" class="button button--primary header__controls-button sign-up-btn">Sign up</a>
+                                </div>
+                            </div>
+                            {% endif %}
+
+
+                            <button class="menu-button header__menu-button" id="hamburgerMenu">
+                <span></span>
+              </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-drop-menu">
+                <nav class="header__nav">
+                    <ul class="header__nav-list">
+                        <li class="header__nav-item">
+                            <a href="/about/" class="header__nav-link">About</a>
+                        </li>
+                        <li class="header__nav-item">
+                            <a href="/premium/" class="header__nav-link">Premium</a>
+                        </li>
+                        <li class="header__nav-item">
+                            <a href="/find/" class="header__nav-link">Explore</a>
+                        </li>
+                        <li class="header__nav-item">
+                            <a href="/contact/" class="header__nav-link">Contact us</a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <form class="header__search" style="display:none;">
+                    <input class="input header__search-input" placeholder="2.3M companies worldwide" type="text">
+                    <button class="header__search-button" type="submit"></button>
+                </form>
+
+                {% if not request.user.is_authenticated %}
+                <div class="header__controls">
+                    <div class="header__controls-item">
+                        <p class="label">Have an account?</p>
+                        <a href="/login" class="button-inline button-inline--primary sign-in-btn">Sign in</a>
+                    </div>
+                    <div class="header__controls-item">
+                        <a href="/signup/cold-join" class="button button--primary header__controls-button sign-up-btn">Sign up</a>
+                    </div>
+                </div>
+                {% else %}
+                <div class="header__controls">
+                    <div class="header__controls-item">
+                        <a href="{% url 'dashboard' %}" class="button-inline">Profile</a>
+                    </div>
+                    <div class="header__controls-item">
+                        <a href="{% url 'watchlist' %}" class="button-inline">Prospects</a>
+                    </div>
+                    <div class="header__controls-item">
+                        <a href="javascript:void(0)" class="button-inline logmeout">Logout</a>
+                    </div>
+                </div>
+                {% endif %}
+
+            </div>
+        </header>
+
+        <div class="acquire-content">
+            <div class="container">
+                <div class="acquire-content__inner hero-container row">
+                    <div class="acquire-content__left col-sm-12 col-md-5 p-0">
+                        <div class="hero-info">
+                            <div class="hero-heading">
+                                <h1>Search with an edge</h1>
+                            </div>
+                            <p>For innovative deal makers in search of an edge, Kona Equity Premium is your private company intelligence engine.</p>
+                            <h2>
+                                <span id="companies_number">Kona Equity Premium: $50 per month</span>
+                            </h2>
+                            <div class="select-category">
+                                <!--<p>I want to acquire a company in...</p>-->
+                                <!--<div id="categoriesList" class="categoryDropDown">
+                </div>-->
+                                {% if request.user.profile.paid %}
+                                <div>Your premium is active</div>
+                                {% else %}
+                                <a href="https://buy.stripe.com/28o2asd5h9KO09idQT" class="button button--primary header__controls-button sign-up-btn" target=" _blank" style="width:100%;">Activate Now</a>
+                                {% endif %}
+                            </div>
+
+                            <div class="acquire-content__right small-heroimg">
+                                <img src="{% static 'web_photos/herodraft3.svg' %}" alt="hero">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="acquire-content__right big-heroimg col-sm-12 col-md-7">
+                        <img src="{% static 'web_photos/herodraft3.svg' %}" alt="hero">
+                    </div>
+                </div>
+            </div>
+
+            <div class="features">
+                <div class="container">
+                    <div class="feature-info">
+                        <h2>There’s a <span>new way</span> to search</h2>
+                        <p>With Kona, you get the competitive edge you need in a today's market. And the data service you want when searching for companies.</p>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="feature-detail">
+                                <div class="icon">
+                                    <img src="{% static 'web_photos/feature1.svg' %}" alt="">
+                                </div>
+                                <p>Contact Information</p>
+                                Source the email contact information so no one else has to.
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="feature-detail">
+                                <div class="icon">
+                                    <img src="{% static 'web_photos/feature2.svg' %}" alt="">
+                                </div>
+                                <p>Keyword Search</p>
+                                Find perfect company targets tailored specifically to what you're looking for.
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="feature-detail">
+                                <div class="icon">
+                                    <img src="{% static 'web_photos/feature3.svg' %}" alt="">
+                                </div>
+                                <p>Save millions</p>
+                                Cut out the middleman saving up to 5% of your business.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row my-5">
+                        <div class="col-md-4">
+                            <div class="feature-detail">
+                                <div class="icon">
+                                    <img src="{% static 'web_photos/feature4.svg' %}" alt="">
+                                </div>
+                                <p>Unlimited pages</p>
+                                Enjoy the freedom to explore all businesses on Kona Equity.
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="feature-detail">
+                                <div class="icon">
+                                    <img src="{% static 'web_photos/feature5.svg' %}" alt="">
+                                </div>
+                                <p>Data freshness</p>
+                                Over 10,000 companies are updated weekly.
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="feature-detail">
+                                <div class="icon">
+                                    <img src="{% static 'web_photos/feature6.svg' %}" alt="">
+                                </div>
+                                <p style="color:#383838;">Premium support</p>
+                                Receive responses in less than 1 business day.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="comparison">
+                <div class="container">
+                    <table class="table custom-tbl">
+                        <thead>
+                            <tr>
+                                <th class="table-heading" scope="col">See how Kona compares</th>
+                                <th class="table-heading text-center" scope="col">Traditional Process</th>
+                                <th class="table-heading text-center" scope="col">Kona Equity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Sources from personal networks</th>
+                                <td class="text-center check"><img src="{% static 'web_photos/tick.svg' %}" alt="" class="tick"></td>
+                                <td class="text-center check"><img src="{% static 'web_photos/untick.svg' %}" alt="" class="untick"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Sources from petabytes of company information</th>
+                                <td class="text-center check"><img src="{% static 'web_photos/untick.svg' %}" alt="" class="untick"></td>
+                                <td class="text-center check"><img src="{% static 'web_photos/tick.svg' %}" alt="" class="tick"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Using robust company sizing</th>
+                                <td class="text-center check"><img src="{% static 'web_photos/untick.svg' %}" alt="" class="untick"></td>
+                                <td class="text-center check"><img src="{% static 'web_photos/tick.svg' %}" alt="" class="tick"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Access directly to executive contacts</th>
+                                <td class="text-center check"><img src="{% static 'web_photos/untick.svg' %}" alt="" class="untick"></td>
+                                <td class="text-center check"><img src="{% static 'web_photos/tick.svg' %}" alt="" class="tick"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Smarter search with robust coverage</th>
+                                <td class="text-center check"><img src="{% static 'web_photos/untick.svg' %}" alt="" class="untick"></td>
+                                <td class="text-center check"><img src="{% static 'web_photos/tick.svg' %}" alt="" class="tick"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="how-to-buy">
+                <div class="container">
+
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 info">
+                            <h2>How to search with Kona</h2>
+
+                            <ul>
+                                <li>
+                                    <h3>Discover companies</h3>
+                                    <p>We discover companies that you’ll love, with over 2.5 million small to medium sized private businesses.</p>
+                                </li>
+                                <li>
+                                    <h3>Filters that match your criteria</h3>
+                                    <p>Qualify the businesses to match what you are looking for.</p>
+                                </li>
+                                <li>
+                                    <h3>Start engaging with the owners</h3>
+                                    <p>Use execuitve contacts to meet confidentially with your dream companies quickly.</p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-12 col-md-6 mockup">
+                            <div class="contentbox">
+                                <div class="gradientbox">
+                                    <span>
+                                        <img class="bottom"src="/static/web_photos/maskgreenbluepurple.png">
+                                        <img class="top"src="/static/web_photos/maskgreenblueorange.png">
+                                    </span>
+                                </div>
+                                    <div class="whitebackgroundbox">
+                                        <div class="searchdemo">
+                                            <p>Search for</p>
+                                            <p><span class="typed-text"></span><span class="cursor">&nbsp;</span></p>
+                                            <p>companies</p>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="faq">
+                <div class="container">
+                    <h2 class="text-center">Frequently asked questions</h2>
+                    <div class="faq-accordion">
+                        <div class="accordion" id="accordionExample">
+                            <div class="faq-question">
+                                <div class="accordion-tab accordion-opened" id="headingOne">
+                                    <div class="accordion-btn btn accordion-toggle collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        How much does your service cost?
+                                    </div>
+                                </div>
+
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                    <div class="accordion-open">
+                                        Our service costs $50 per month. If you cancel during a billing period, your account will automatically de-activate at the end of that period.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="faq-question">
+                                <div class="accordion-tab accordion-opened" id="headingTwo">
+                                    <div class="accordion-btn btn accordion-toggle" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Where does Kona data come from? </div>
+                                </div>
+
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                    <div class="accordion-open">
+                                        We crawl millions of sources as well as partner and license data from outside 3rd parties.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="faq-question">
+                                <div class="accordion-tab accordion-opened" id="headingThree">
+                                    <div class="accordion-btn btn accordion-toggle" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        Who should try Kona Equity Premium?</div>
+                                </div>
+
+                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                    <div class="accordion-open">
+                                        Kona Equity is used most commonly by sales representatives, business owners, marketers, private equity firms, corporate development teams, and investment bankers.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="faq-question">
+                                <div class="accordion-tab accordion-opened" id="headingFour">
+                                    <div class="accordion-btn btn accordion-toggle" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                        How do I cancel my subscription?</div>
+                                </div>
+
+                                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                                    <div class="accordion-open">
+                                        Please email admin@konaequity.com if you need to cancel your subscription.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="faq-question">
+                                <div class="accordion-tab accordion-opened" id="headingFive">
+                                    <div class="accordion-btn btn accordion-toggle" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                        Can I expense my Premium membership?</div>
+                                </div>
+
+                                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                                    <div class="accordion-open">
+                                        Many employers find Kona Equity Premium so valuable that they’ll pay for their employees’ memberships. After your purchase, you’ll receive the receipt in your email that you can use to file an expense report.
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="schedule-call text-center">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="schedule-info">
+                            <h3>Try Kona Equity Premium</h3>
+                            <p>Find your edge</p>
+                            {% if request.user.profile.paid %}
+                                <div>Your premium is active</div>
+                                {% else %}
+                            <a href="https://buy.stripe.com/28o2asd5h9KO09idQT" class="button button--primary header__controls-button sign-up-btn" target=" _blank">Activate Now</a>
+                                {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="footer">
+                <div class="container">
+                    <div class="footer__inner">
+                        <div class="footer__main">
+                            <div class="footer__info">
+                                <a href="#" class="footer__info-main">
+                                    <picture class="logo">
+                                        <img src="{% static 'backend_django_v2/images/main/logo-light.svg' %}" alt="Kona Equity logo" class="logo__img" />
+                                    </picture>
+                                </a>
+                                <div class="footer__info-secondary">
+                                    <h2 class="footer__info-title">Kona Equity</h2>
+                                    <p class="footer__info-copyright">2022</p>
+                                    <a href="/privacy/" class="footer__link footer__info-link">Privacy Policy</a>
+                                </div>
+                            </div>
+
+                            <nav class="footer__primary-nav">
+                                <ul class="footer__primary-nav-list">
+                                    <li class="footer__primary-nav-item">
+                                        <a href="/" class="footer__link footer__primary-nav-link">Home</a>
+                                    </li>
+                                    <li class="footer__primary-nav-item">
+                                        <a href="/about/" class="footer__link footer__primary-nav-link">About</a>
+                                    </li>
+                                    <li class="footer__primary-nav-item">
+                                        <a href="/contact/" class="footer__link footer__primary-nav-link">Contact us</a>
+                                    </li>
+                                    <li class="footer__primary-nav-item footer__primary-nav-item--only-phone">
+                                        <a href="/privacy/" class="footer__link footer__primary-nav-link">Privacy Policy</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+
+                        <div class="footer__secondary">
+                            <h3 class="footer__secondary-title">Explore popular industries</h3>
+
+                            <nav class="footer__nav">
+                                <ul class="footer__nav-list">
+
+                                    <li class="footer__nav-item">
+                                        <a href="/find/computer-software--/" class="footer__link footer__nav-link">Computer Software</a>
+                                    </li>
+
+                                    <li class="footer__nav-item">
+                                        <a href="/find/construction--/" class="footer__link footer__nav-link">Construction</a>
+                                    </li>
+
+                                    <li class="footer__nav-item">
+                                        <a href="/find/automotive--/" class="footer__link footer__nav-link">Automotive</a>
+                                    </li>
+
+                                    <li class="footer__nav-item">
+                                        <a href="/find/--/?google_industry=Manufacturer" class="footer__link footer__nav-link">Manufacturer</a>
+                                    </li>
+
+                                    <li class="footer__nav-item">
+                                        <a href="/find/hospital-&amp;-health-care--/" class="footer__link footer__nav-link">Hospital &amp; Health Care</a>
+                                    </li>
+
+                                    <li class="footer__nav-item">
+                                        <a href="/find/financial-services--/" class="footer__link footer__nav-link">Financial Services</a>
+                                    </li>
+
+
+                                </ul>
+                            </nav>
+                        </div>
+
+                        <p class="footer__copyright">2022</p>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+        {% if request.user.is_authenticated %}
+        <input type="hidden" name="auth" id="auth" value="1"> {% else %}
+        <input type="hidden" name="auth" id="auth" value="0"> {% endif %}
+
+        <input type="hidden" id="price_id" value="{{price_id}}">
+        <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide" async></script>
+        <script src="{% static 'js/autocomplete.js' %}"></script>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        <script>
+            var searchTimer = null;
+            var searchInput = document.querySelector("#searchText");
+            searchInput.addEventListener("input", function(e) {
+                clearTimeout(searchTimer);
+                searchTimer = setTimeout(function() {
+                    search(searchInput.value);
+                }, 350);
+            });
+            var searchUrl = "{% url 'ajax_autocomplete' %}";
+            var searchResultContainer = document.querySelector("#searchResult");
+
+            function removeAllChildNodes(parent) {
+                while (parent.firstChild) {
+                    parent.removeChild(parent.firstChild);
+                }
+            }
+
+            var searchResult = [];
+
+            $("#searchText").focusin(function() {
+                if (!searchResult || searchResult.length === 0) {
+                    return;
+                }
+                $("#searchResult").show();
+            });
+
+            $("#searchText").focusout(function() {
+                setTimeout(function() {
+                    $("#searchResult").hide();
+                }, 500);
+            });
+
+
+            function search(query) {
+                var a, b;
+
+                if (!query) {
+                    removeAllChildNodes(searchResultContainer);
+                    searchResult = [];
+                    $("#searchResult").hide();
+                    return;
+                }
+
+                $.ajax({
+                    url: searchUrl,
+                    data: {
+                        'search': query
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        arr = data.list;
+                        removeAllChildNodes(searchResultContainer);
+                        if (arr.length === 0) {
+                            a = document.createElement("div");
+                            a.className = "searchResultItem";
+                            a.innerHTML =
+                                `<img src="/static/profile_photos/generic.png" <span class="noSearchResult">No Results</span>`;
+                            searchResultContainer.appendChild(a);
+                            searchResult = [a];
+                            $("#searchText").trigger("focusin");
+                        }
+                        for (i = 0; i < arr.length; i++) {
+                            a = document.createElement("DIV");
+                            a.setAttribute("class", "searchResultItem");
+                            a.innerHTML = ` <a
+                    href="/company/${arr[i].identifier}"><img src="https://logo.clearbit.com/${arr[i].domain}" onerror="this.src='/static/profile_photos/generic.png'"/><span>${arr[i].name}</span></a>`;
+                            searchResultContainer.appendChild(a);
+                        }
+                        searchResult = arr || [];
+                        $("#searchText").trigger("focusin");
+                    }
+                });
+            }
+            $(".logmeout").click(function() {
+                $("#logout").submit();
+            });
+        </script>
+        <script src="{% static 'js/acquire.js' %}"></script>
+        {% include 'backend_django_v2/includes/sign-up-popup.html' %} {% include 'backend_django_v2/includes/sign-in-popup.html' %}
+
+        <script>
+            const activePremium = document.querySelector(".active-premium");
+            let get_auth = document.querySelector("#auth");
+            let stripe = '';
+            let price_id = document.querySelector("#price_id").value;
+            var premium = function(e) {
+                e.preventDefault();
+                if (Number(get_auth.value) === 1) {
+                    console.log(get_auth.value, "1");
+                    e.target.innerHTML = '<img src="{% static "web_photos/loader.gif" %}" style="height:25px" alt="spinner">';
+                    //location.href = "https://buy.stripe.com/28o2asd5h9KO09idQT";
+                    $.ajax({
+                        url: '{% url "stripe-config" %}',
+                        success: function(data) {
+                            stripe = Stripe(data.publicKey);
+                        },
+                    });
+                    $.ajax({
+                        url: '{% url "create-checkout-session" %}',
+                        data: {
+                            "price_id": price_id
+                        },
+                        dataType: 'json',
+                        success: function(data) {
+                            console.log(data.sessionId, "///")
+                            return stripe.redirectToCheckout({
+                                sessionId: data.sessionId
+                            })
+                        },
+                    });
+                    return false;
+                } else {
+                    console.log(get_auth.value, "0");
+                    openSignInModal();
+                }
+                activePremium.removeEventListener("click", premium)
+            }
+            activePremium.addEventListener("click", premium, false)
+            const modals = document.querySelectorAll('.popup');
+            const signinModal = document.querySelector(`#sign-in-modal`);
+            const signUpModal = document.querySelector(`#sign-up-modal`);
+
+            function closeAllModals() {
+                modals.forEach(modal => {
+                    modal.classList.remove('popup--active');
+                });
+            }
+
+            function closeJoinPopUp() {
+                joinModal.classList.remove("popup--active")
+            }
+
+            function openSignUpModal() {
+                closeAllModals();
+                signUpModal.classList.add('popup--active');
+                closeJoinPopUp();
+            }
+
+            function openSignInModal() {
+                closeAllModals();
+                signinModal.classList.add('popup--active');
+                closeJoinPopUp();
+            }
+
+            const popupCloses = document.querySelectorAll('.popup__close');
+            popupCloses.forEach(popupClose => {
+                popupClose.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const parent = e.target.closest('.popup');
+                    parent.classList.remove('popup--active');
+                    parent.classList.remove('popup--active--animation');
+                });
+            });
+        </script>
+        <script>
+const typedTextSpan =
+document.querySelector(".typed-text");
+const cursorSpan =
+document.querySelector(".cursor");
+
+const textArray = ["tiny", "high growth", "opera", "manufacturing", "aerospace", "software", "media", "pharmacy", "cruise line", "automation","investment", "mineral water", "biotechnology", "record", "gold mining", "construction", "gas", "ALL"];
+const typingDelay = 200;
+const erasingDelay = 100;
+const newTextDelay = 1500; // Delay between current and next text
+let textArrayIndex = 0;
+let charIndex = 0;
+function type() {
+    if (charIndex <
+    textArray[textArrayIndex].length) {
+
+    if(!cursorSpan.classList.contains("typing"))
+    cursorSpan.classList.add("typing");
+    typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
+        charIndex++;
+        setTimeout(type, typingDelay);
+    }
+    else {
+
+        cursorSpan.classList.remove("typing");
+        setTimeout(erase, newTextDelay);
+    }
+}
+
+function erase() {
+    if (charIndex > 0) {
+
+        if(!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+        typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex-1); charIndex--;
+        setTimeout(erase, erasingDelay); } else { cursorSpan.classList.remove("typing");
+        textArrayIndex++; if(textArrayIndex>=textArray.length) textArrayIndex=0; setTimeout(type, typingDelay + 1100);
+        }
+}
+document.addEventListener("DOMContentLoaded", function() { // On DOM Load initiate the effect
+if(textArray.length) setTimeout(type, newTextDelay + 250);
+});
+</script>
+</body>
+
+</html>

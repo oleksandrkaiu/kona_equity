@@ -1,0 +1,571 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'backend_django_v2/prepared/main.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/acquire.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css">
+    <link rel="icon" href="/static/profile_photos/favicon.ico" type="image/gif" sizes="32x32">
+    <script src="https://js.stripe.com/v3/"></script>
+    <style>
+        .check {
+
+	vertical-align: middle!important;
+}
+
+.tick {
+	max-width: 25px;
+}
+
+.untick {
+	max-width: 25px;
+}
+
+.accordion-btn.btn.accordion-toggle:hover {
+	color: #fff!important;
+}
+
+a.button.cta-btn:hover {
+	text-decoration: none!important;
+}
+
+.active-premium {
+	border: 1px solid #007a86;
+	outline: none;
+	height: 40px;
+	font-size: 16px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.active-premium:focus {
+	border: 1px solid #007a86;
+}
+
+select#companies {
+	background: url("http://i.stack.imgur.com/RGBNj.png") no-repeat center right;
+}
+
+#dimScreen {
+	position: fixed;
+	padding: 0;
+	margin: 0;
+	/*top:0;*/
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 209, 194, 1);
+}
+
+#dimScreen {
+	animation: fadeInAnimation ease 3s animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.header,
+.popup-form__item--mt,
+.password-input__change-button,
+.popup-form__controls-text--center,
+.popup-form__label {
+	display: none;
+}
+
+#signInPopupForm .popup-form__item {
+	margin-bottom: 16px;
+}
+
+.password-input__change-button {
+	font-size: 14px;
+}
+
+.popup__wrapper {
+	border-radius: 24px!important;
+	padding-top: 1%;
+	padding-bottom: 20px;
+	width: 360px;
+}
+
+.button {
+	padding: 16px 14px;
+	font-family: 'Circular Std';
+	font-size: 16px;
+}
+
+.input {
+	padding: 8px 16px;
+	font-family: 'Circular Std'
+}
+
+#dimScreen {
+	background: #fff;
+}
+
+.popup__wrapper {
+	box-shadow: none;
+}
+
+.popup-form__controls-item--small {
+	min-width: 300px;
+}
+
+.button:disabled {
+	background-color: var(--color-secondary);
+}
+
+.popup-form__item {
+	grid-gap: 8px;
+}
+
+.popup-form__controls:not(:first-child) {
+	margin-top: 10px;
+}
+
+.popup-form__body:not(:first-child) {
+	margin-top: 16px;
+}
+
+.popup__form,
+.input {
+	width: 300px;
+}
+
+    </style>
+    <script async="" src="https://www.clarity.ms/eus2/s/0.6.21/clarity.js"></script>
+    <script async="" src="https://www.clarity.ms/tag/56y5lp4wnt"></script>
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-163184927-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-163184927-1');
+    </script>
+    <script src="https://www.googleoptimize.com/optimize.js?id=OPT-P69KL7V"></script>
+    <script>
+        (function(c, l, a, r, i, t, y) {
+            c[a] = c[a] || function() {
+                (c[a].q = c[a].q || []).push(arguments)
+            };
+            t = l.createElement(r);
+            t.async = 1;
+            t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0];
+            y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "56y5lp4wnt");
+    </script>
+    <form id="logout" method="post" action="{% url 'account_logout' %}">
+        {% csrf_token %} {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" /> {% endif %}
+    </form>
+
+    <title>Sign up - Kona Equity</title>
+</head>
+
+<body>
+    <div>
+        <header class="header">
+            <div class="header__wrapper">
+                <div class="container">
+                    <div class="header__inner">
+                        <div class="header__main">
+                            <a href="https://www.konaequity.com/" class="header__logo">
+                                <picture class="logo">
+                                    <img src="{% static 'profile_photos/blue-logo.svg' %}" alt="Kona Equity logo" class="logo__img" onclick="window.location.href='/';">
+                                </picture>
+                            </a>
+                            <nav class="header__nav header__main-nav">
+                                <ul class="header__nav-list">
+                                    <li class="header__nav-item">
+                                        <a href="/about/" class="header__nav-link">About</a>
+                                    </li>
+                                    <li class="header__nav-item">
+                                        <a href="/premium/" class="header__nav-link">Premium</a>
+                                    </li>
+                                    <li class="header__nav-item">
+                                        <a href="/contact/" class="header__nav-link">Contact us</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+
+                        <div class="header__secondary">
+                            {% if request.user.is_authenticated %}
+                            <div class="header__controls header__main-controls">
+                                <div class="header__controls-item">
+                                    <a href="{% url 'dashboard' %}" class="button-inline">Profile</a>
+                                </div>
+                                <div class="header__controls-item">
+                                    <a href="{% url 'watchlist' %}" class="button-inline">My Watchlist</a>
+                                </div>
+                                <div class="header__controls-item">
+                                    <a href="javascript:void(0)" class="button-inline logmeout">Logout</a>
+                                </div>
+
+                            </div>
+                            {% else %}
+                            <div class="header__controls header__main-controls">
+                                <div class="header__controls-item">
+                                    <a href="#" class="button-inline sign-in-btn" style="background-color:#007a86;color:#fff;padding: 16px;border-radius: 8px;text-align:center;font-size:16px;">Already have an account? Sign in</a>
+                                </div>
+                                <!--<div class="header__controls-item">-->
+                                <!--    <a href="#" class="button button--primary header__controls-button sign-up-btn">Sign up</a>-->
+                                <!--</div>-->
+                            </div>
+                            {% endif %}
+
+
+                            <button class="menu-button header__menu-button" id="hamburgerMenu">
+                <span></span>
+              </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-drop-menu">
+                <nav class="header__nav">
+                    <ul class="header__nav-list">
+                        <li class="header__nav-item">
+                            <a href="/about/" class="header__nav-link">About</a>
+                        </li>
+                        <li class="header__nav-item">
+                            <a href="/premium/" class="header__nav-link">Premium</a>
+                        </li>
+                        <li class="header__nav-item">
+                            <a href="/contact/" class="header__nav-link">Contact us</a>
+                        </li>
+                    </ul>
+                </nav>
+                {% if not request.user.is_authenticated %}
+                <div class="header__controls">
+                    <div class="header__controls-item">
+                        <p class="label">Have an account?</p>
+                        <a href="#" class="button-inline button-inline--primary sign-in-btn">Sign in</a>
+                    </div>
+                    <div class="header__controls-item">
+                        <a href="#" class="button button--primary header__controls-button sign-up-btn">Sign up</a>
+                    </div>
+                </div>
+                {% else %}
+                <div class="header__controls">
+                    <div class="header__controls-item">
+                        <a href="{% url 'dashboard' %}" class="button-inline">Profile</a>
+                    </div>
+                    <div class="header__controls-item">
+                        <a href="{% url 'watchlist' %}" class="button-inline">My Watchlist</a>
+                    </div>
+                    <div class="header__controls-item">
+                        <a href="javascript:void(0)" class="button-inline logmeout">Logout</a>
+                    </div>
+                </div>
+                {% endif %}
+
+            </div>
+        </header>
+        <div id="dimScreen" class="text-center align-items-center">
+
+            <div class="popup--tablet-le-bottom mx-auto" id='sign-up-modal-base' style=" padding:1%;">
+                <div class="popup__wrapper" style="margin:0 auto;">
+        <!--<button class="js-popup-close popup__close"></button>-->
+        <div class="popup__inner--with-p" style="margin:0 auto;">
+            <form id="signUpForm" method="post" action="{% url 'account_signup' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="popup-form popup__form">
+                    <div class="popup-form__head">
+                        <h2 class="popup-form__title" style="font-size: 36px;font-family: 'Circular Std';text-align: center;margin: 0;font-weight: 900;text-rendering: optimizeLegibility;color: #383838;">Keep using</h2>
+                        <h2 style="font-family: 'Circular Std';font-weight:900; color:#383838;margin-top: 20px;font-size: 22px;">Join Kona Equity</h2>
+                    </div>
+                    <div class="popup-form__body">
+                        <div class="popup-form__item">
+                            <input type="text" name="first_name" required class="input popup-form__input"
+                                placeholder="First Name" onFocus="this.select()" tabindex="0" autofocus>
+                            <p class="signup-errors" style="font-size: small; color: red; padding: 0; margin: 0;"
+                                id="signup-first_name-errors"></p>
+
+                        </div>
+                        <div class="popup-form__item">
+                            <input type="text" name="last_name" required class="input popup-form__input"
+                                placeholder="Last Name">
+                            <p class="signup-errors" style="font-size: small; color: red; padding: 0; margin: 0;"
+                                id="signup-last_name-errors"></p>
+
+                        </div>
+                        <div class="popup-form__item">
+                            <input type="email" name="email" autofocus required name="login"
+                                class="input popup-form__input" placeholder="Business Email">
+                            <p class="signup-errors" style="font-size: small; color: red; padding: 0; margin: 0;"
+                                id="signup-email-errors">
+                            </p>
+                        </div>
+                        <div class="popup-form__item">
+                            <div class="password-input">
+                                <input type="password" name="password1" autocomplete="new-password" required
+                                    class="input password-input__input popup-form__input" placeholder="Password">
+                                <button class="password-input__change-button"></button>
+                            </div>
+                            <p class="popup-form__help-text" style="text-align:left;font-size:14px;">Please use 8 or more characters</p>
+                            <p class="signup-errors" style="font-size: small; color: red; padding: 0; margin: 0;"
+                                id="signup-password1-errors"></p>
+
+                        </div>
+                        <div class="popup-form__item">
+                            <div class="password-input">
+                                <input type="password" name="password2" autocomplete="new-password" required
+                                    class="input password-input__input popup-form__input"
+                                    placeholder="Confirm password">
+                                <button class="password-input__change-button"></button>
+                            </div>
+                            <p class="signup-errors" style="font-size: small; color: red; padding: 0; margin: 0;"
+                                id="signup-password2-errors"></p>
+
+                        </div>
+                        <div class="popup-form__item popup-form__item--mt">
+                            <div class="popup-form__checkbox">
+                                <label class="checkbox">
+                                    <input type="checkbox" name="agreement" class="checkbox__input" checked>
+                                    <span class="checkbox__body"></span>
+                                </label>
+                                <p class="popup-form__checkbox-label">Agree to <a
+                                        href="/privacy/" target="_blank">Kona Equity Terms of Service</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="popup-form__controls">
+                        <button class="button popup-form__controls-item popup-form__controls-item--small" disabled
+                            id="signUpSubmit">Sign up</button>
+                    </div>
+                </div>
+            </form>
+            <a href="#" class="button-inline sign-in-btn" style="padding: 16px;border-radius: 8px;text-align:center;padding-top:8px;font-size:16px;">Already have an account? <span style="color:var(--color-secondary);">Sign in</span></a>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/freemails.js' %}"></script>
+
+        </div>
+
+        <div type="button" class="button cta-btn active-premium" style="display:none">
+
+        </div>
+        {% if request.user.is_authenticated %}
+        <input type="hidden" name="auth" id="auth" value="1"> {% else %}
+        <input type="hidden" name="auth" id="auth" value="0"> {% endif %}
+
+        <input type="hidden" id="price_id" value="{{price_id}}">
+        <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide" async></script>
+        <script src="{% static 'js/autocomplete.js' %}"></script>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        <script>
+            var searchTimer = null;
+            var searchInput = document.querySelector("#searchText");
+            searchInput.addEventListener("input", function(e) {
+                clearTimeout(searchTimer);
+                searchTimer = setTimeout(function() {
+                    search(searchInput.value);
+                }, 350);
+            });
+            var searchUrl = "{% url 'ajax_autocomplete' %}";
+            var searchResultContainer = document.querySelector("#searchResult");
+
+            function removeAllChildNodes(parent) {
+                while (parent.firstChild) {
+                    parent.removeChild(parent.firstChild);
+                }
+            }
+
+            var searchResult = [];
+
+            $("#searchText").focusin(function() {
+                if (!searchResult || searchResult.length === 0) {
+                    return;
+                }
+                $("#searchResult").show();
+            });
+
+            $("#searchText").focusout(function() {
+                setTimeout(function() {
+                    $("#searchResult").hide();
+                }, 500);
+            });
+
+
+            function search(query) {
+                var a, b;
+
+                if (!query) {
+                    removeAllChildNodes(searchResultContainer);
+                    searchResult = [];
+                    $("#searchResult").hide();
+                    return;
+                }
+
+                $.ajax({
+                    url: searchUrl,
+                    data: {
+                        'search': query
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        arr = data.list;
+                        removeAllChildNodes(searchResultContainer);
+                        if (arr.length === 0) {
+                            a = document.createElement("div");
+                            a.className = "searchResultItem";
+                            a.innerHTML =
+                                `<img src="/static/profile_photos/generic.png" <span class="noSearchResult">No Results</span>`;
+                            searchResultContainer.appendChild(a);
+                            searchResult = [a];
+                            $("#searchText").trigger("focusin");
+                        }
+                        for (i = 0; i < arr.length; i++) {
+                            a = document.createElement("DIV");
+                            a.setAttribute("class", "searchResultItem");
+                            a.innerHTML = ` <a
+                    href="/company/${arr[i].identifier}"><img src="https://logo.clearbit.com/${arr[i].domain}" onerror="this.src='/static/profile_photos/generic.png'"/><span>${arr[i].name}</span></a>`;
+                            searchResultContainer.appendChild(a);
+                        }
+                        searchResult = arr || [];
+                        $("#searchText").trigger("focusin");
+                    }
+                });
+            }
+            $(".logmeout").click(function() {
+                $("#logout").submit();
+            });
+        </script>
+        <script src="{% static 'js/acquire.js' %}"></script>
+        {% include 'backend_django_v2/includes/sign-up-popup.html' %} {% include 'backend_django_v2/includes/sign-in-popup.html' %}
+
+        <script>
+            const activePremium = document.querySelector(".active-premium");
+            let get_auth = document.querySelector("#auth");
+            let stripe = '';
+            let price_id = document.querySelector("#price_id").value;
+            var premium = function(e) {
+                e.preventDefault();
+                if (Number(get_auth.value) === 1) {
+                    console.log(get_auth.value, "1");
+                    e.target.innerHTML = '<img src="{% static "web_photos/loader.gif" %}" style="height:25px" alt="spinner">';
+                    //location.href = "https://buy.stripe.com/28o2asd5h9KO09idQT";
+                    $.ajax({
+                        url: '{% url "stripe-config" %}',
+                        success: function(data) {
+                            stripe = Stripe(data.publicKey);
+                        },
+                    });
+                    $.ajax({
+                        url: '{% url "create-checkout-session" %}',
+                        data: {
+                            "price_id": price_id
+                        },
+                        dataType: 'json',
+                        success: function(data) {
+                            return stripe.redirectToCheckout({
+                                sessionId: data.sessionId
+                            })
+                        },
+                    });
+                    return false;
+                } else {
+                    console.log(get_auth.value, "0");
+                    openSignInModal();
+                }
+                activePremium.removeEventListener("click", premium)
+            }
+            activePremium.addEventListener("click", premium, false)
+            const modals = document.querySelectorAll('.popup');
+            const signinModal = document.querySelector(`#sign-in-modal`);
+            const signUpModal = document.querySelector(`#sign-up-modal`);
+
+            function closeAllModals() {
+                modals.forEach(modal => {
+                    modal.classList.remove('popup--active');
+                });
+            }
+
+            function closeJoinPopUp() {
+                joinModal.classList.remove("popup--active")
+            }
+
+            function openSignUpModal() {
+                closeAllModals();
+                signUpModal.classList.add('popup--active');
+                // closeJoinPopUp();
+            }
+
+            function openSignInModal() {
+                closeAllModals();
+                signinModal.classList.add('popup--active');
+                // closeJoinPopUp();
+            }
+
+            const signUpButtons = document.querySelectorAll('.sign-up-btn');
+            signUpButtons.forEach(signUpButton => {
+                signUpButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openSignUpModal();
+                });
+            });
+
+            const signInButtons = document.querySelectorAll('.sign-in-btn');
+            signInButtons.forEach(signInButton => {
+                signInButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openSignInModal();
+                    if(document.getElementById('sign-up-modal-base') !== null){
+                        // console.log("Hola");
+                        document.getElementById('sign-up-modal-base').style.display = "none";
+
+                    } else {
+                        // console.log("Chao");
+                    }
+                });
+            });
+
+            const popupCloses = document.querySelectorAll('.popup__close');
+            popupCloses.forEach(popupClose => {
+                popupClose.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const parent = e.target.closest('.popup');
+                    parent.classList.remove('popup--active');
+                    parent.classList.remove('popup--active--animation');
+                    if(document.getElementById('sign-up-modal-base') !== null){
+                        // console.log("Hola");
+                        if(document.getElementById('sign-up-modal-base').style.display == "none"){
+                            document.getElementById('sign-up-modal-base').style.display = "block";
+                        }
+
+                    }
+                });
+            });
+        </script>
+            <script type="text/javascript"> window.urlReg = "/register/" </script>
+<script src="/static/js/signup2022.js"></script>
+</body>
+
+</html>

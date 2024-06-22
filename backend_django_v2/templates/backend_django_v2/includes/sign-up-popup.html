@@ -1,0 +1,83 @@
+{% load static %}
+
+<div class="popup popup--tablet-le-bottom" id='sign-up-modal'>
+    <div class="popup__wrapper">
+        <button class="js-popup-close popup__close"></button>
+        <div class="custom-scrollbar popup__inner popup__inner--with-p">
+            <form id="signUpForm" method="post" action="{% url 'account_signup' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="popup-form popup__form">
+                    <div class="popup-form__head">
+                        <h2 class="popup-form__title">Sign up</h2>
+                    </div>
+                    <div class="popup-form__body">
+                        <div class="popup-form__item">
+                            <label class="popup-form__label">First Name</label>
+                            <input type="text" name="first_name" required class="input popup-form__input"
+                                placeholder="First Name">
+                            <p class="signup-errors" style="font-size: small; color: red; padding: 0; margin: 0;"
+                                id="signup-first_name-errors"></p>
+
+                        </div>
+                        <div class="popup-form__item">
+                            <label class="popup-form__label">Last Name</label>
+                            <input type="text" name="last_name" required class="input popup-form__input"
+                                placeholder="Last Name">
+                            <p class="signup-errors" style="font-size: small; color: red; padding: 0; margin: 0;"
+                                id="signup-last_name-errors"></p>
+
+                        </div>
+                        <div class="popup-form__item">
+                            <label class="popup-form__label">Business Email</label>
+                            <input type="email" name="email" autofocus required name="login"
+                                class="input popup-form__input" placeholder="Business Email">
+                            <p class="signup-errors" style="font-size: small; color: red; padding: 0; margin: 0;"
+                                id="signup-email-errors">
+                            </p>
+                        </div>
+                        <div class="popup-form__item">
+                            <label class="popup-form__label">Password</label>
+                            <div class="password-input">
+                                <input type="password" name="password1" autocomplete="new-password" required
+                                    class="input password-input__input popup-form__input" placeholder="Password">
+                                <button class="password-input__change-button"></button>
+                            </div>
+                            <p class="popup-form__help-text">Please, use 8 or more characters</p>
+                            <p class="signup-errors" style="font-size: small; color: red; padding: 0; margin: 0;"
+                                id="signup-password1-errors"></p>
+
+                        </div>
+                        <div class="popup-form__item">
+                            <label class="popup-form__label">Confirm password</label>
+                            <div class="password-input">
+                                <input type="password" name="password2" autocomplete="new-password" required
+                                    class="input password-input__input popup-form__input"
+                                    placeholder="Confirm password">
+                                <button class="password-input__change-button"></button>
+                            </div>
+                            <p class="signup-errors" style="font-size: small; color: red; padding: 0; margin: 0;"
+                                id="signup-password2-errors"></p>
+
+                        </div>
+                        <div class="popup-form__item popup-form__item--mt">
+                            <div class="popup-form__checkbox">
+                                <label class="checkbox">
+                                    <input type="checkbox" name="agreement" class="checkbox__input">
+                                    <span class="checkbox__body"></span>
+                                </label>
+                                <p class="popup-form__checkbox-label">By creating an account, you agree to accept <a
+                                        href="#">Kona Equity Terms of Service</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="popup-form__controls">
+                        <button class="button popup-form__controls-item popup-form__controls-item--small" disabled
+                            id="signUpSubmit">Create</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/freemails.js' %}"></script>

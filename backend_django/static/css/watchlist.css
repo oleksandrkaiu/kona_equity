@@ -1,0 +1,145 @@
+.boxii{
+    padding-top: 2%;
+    padding-bottom: 2%;
+    text-align: center;
+    text-align: -webkit-center;
+    text-align: -moz-center;
+}
+.rounded-style-1 {
+    border-radius: 52px;
+}
+.rounded-style-2 {
+border-radius: 0px 52px 52px 52px;
+}
+.rounded-style-3 {
+border-radius: 52px 0px 0px 52px;
+}
+.set-background {
+background-color: #00D1C1;
+}
+.tabs, .tabsy{
+    font-family: std-medium;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 18px;
+    line-height: 23px;
+    padding-top: 1.2rem !important;
+    padding-bottom: 1.2rem !important;
+    padding-left: 1.5rem !important;
+    cursor: pointer;
+}
+.car-options{
+    color: white !important;
+    background-color: #00D1C1;
+    border-radius: 30px;
+    margin-left: 2%;
+    width: 95%;
+    padding-top: 0.85rem !important;
+    padding-bottom: 0.85rem !important;
+}
+.itemizer:hover{
+    background-color: #00D1C1 !important;
+}
+.itemizer{
+    background-color: rgba(0, 209, 193, 0.5) !important;
+}
+
+.top-company{
+    width: 100%;
+    height: 293px;
+}
+.top-img{
+    width: 128px;
+    height: 128px;
+}
+.data-def{
+    height: 550px;
+    width: 100%;
+}
+.nbpp{
+    padding:2% 5%;
+}
+@media only screen and (max-width: 1250px){
+    .top-company{
+        height: 236.4px;
+    }
+    .top-img{
+        width: 100px;
+        height: 100px;
+    }
+}
+@media only screen and (max-width: 991px){
+    .top-company{
+        height: 246.4px;
+    }
+    .top-img{
+        width: 100px;
+        height: 100px;
+    }
+    .data-def{
+        height: 400px;
+    }
+}
+@media only screen and (max-width: 850px){
+    .top-company{
+        height: 220.4px;
+    }
+    .top-img{
+        width: 100px;
+        height: 100px;
+    }
+}
+@media only screen and (max-width: 767px){
+    .top-company{
+        height: 293px;
+    }
+    .data-def{
+        height: 400px;
+    }
+    .rounded-style-2 {
+        border-radius: 52px;
+    }
+}
+@media only screen and (max-width: 575px){
+    .top-img{
+        width: 128px;
+        height: 128px;
+    }
+    .data-def{
+        height: 350px;
+    }
+    .biggy{
+        padding: 0% !important;
+    }
+    .nbpp{
+        padding: 5%;
+    }
+}
+@media only screen and (max-width: 500px){
+    .top-company{
+        height: 233.4px;
+    }
+    .top-img{
+        width: 100px;
+        height: 100px;
+    }
+}
+@media only screen and (max-width: 399px){
+    .top-company{
+        height: 219.5px;
+    }
+}
+
+@media only screen and (min-width: 1600px){
+    .biggy{
+        padding: 0 6% !important;
+    }
+    .boxii{
+        max-width: 20%;
+    }
+}
+@media only screen and (min-width: 1450px) and (max-width:1599px){
+    .top-company{
+        height: 320.4px;
+    }
+}

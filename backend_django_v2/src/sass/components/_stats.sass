@@ -1,0 +1,21 @@
+.stats
+    margin: 0
+    padding: 0
+    list-style: none
+    display: grid
+    grid-template-columns: repeat(4, max-content)
+    justify-content: space-between
+
+    @include tablet-le
+        grid-template-columns: 1fr
+        grid-gap: 16px
+
+    &__title
+        font-size: 14px
+        margin: 0
+
+    &__value
+        font-family: 'Circular Std', sans-serif
+        color: var(--color-black-secondary)
+        font-size: 16px
+        margin: 0

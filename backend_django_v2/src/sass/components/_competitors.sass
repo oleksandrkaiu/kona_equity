@@ -1,0 +1,51 @@
+.competitors
+    &__title
+        margin: 0
+        font-family: 'Circular Std', sans-serif
+        font-size: 24px
+        font-weight: 400
+
+    &__body
+        &:not(:first-child)
+            margin-top: 14px
+
+            @include phone-le
+                margin-top: 4px
+
+    &__slider
+        overflow: visible
+
+        @include phone-le
+            padding: 2px
+            overflow: hidden
+
+    &__grid
+        display: grid
+        grid-template-columns: repeat(2, 1fr)
+        grid-gap: 8px 16px
+
+        @include phone-le
+            grid-template-columns: 100%
+
+    &__wrapper
+        display: grid
+        grid-template-columns: 100%
+        grid-gap: 8px
+
+        @include phone-le
+            display: flex
+            grid-gap: 0
+
+    &__item
+        border-radius: 10px
+        box-shadow: 0 0 2px rgba(#000, .2)
+        padding: 6px 16px
+
+        @include phone-le
+            width: 80%
+
+        &--fullw
+            width: 100%
+
+            @include phone-le
+                width: 100%

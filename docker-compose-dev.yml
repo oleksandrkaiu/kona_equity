@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  database:
+    image: mariadb:10.2
+    restart: always
+    command: mysqld --default-authentication-plugin=mysql_native_password
+    environment:
+      MARIADB_ROOT_PASSWORD: 123456
+      MARIADB_DATABASE: Konaequity
+      MARIADB_USER: Konaequity
+      MARIADB_PASSWORD: 123456
+    volumes:
+      - ./docker-database/mysql:/var/lib/mysql
+    ports:
+      - 3306:3306

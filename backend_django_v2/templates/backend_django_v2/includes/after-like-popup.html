@@ -1,0 +1,49 @@
+{% load static %}
+
+<div class="popup popup--tablet-le-bottom" id="likePopup">
+    <div class="popup__wrapper popup__wrapper--medium">
+        <button class="js-popup-close popup__close"></button>
+        <div class="custom-scrollbar popup__inner popup__inner--with-p">
+            <div class="popup-text popup__text">
+                <h5 class="popup-text__text popup-text__text--center">Thanks for your opinion!</h5>
+                <p class="popup-text__text popup-text__text--center">Do you want to save <a href="#"
+                        class="save-to-watchlist">
+                        {% csrf_token %}
+                        {{company.name}}</a> to your
+                    company watchlist?</p>
+
+                {% if comps %}
+                <p class="popup-text__text popup-text__text--center popup-text__text--mtb">Other companies in this
+                    field:</p>
+                <div class="competitors">
+                    <div class="competitors__grid">
+                        {% for c in comps %}
+                        <div class="competitors__item competitors__item--fullw">
+                            <div class="company-item company-item--vertical">
+                                <picture class="company-item__logo">
+                                    {% if c.domain %}
+                                    <img src="https://logo.clearbit.com/{{c.domain}}" alt="{{c.name}}"
+                                        class="company-item__logo-img">
+                                    {% else %}
+                                    <img src="{% static 'backend_django_v2/images/main/company-empty-logo.jpg' %}"
+                                        alt="{{c.name}}" class="company-item__logo-img">
+                                    {% endif %}
+                                </picture>
+                                <div class="company-item__info">
+                                    <a href="https://{{c.domain}}" target="_blank" rel="noopener noreferrer"
+                                        class="company-item__title">{{c.name}}</a>
+                                    {% if c.year_founded %}
+                                    <p class="company-item__category">Founded in {{c.year_founded}}</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+</div>

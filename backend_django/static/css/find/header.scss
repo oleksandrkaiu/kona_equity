@@ -1,0 +1,64 @@
+.header{
+    box-shadow: 0px 0px 8px -3px #0000005c;
+    .navbar {
+        min-height: 64px;
+        .navbar-toggler{
+            border: none;
+            padding: 0.1rem;
+        }
+        .navbar-brand{
+            width: 20%;
+            text-align: center;
+            @media (max-width:768px){
+                max-width: 100%;
+                text-align: left;
+                display: inline-block;
+            }
+        }
+        .navbar-collapse{
+            width: 60%;
+            @media (max-width:768px){
+                width: 100%;
+            }
+        }
+        .accounts{
+            min-width: 20%;
+            @media (max-width:768px){
+                width: 100%;
+            }
+            .login{
+                font-size: 15px;
+                &:hover{
+                    text-decoration: underline;
+                }
+            }
+            .signup{
+                font-size: 14px;
+                text-align: center;
+                color: #fff!important;
+                background-color: #007a86;
+                padding: 7px 14px;
+                border-radius: 8px;
+                transition: background-color 0.2s ease-out;
+            }
+        }
+        .nav-other-links{
+            .nav-link{
+                padding-right:1.7rem;
+                @media (max-width:1400px){
+                    padding-right:1.5rem;
+                }
+                @media (max-width:1200px){
+                    padding-right:1rem;
+                }
+            }
+        }
+        .navbar-nav{
+            .nav-link{
+                color: #383838;
+                
+            }
+        }
+    }
+    
+}

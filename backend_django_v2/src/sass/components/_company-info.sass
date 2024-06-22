@@ -1,0 +1,49 @@
+.company-info
+    &__title
+        font-family: 'Circular Std', sans-serif
+        font-size: 32px
+        margin: 0
+        line-height: 1
+        color: var(--color-black-secondary)
+
+    &__sub-title
+        font-size: 28px
+        margin: 0
+        line-height: 1
+
+    &__claim
+        &:not(:first-child)
+            margin-top: 14px
+
+    &__stats
+        margin: 0
+        padding: 0
+        list-style: none
+
+        &:not(:first-child)
+            margin-top: 14px
+
+    &__stats-item
+        font-size: 14px
+
+        strong
+            font-family: 'Circular Std', sans-serif
+            font-weight: 400
+
+        &--stats,
+        &--people
+            padding-left: 24px
+            background-color: transparent
+            background-position: left center
+            background-repeat: no-repeat
+            background-size: 16px
+
+        &--stats
+            background-image: url(images/icons/stats.svg)
+
+        &--people
+            background-image: url(images/icons/people.svg)
+
+    &__website
+        &:not(:first-child)
+            margin-top: 14px

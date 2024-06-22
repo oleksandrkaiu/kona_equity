@@ -1,0 +1,19 @@
+.checkbox
+    &__body
+        display: block
+        width: 16px
+        height: 16px
+        box-shadow: 0 0 3px rgba(#000, .25)
+        border-radius: 3px
+        background-color: #fff
+        background-position: center
+        background-repeat: no-repeat
+        background-size: 10px auto
+
+    &__input
+        display: none
+
+        &:checked
+            & + .checkbox__body
+                background-color: var(--color-secondary)
+                background-image: url(images/icons/checked-light.svg)

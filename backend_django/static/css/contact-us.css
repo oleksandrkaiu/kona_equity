@@ -1,0 +1,145 @@
+body {
+    background: linear-gradient(to bottom, #00D0C0 602px, #FAF3E9 602px) no-repeat;
+}
+#nav-search {
+    background-color: #00000000;
+    color: #CCF6F3;
+    border-color: #CCF6F3;
+}
+#nav-search::placeholder {
+    color: #CCF6F3;
+    opacity: 1;
+}
+#nav-search:focus {
+    background-color: #00000000;
+    color: #CCF6F3;
+    border-color: #CCF6F3;
+}
+.custom-card {
+    width: 100%;
+    border-radius:15px;
+    box-shadow: 0 0 20px -15px;
+}
+.custom-card-title {
+    font-family: std-bold;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    color: #333333;
+}
+.custom-card-sub-title {
+    font-family: std-bold;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    color: #333333;
+}
+.custom-card-text {
+    font-family: normie-stuff;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 18px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+
+    color: #505050;
+}
+.custom-card-link {
+    font-family: normie-stuff;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid;
+    text-decoration-line: none;
+    color: #00D1C1;
+}
+.loc-text {
+    font-family: std-bold;
+    line-height: 140%;
+    display: flex;
+    align-items: center;
+    color: #24262D;
+}
+.custom-form-input input[type='text'] {
+    background-color: #fff;
+    color: #333333;
+    border-color: #737373;
+    padding-left: 50px;
+    border-radius: 15px;
+}
+.custom-form-input input[type='text']::placeholder {
+    color: #A7A7A7;
+    opacity: 1;
+}
+.custom-form-input textarea {
+    color: #333333;
+    background-color: #fff;
+    padding-left: 50px;
+    border-radius: 15px;
+    border-color: #737373;
+}
+.custom-form-input textarea:focus {
+    color: #333333;
+    background-color: #fff;
+    padding-left: 50px;
+    border-radius: 15px;
+    border-color: #737373;
+}
+.custom-form-input textarea::placeholder {
+    color: #A7A7A7;
+    opacity: 1;
+}
+.custom-form-submit {
+    background-color: #00D1C1;
+    color: #fff;
+    border-color: #00D1C1;
+    border-radius: 15px;
+}
+.custom-form-submit:hover {
+    background-color: #00a89b;
+    color: #fff;
+    border-color: #00D1C1;
+    border-radius: 15px;
+}
+.custom-form-submit:focus {
+    background-color: #00a89b;
+    color: #fff;
+    border-color: #00D1C1;
+    border-radius: 15px;
+}
+.custom-select {
+    background-color: #fff;
+    color: #A7A7A7;
+    outline: none;
+    border-color: #737373;
+    border-radius: 15px;
+}
+.custom-para h3 {
+    margin-left: 10px;
+}
+.custom-para p {
+    margin-left: 20px;
+}
+.custom-para h5 {
+    margin-left: 20px;
+}
+
+.custom-privacy-card-text {
+    font-family: normie-stuff;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 18px;
+    color: #505050;
+}
+.modal-body{
+    font-family: normie-stuff;
+    font-weight: 600;
+}
+.modal-title{
+    font-family: std-medium;
+    font-weight: 600;
+}

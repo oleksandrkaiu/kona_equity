@@ -1,0 +1,116 @@
+<div id="emp-count-modal" class="popup popup--tablet-le-bottom">
+    <div class="popup__wrapper">
+        <button class="js-popup-close popup__close"></button>
+        <div class="custom-scrollbar popup__inner popup__inner--with-p">
+            <div class="popup-form popup__form">
+                <div class="popup-form__head">
+                    <h2 class="popup-form__title">Edit Employee Count</h2>
+                </div>
+                <form id="empCountForm">
+                    <div class="popup-form__body">
+                        {% if chart %}
+                        {% for k, v in chart.items %}
+                        <div class="popup-form__item">
+                            <label class="popup-form__label">{{ k|cut:"_"|upper }} Employee count</label>
+                            <input type="text" class="input popup-form__input" placeholder="0" value="{{v}}"
+                                name="{{k}}">
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        <div class="popup-form__item">
+                            <label class="popup-form__label">2018 Employee count</label>
+                            <input type="text" class="input popup-form__input" placeholder="0" name="val0">
+                        </div>
+                        <div class="popup-form__item">
+                            <label class="popup-form__label">2019 Employee count</label>
+                            <input type="text" class="input popup-form__input" placeholder="0" name="val1">
+                        </div>
+                        <div class="popup-form__item">
+                            <label class="popup-form__label">2020 Employee count</label>
+                            <input type="text" class="input popup-form__input" placeholder="0" name="val2">
+                        </div>
+                        <div class="popup-form__item">
+                            <label class="popup-form__label">Current Employee count</label>
+                            <input type="text" class="input popup-form__input" placeholder="0" name="val3">
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="popup-form__controls">
+                        <button class="button popup-form__controls-item">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var url = "{% url 'backend_django_v2:edit_company' id=company.id %}"
+    $(document).ready(function () {
+
+        var successModal = document.querySelector("#editSuccessModal");
+        var modals = document.querySelectorAll('.popup');
+
+        function closeAllModals() {
+            modals.forEach(modal => {
+                modal.classList.remove('popup--active');
+            });
+        }
+
+        function openSuccessModal() {
+            successModal.classList.add('popup--active');
+        }
+
+        var data = {
+            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+            edit_type: 'Employee Count',
+        };
+
+        var originalData = {};
+
+        $('#empCountForm input').each(function () {
+            originalData[$(this).attr('name')] = $(this).val();
+        });
+
+        $('#empCountForm input').keyup(function () {
+            var key = $(this).attr('name');
+            if (originalData[key] === $(this).val() || $(this).val() === '') {
+                delete data[key];
+            } else {
+                data[key] = $(this).val();
+            }
+            console.log(data);
+        });
+
+        // On submit summary-edit-modal
+        $('.trim').each(function () {
+            $(this).val($(this).val().trim());
+        });
+
+        $('#empCountForm').on('submit', function (e) {
+            e.preventDefault();
+
+            if (Object.keys(data).length <= 2) {
+                alert("Please make some modifications first");
+                return;
+            }
+            $.ajax({
+                url: url,
+                method: 'POST',
+                data: data,
+                success: function (response) {
+                    if (response.status === 'success') {
+                        closeAllModals();
+                        openSuccessModal();
+
+                        console.log('Success');
+                    } else {
+                        alert("Something went wrong");
+                        console.log('Error');
+                    }
+                }
+            });
+        });
+    });
+</script>

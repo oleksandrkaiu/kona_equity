@@ -1,0 +1,215 @@
+.footer
+    background-color: var(--color-secondary)
+    padding: 28px 46px
+    overflow: hidden
+
+    @include tablet-le
+        padding: 28px 18px
+
+    @include phone-le
+        padding: 28px 0
+
+    &__link
+        color: #fff
+        white-space: nowrap
+
+        &:hover
+            color: #fff
+            text-decoration: underline
+
+    &__inner
+        display: grid
+        grid-template-columns: 39fr 96fr
+        grid-gap: 96px
+
+        @include tablet-le
+            grid-gap: 46px
+
+        @include phone-le
+            grid-template-columns: 1fr
+            grid-gap: 32px
+
+    &__main
+        @include phone-le
+            position: relative
+
+        &::before
+            @include phone-le
+                display: block
+                content: ''
+                width: calc(100% + 40px)
+                height: 1px
+                background-color: #fff
+                user-select: none
+                position: absolute
+                z-index: 1
+                left: -20px
+                bottom: -16px
+
+    &__info
+        display: grid
+        grid-template-columns: 72px 1fr
+        grid-gap: 32px
+
+        @include tablet-le
+            grid-template-columns: 56px 1fr
+
+        @include phone-le
+            grid-template-columns: 1fr
+
+    &__info-main
+        @include phone-le
+            display: none
+
+    &__info-secondary
+        display: flex
+        flex-direction: column
+        align-items: flex-start
+
+        @include phone-le
+            align-items: stretch
+
+    &__info-title
+        margin: 0
+        line-height: 1
+        color: #fff
+        font-family: 'Circular Std', sans-serif
+        font-size: 24px
+        white-space: nowrap
+
+        @include phone-le
+            text-align: center
+
+    &__info-copyright
+        color: #fff
+        font-size: 16px
+        margin: 0
+
+        @include tablet-le
+            font-size: 10px
+
+        @include phone-le
+            display: none
+
+        &:not(:first-child)
+            margin-top: 4px
+
+    &__info-link
+        font-size: 20px
+
+        @include tablet-le
+            font-size: 16px
+
+        @include phone-le
+            display: none
+
+        &:not(:first-child)
+            margin-top: 14px
+
+    &__primary-nav
+        &:not(:first-child)
+            margin-top: 22px
+
+            @include tablet-le
+                margin-top: 12px
+
+    &__primary-nav-list
+        margin: 0
+        padding: 0
+        list-style: none
+        display: grid
+        grid-template-columns: repeat(3, min-content)
+        grid-gap: 20px
+
+        @include tablet-le
+            grid-template-columns: repeat(1, min-content)
+            grid-gap: 14px
+
+        @include phone-le
+            justify-content: center
+            grid-gap: 8px
+
+    &__primary-nav-item
+        @include phone-le
+            text-align: center
+
+        &--only-phone
+            display: none
+
+            @include phone-le
+                display: block
+
+    &__primary-nav-link
+        font-size: 24px
+
+        @include tablet-le
+            font-size: 16px
+
+    &__secondary
+        width: 595px
+        max-width: 100%
+
+        @include big-tablet-le
+            width: 100%
+
+    &__secondary-title
+        font-size: 24px
+        line-height: 1
+        white-space: nowrap
+        margin: 0
+        padding-bottom: 16px
+        color: #fff
+        border-bottom: 1px solid #fafafa
+
+        @include phone-le
+            border-bottom: none
+            padding-bottom: 0
+            font-family: 'Circular Std', sans-serif
+            font-size: 16px
+            text-align: center
+
+    &__nav
+        &:not(:first-child)
+            margin-top: 44px
+
+            @include phone-le
+                margin-top: 14px
+
+    &__nav-list
+        margin: 0
+        padding: 0
+        list-style: none
+        display: grid
+        grid-template-columns: repeat(3, 1fr)
+        grid-gap: 16px
+
+        @include tablet-le
+            grid-template-columns: repeat(2, 1fr)
+
+        @include phone-le
+            grid-template-columns: repeat(1, 1fr)
+            justify-content: center
+            grid-gap: 8px
+
+    &__nav-item
+        @include phone-le
+            text-align: center
+
+    &__nav-link
+        font-size: 18px
+
+        @include tablet-le
+            font-size: 16px
+
+        @include phone-le
+            font-size: 14px
+
+    &__copyright
+        display: none
+
+        @include phone-le
+            display: block
+            text-align: center
+            font-size: 16px
+            color: #fff
+            margin: 0

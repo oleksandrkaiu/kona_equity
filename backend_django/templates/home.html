@@ -1,0 +1,436 @@
+{% extends "base_generic.html" %} {% load static %} {% block title %}
+<title>Kona Equity | Private Company Intelligence</title>
+{% endblock %} {% block meta %}
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Kona Equity",
+        "logo": "https://www.konaequity.com/static/profile_photos/logo.png",
+        "url": "https://www.konaequity.com/",
+        "telephone": "8086572055",
+        "description": "Kona Equity is a private company intelligence platform",
+        "foundingDate": "2020",
+        "numberOfEmployees": "4",
+        "naics": "523,52",
+        "isicV4": "62",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "78-6831 Aliʻi Dr",
+            "addressLocality": "Kailua-Kona",
+            "addressRegion": "HI",
+            "postalCode": "96740",
+            "addressCountry": "United States"
+        }
+    }
+</script>
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org/",
+        "@type": "WebSite",
+        "name": "Kona Equity",
+        "url": "https://www.konaequity.com/",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://www.konaequity.com/find/?search={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+</script>
+<script>
+    (function (e, t) {
+        var n = e.amplitude || { _q: [], _iq: {} };
+        var r = t.createElement("script");
+        r.type = "text/javascript";
+        r.integrity = "sha384-tzcaaCH5+KXD4sGaDozev6oElQhsVfbJvdi3//c2YvbY02LrNlbpGdt3Wq4rWonS";
+        r.crossOrigin = "anonymous";
+        r.async = true;
+        r.src = "https://cdn.amplitude.com/libs/amplitude-8.5.0-min.gz.js";
+        r.onload = function () {
+            if (!e.amplitude.runQueuedFunctions) {
+                console.log("[Amplitude] Error: could not load SDK");
+            }
+        };
+        var i = t.getElementsByTagName("script")[0];
+        i.parentNode.insertBefore(r, i);
+        function s(e, t) {
+            e.prototype[t] = function () {
+                this._q.push([t].concat(Array.prototype.slice.call(arguments, 0)));
+                return this;
+            };
+        }
+        var o = function () {
+            this._q = [];
+            return this;
+        };
+        var a = ["add", "append", "clearAll", "prepend", "set", "setOnce", "unset", "preInsert", "postInsert", "remove"];
+        for (var c = 0; c < a.length; c++) {
+            s(o, a[c]);
+        }
+        n.Identify = o;
+        var u = function () {
+            this._q = [];
+            return this;
+        };
+        var l = ["setProductId", "setQuantity", "setPrice", "setRevenueType", "setEventProperties"];
+        for (var p = 0; p < l.length; p++) {
+            s(u, l[p]);
+        }
+        n.Revenue = u;
+        var d = [
+            "init",
+            "logEvent",
+            "logRevenue",
+            "setUserId",
+            "setUserProperties",
+            "setOptOut",
+            "setVersionName",
+            "setDomain",
+            "setDeviceId",
+            "enableTracking",
+            "setGlobalUserProperties",
+            "identify",
+            "clearUserProperties",
+            "setGroup",
+            "logRevenueV2",
+            "regenerateDeviceId",
+            "groupIdentify",
+            "onInit",
+            "logEventWithTimestamp",
+            "logEventWithGroups",
+            "setSessionId",
+            "resetSessionId",
+        ];
+        function v(e) {
+            function t(t) {
+                e[t] = function () {
+                    e._q.push([t].concat(Array.prototype.slice.call(arguments, 0)));
+                };
+            }
+            for (var n = 0; n < d.length; n++) {
+                t(d[n]);
+            }
+        }
+        v(n);
+        n.getInstance = function (e) {
+            e = (!e || e.length === 0 ? "$default_instance" : e).toLowerCase();
+            if (!Object.prototype.hasOwnProperty.call(n._iq, e)) {
+                n._iq[e] = { _q: [] };
+                v(n._iq[e]);
+            }
+            return n._iq[e];
+        };
+        e.amplitude = n;
+    })(window, document);
+
+    amplitude.getInstance().init("be66799cc85da3545fc1acf9144ee66a");
+</script>
+<script>
+    var eventProperties = {
+        page: window.location.pathname,
+    };
+    amplitude.getInstance().logEvent("homepage:shown", eventProperties);
+</script>
+<style>
+  .homelogos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.homelogoimgs{
+  padding: 2rem;
+  max-width: 100%;
+  height: auto;
+  max-width:180px;
+}
+.hometeams{
+  text-align:center;
+  color:#383838;
+  font-family: std-medium;
+}
+.lovetestimonials{
+    padding-bottom:100px;
+}
+</style>
+<link rel="canonical" href="https://www.konaequity.com/" />
+<meta name="robots" content="index, follow" />
+<meta name="description" content="Kona Equity is a private company intelligence platform for small and medium sized businesses." />
+<link rel="stylesheet" href="{% static 'css/find.css' %}" />
+<link rel="stylesheet" href="{% static 'css/about.css' %}" />
+<link rel="stylesheet" href="{% static 'css/homenew.css' %}" />
+<link rel="stylesheet" href="{% static 'css/menusearch.css' %}" />
+<link rel="stylesheet" href="{% static 'css/mainsearch.css' %}" />
+<link rel="stylesheet" href="{% static 'backend_django_v2/prepared/main.css' %}" />
+{% endblock %} {% block content %}
+
+<form id="logout" method="post" action="{% url 'account_logout' %}">
+    {% csrf_token %} {% if redirect_field_value %}
+    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    {% endif %}
+</form>
+
+<div class="gradientstripe"></div>
+<div class="solidstripe"></div>
+
+<nav class="navbar navbar-expand-md navbar-light" style="padding-left: 6%; padding-right: 6%;">
+    <a class="navbar-brand logo-home logo-homeword" href="/" style="color: white; font-size: 2rem; text-decoration: none;">Kona Equity</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse mx-md-auto" id="navbarSupportedContent">
+        <ul class="nav navbar-nav mx-sm-auto">
+            <li class="nav-item quart mx-auto" style="text-align: center !important;">
+                <a class="nav-link whiteish" href="/about/">About</a>
+            </li>
+
+            <li class="nav-item quart mx-auto drop-custom">
+                <div class="dropdown">
+                    <a class="dropbtn whiteish" href="/find/">Explore</a>
+                    <div class="dropdown-content">
+                        {% for a in dc %}
+                        <a href="{{a.link}}" class="dropdowns">{{a.name}}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item quart mx-auto" style="text-align: center !important;">
+                <a class="nav-link whiteish" href="/premium/">Premium</a>
+            </li>
+            <li class="nav-item quart mx-auto" style="text-align: center !important;">
+                <a class="nav-link whiteish" href="/contact/">Contact us</a>
+            </li>
+        </ul>
+
+        <ul class="navbar-nav nav ml-auto pull-sm-right justify-content-center">
+            {% if not request.user.is_authenticated %}
+            <li class="nav-item active quart mx-auto">
+                <a class="nav-link text-white" href="/login" style="cursor: pointer !important;">Login</a>
+            </li>
+
+            <li class="nav-item quart mx-auto">
+                <a class="nav-link text-center" href="/signup/cold-join" style="width: 100px; background-color: white; color: #007a86 !important; margin-left: 10px; border-radius: 25px;">
+                    Sign up
+                </a>
+            </li>
+            {% else %}
+            <li class="nav-item quart mx-auto" style="text-align: center !important;">
+                <a class="nav-link text-white" href="/dashboard/">Edit profile</a>
+            </li>
+            <li class="nav-item quart mx-auto" style="text-align: center !important;">
+                <a class="nav-link text-white" href="/watchlist/">Prospects</a>
+            </li>
+            <li class="nav-item quart mx-auto" style="text-align: center !important;">
+                <a class="logmeout" href="JavaScript:void(0);">Logout</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="parentheadline">
+            <h1 class="headlinepci">
+                Private company intelligence
+            </h1>
+            <form style="position: relative;" id="searchBar" action="/find/--/" method="GET" class="search-form header__search header__main-search">
+                <div class="col-lg-5 my-auto searchparentwrapper">
+                    <div class="" style="height: 100%;">
+                        <input id="search-main" placeholder="Find companies" style="border: none; height: 100%; width: 95%;" />
+                        <div class="magnwrapper">
+                            <img src="https://www.konaequity.com/static/web_photos/magn.svg" alt="search magnifying glass" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid gotop gotopone p-0" style="background-color: transparent;">
+    <div class="row indcards car-d">
+        {% for i in ilinks %}
+        <a href="{{i.link}}">
+            <div class="col-lg-2 col-md-4 boxxy">
+                <div class="ccjik my-auto">
+                    <div class="row mahjongg">
+                        <img class="my-auto mx-auto lazyload" data-src="static/{{i.image}}" />
+                    </div>
+                    <h3 class="text-center q-text gcolor">
+                        {{i.name}}
+                    </h3>
+                    <p class="text-center lowb subingj">{{i.description}}</p>
+                    <a href="{{i.link}}"> </a>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    <div id="inditro" class="glide indcards car-m">
+        <div class="glide__track" data-glide-el="track">
+            <ul class="glide__slides">
+                {% for i in ilinks %}
+                <li class="glide__slide glidetop">
+                    <a href="{{i.link}}">
+                        <div class="col-lg-4 col-md-6 boxxy clarry">
+                            <div class="ccjik my-auto">
+                                <div class="row mahjongg">
+                                    <img class="my-auto mx-auto lazyload" data-src="static/{{i.image}}" />
+                                </div>
+                                <h3 class="text-center q-text gcolor">
+                                    {{i.name}}
+                                </h3>
+                                <p class="text-center lowb subingj">{{i.description}}</p>
+                                <a href="{{i.link}}"> </a>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% if request.user.profile.paid %}
+{% else %}
+<div style="width: 88%; margin: auto; max-width: 1000px;">
+    <div class="wrappercta">
+        <div class="innercta">
+            <h4 class="ctatitle">Search like the best with Kona Equity Premium</h4>
+            <p class="ctap">
+                Use smart <span class="popout">keyword search</span> that helps you find more companies, see their <span class="popout">contact information</span> and get <span class="popout">updates</span> right from Kona’s website.
+            </p>
+            <div class="ctabutton">
+                <a href="/premium" style="width: 100%; cursor: pointer;"><button class="ctapremium">Upgrade</button></a>
+            </div>
+        </div>
+        <div class="disappear" style="display: inline-flex; float: right; padding-top: 80px;">
+            <a href="/premium"><img src="https://www.konaequity.com/static/web_photos/logopremium.svg" class="ctascreen" alt="Kona Equity Premium icon" /></a>
+        </div>
+    </div>
+</div>
+{% endif %}
+<div class="lovetestimonials">
+<h3 class="hometeams">Loved by teams from</h3>
+  <div class="homelogos">
+      <img src="https://www.konaequity.com/static/web_photos/google.svg" class="homelogoimgs">
+      <img src="https://www.konaequity.com/static/web_photos/expo.svg" class="homelogoimgs">
+      <img src="https://www.konaequity.com/static/web_photos/tql.svg" class="homelogoimgs">
+      <img src="https://www.konaequity.com/static/web_photos/bain.svg" class="homelogoimgs">
+      <img src="https://www.konaequity.com/static/web_photos/retool.svg" class="homelogoimgs">
+  </div>
+</div>
+<div style="max-width: 1000px; margin: 0 auto; padding-bottom: 46px;">
+    <div class="outsidebox">
+        <div class="insidebox">
+            <h2 class="hhiw">Here's how it works</h2>
+            <div>
+                <ul class="lmc">
+                    <li class="licircle">
+                        <h3 class="hhiwtitle">Search for a company</h3>
+                        <p class="hhiwp">Kona Equity provides unparalleled information and access for 2.5 million small and medium sized businesses that drive the private economy.</p>
+                    </li>
+                    <li class="licircle">
+                        <h3 class="hhiwtitle">Save those you like</h3>
+                        <p class="hhiwp">The faster, simpler way to save and qualify the companies that are relevant for your search.</p>
+                    </li>
+                    <li class="licircle">
+                        <h3 class="hhiwtitle">Get curious again</h3>
+                        <p class="hhiwp" style="margin-bottom: 0px;">Find your dealmaking edge and gain an informational advantage for discovery.</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid rglider">
+    <h2 class="upb topco">
+        Top companies
+    </h2>
+    <div class="row mx-auto h-100">
+        <div class="p-0 col-lg-1 marker-thing my-auto">
+            <img id="left-glide" src="{% static 'web_photos/Group1150.svg' %}" alt="left arrow to slide" />
+        </div>
+        <div class="col-lg-10 carousel-mid">
+            <div class="row" style="height: 18%;"></div>
+            <div id="intro" class="glide">
+                <div class="glide__track" data-glide-el="track">
+                    <ul class="glide__slides">
+                        {% for e in top %}
+                        <li class="glide__slide">
+                            <div class="card shadow top-company">
+                                {% if e.fav %}
+                                <div class="row searchBDir fav yes" data-id="{{e.id}}" data-selected="true"></div>
+                                {% else %}
+                                <div class="row searchBDir fav no" data-id="{{e.id}}" data-selected="false"></div>
+                                {% endif %}
+
+                                <div class="row" style="height: 45%;">
+                                    <div class="mx-auto my-auto">
+                                        <a target="_blank" href="/company/{{e.identifier}}/"><img class="top-img lazyload" data-src="https://logo.clearbit.com/{{e.domain}}" onerror="this.src='/static/profile_photos/generic.png'" alt="{{e.name}} company logo" /></a>
+                                    </div>
+                                </div>
+                                <div class="row" style="height: 35%;">
+                                    <div class="col-12">
+                                        <a target="_blank" href="/company/{{e.identifier}}/" class="top-name">{{e.name}}</a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <a href="/company/{{e.identifier}}/" class="top-details">${{e.annual_revenue}}</a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <a href="/company/{{e.identifier}}/" class="top-details">{{e.num_emp}} employees</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="p-0 my-auto col-lg-1 marker-thing">
+            <img id="right-glide" src="{% static 'web_photos/Group1151.svg' %}" alt="right arrow to slide" />
+        </div>
+    </div>
+</div>
+<div class="container-fluid" style="padding-left:0;background:#fbfbfb;">
+    <h2 class="upb hedn">Explore inspiration</h2>
+    <div class="ikj">
+        <div class="row kui">
+            {% for a in links %}
+            <div class="col-lg-3 col-md-4 col-sm-6 col-6 ihk" style="color: #383838;">
+                <a target="_blank" class="lowb kkkk" href="{{a.addr}}" style="color: #383838; display: flex;"> <img src="{{a.imag}}" style="padding-right: 8px;" />{{a.name}}</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<script>
+    var giftofspeed = document.createElement("link");
+    giftofspeed.rel = "stylesheet";
+    giftofspeed.href = "https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css";
+    giftofspeed.type = "text/css";
+    var godefer = document.getElementsByTagName("link")[0];
+    godefer.parentNode.insertBefore(giftofspeed, godefer);
+</script>
+<script src="{% static 'js/lazysizes.min.js' %}" async></script>
+{% endblock %} {% block script %}
+<script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
+<script src="{% static 'js/autocomplete.js' %}"></script>
+<script src="{% static 'js/automain.js' %}"></script>
+<script src="{% static 'js/utils.js' %}"></script>
+<script type="text/javascript">
+    window.urlReg = "{% url 'register' %}";
+    $(".logmeout").click(function() {
+        $("#logout").submit();
+    });
+</script>
+<script src="{% static 'js/signup2022.min.js' %}"></script>
+{% endblock %}

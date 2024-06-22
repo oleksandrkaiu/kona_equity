@@ -1,0 +1,49 @@
+{% load static %}
+{% load nospaces %}
+<div class="container-fluid footer p-0">
+    <div class="row footer-clear">
+        <div class="wex"></div>
+        <div class="logo-home footer-logo"><a href="/"><img src="{% static 'profile_photos/logo.png' %}" alt="Kona equity logo"></div></a>
+        <div class="excess" style="width: 9.92%;"></div>
+        <div id="footer-menu-bar" class="row">
+            <div>
+                <div class="row quart">
+                    <a href="/">Home</a>
+                </div>
+            </div>
+            <div class="spacing excess"></div>
+            <div>
+                <div class="row quart">
+                    <a class="" href="/about/">About</a>
+                </div>
+            </div>
+            <div class="spacing excess"></div>
+            <div>
+                <div class="row quart">
+                    <a class="" href="/premium/">Premium</a>
+                </div>
+            </div>
+            <div class="spacing excess"></div>
+            <div>
+                <div class="row quart">
+                    <a href="/contact/">Contact Us</a>
+                </div>
+            </div>
+            <div class="ex-spacing excess"></div>
+            <div>
+                <div class="row quart">
+                    <a href="/privacy/">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center enuf enufh">Explore popular industries</div>
+    <div class="row lcomp">
+        {% for a in dc %}
+        <a href="{{a.link}}" class="text-center enugl col-lg-2 col-md-4 col-sm-6">{{a.name}}</a>
+        {% endfor %}
+    </div>
+    <div class="row year-footer">
+        <span class="col-12">2022</span>
+    </div>
+    </div>

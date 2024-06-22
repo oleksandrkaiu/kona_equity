@@ -1,0 +1,6 @@
+https://www.pythonanywhere.com/
+Konaequity2
+Maui2022
+
+test url:
+http://konaequity2.pythonanywhere.com/

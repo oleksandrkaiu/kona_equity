@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+        {% block title %}{% endblock %} {% load static %}
+        <link rel="stylesheet" href="{% static 'css/loading.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/find/main.css' %}" />
+        <link type="text/css" rel="stylesheet"  href="{% static 'css/ctm.css' %}" />
+        <link rel="apple-touch-icon" href="{% static 'profile_photos/logo.png' %}" />
+        <link rel="icon" href="{% static 'profile_photos/favicon.ico' %}" type="image/gif" sizes="32x32" />
+        <link rel="icon" href="{% static 'profile_photos/favicon-32x32.png' %}" type="image/png" sizes="32x32" />
+        <link rel="icon" href="{% static 'profile_photos/favicon-16x16.png' %}" type="image/png" sizes="16x16" />
+        {% block meta %}{% endblock %} {% if pop %} {% endif %}
+    </head>
+    <body>
+        <section>
+            {% block content %}
+                <div class="container-fluid">
+                    <form class="form w-100 w-lg-600px">
+                        <div class="row mt-80">
+                            <div class="col-md-12">
+                                <div class="text-center">
+                                    <span class="lgtit-01">Kona Equity</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-60">
+                            <div class="col-md-12">
+                                <div class="text-center">
+                                    <span class="lgtit-02">Verify your email</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-30">
+                            <div class="w-300px">
+                                <span class="mdtit-01">We sent a verification link to the email you provided. Click the link to verify your email. You may need to check your spam folder.</span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            {% endblock %}
+        </section>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        {% block script %}
+        {% endblock %}
+
+    </body>
+</html>

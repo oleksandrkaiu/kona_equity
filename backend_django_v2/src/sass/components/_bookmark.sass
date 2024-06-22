@@ -1,0 +1,31 @@
+.bookmark
+    display: grid
+    align-items: center
+    grid-gap: 8px
+    grid-template-columns: 36px 1fr
+
+    &__icon
+        display: block
+        border-radius: 10px
+        height: 36px
+        width: 36px
+        overflow: hidden
+        background-color: #fff
+        background-position: center
+        background-repeat: no-repeat
+        background-size: 100% 100%
+        background-image: url(images/icons/bookmark.svg)
+        transition: transform .2s ease-out
+        cursor: pointer
+
+        &:hover
+            transform: translateY(-1px)
+
+    &__label
+        margin: 0
+        font-size: 16px
+
+    &--active
+        .bookmark
+            &__icon
+                background-color: var(--color-secondary)

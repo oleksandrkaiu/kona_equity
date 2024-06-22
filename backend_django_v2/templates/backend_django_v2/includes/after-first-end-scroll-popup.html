@@ -1,0 +1,27 @@
+{% load static %}
+
+<div class="popup" id="first-visit-popup">
+    <div class="popup__wrapper">
+        <button class="js-popup-close popup__close"></button>
+        <div class="custom-scrollbar popup__inner popup__inner--with-p">
+            <div class="popup-text popup__text popup__text--small">
+                <picture class="popup-text__preview">
+                    <img src="{% static 'backend_django_v2/images/after-first-end-scroll-popup/animation-1.jpg' %}"
+                        alt="" class="popup-text__preview-img">
+                </picture>
+                <p class="popup-text__text popup-text__text--center">You've just looked through your first company,
+                    hurray!</p>
+                {% if company.google_industry %}
+                <p class="popup-text__text popup-text__text--center"><a href="/find/?google_industry={{go.google}}">Explore other companies in their
+                        industry</a></p>
+                {% elif company.industry %}
+                <p class="popup-text__text popup-text__text--center"><a href="/find/{{go.industry}}--/">Explore other companies in their
+                        industry</a></p>
+                {% elif company.city %}
+                <p class="popup-text__text popup-text__text--center"><a href="/find/--{{company.state}}/?city={{company.city}}">Explore other companies in their
+                        city</a></p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

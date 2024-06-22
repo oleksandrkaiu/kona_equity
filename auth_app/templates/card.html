@@ -1,0 +1,33 @@
+{% for e in companies %}
+<div class="col-lg-3 col-md-4 col-6 my-auto boxii">
+    <div class="card shadow top-company" style="margin-left: 0;">
+        <div class="row" style="height: 45%;">
+            {% if e.fav %}
+                <div class="row searchBDir fav yes" data-id="{{e.id}}" data-selected="true">
+            {% else %}
+                <div class="row searchBDir fav no" data-id="{{e.id}}" data-selected="false">
+            {% endif %}
+                </div>
+            <div class="mx-auto">
+                <a target="_blank" href="/company/{{e.identifier}}/"><img class="top-img lazyload"  data-src="https://logo.clearbit.com/{{e.domain}}" onerror="this.src='/static/profile_photos/generic.png'"></a>
+            </div>
+        </div>
+        <div class="row" style="height: 35%;">
+            <div class="col-12">
+            <a target="_blank" href="/company/{{e.identifier}}/" class="top-name">{{e.name}}</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+            <a href="/company/{{e.identifier}}/" class="top-details">${{e.annual_revenue}}</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+            <a href="/company/{{e.identifier}}/" class="top-details">{{e.num_emp}} employees</a>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+{% endfor %}

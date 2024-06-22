@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-GXS2W1JXVR"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+
+            gtag("config", "G-GXS2W1JXVR");
+        </script>
+        <script src="https://www.googleoptimize.com/optimize.js?id=OPT-P69KL7V"></script>
+        <!-- Clarity tracking code for https://www.konaequity.com/ -->
+        <script>
+            (function (c, l, a, r, i, t, y) {
+                c[a] =
+                    c[a] ||
+                    function () {
+                        (c[a].q = c[a].q || []).push(arguments);
+                    };
+                t = l.createElement(r);
+                t.async = 1;
+                t.src = "https://www.clarity.ms/tag/" + i;
+                y = l.getElementsByTagName(r)[0];
+                y.parentNode.insertBefore(t, y);
+            })(window, document, "clarity", "script", "56y5lp4wnt");
+        </script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+        <!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">-->
+
+        <!--=============== BOXICONS ===============-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
+
+        {% block title %}{% endblock %} {% load static %}
+        <link rel="stylesheet" href="{% static 'css/styles.min.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/loading.css' %}" />
+        <link rel="apple-touch-icon" href="{% static 'profile_photos/logo.png' %}" />
+        <link rel="icon" href="{% static 'profile_photos/favicon.ico' %}" type="image/gif" sizes="32x32" />
+        <link rel="icon" href="{% static 'profile_photos/favicon-32x32.png' %}" type="image/png" sizes="32x32" />
+        <link rel="icon" href="{% static 'profile_photos/favicon-16x16.png' %}" type="image/png" sizes="16x16" />
+        <script>
+            Url = "{% url 'ajax_autocomplete' %}";
+            loadingTag = '<div style="color: #ffffff" class="la-ball-scale-pulse mx-auto my-auto"><div></div><div></div></div>';
+        </script>
+        {% block meta %}{% endblock %} {% if pop %} {% endif %}
+        <form id="logout" method="post" action="{% url 'account_logout' %}">
+            {% csrf_token %} {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+            {% endif %}
+        </form>
+    </head>
+    <body>
+        <section>
+            {% block content %} {% endblock %}
+        </section>
+        <div class="container-fluid footer p-0">
+            <div class="row footer-clear">
+                <div class="wex"></div>
+                <div class="logo-home footer-logo">
+                    <a href="/"><img src="{% static 'profile_photos/logo.png' %}" alt="Kona equity logo" /> </a>
+                </div>
+                <div class="excess" style="width: 9.92%;"></div>
+                <div id="footer-menu-bar" class="row">
+                    <div>
+                        <div class="row quart">
+                            <a href="/">Home</a>
+                        </div>
+                    </div>
+                    <div class="spacing excess"></div>
+                    <div>
+                        <div class="row quart">
+                            <a class="" href="/about/">About</a>
+                        </div>
+                    </div>
+                    <div class="spacing excess"></div>
+                    <div>
+                        <div class="row quart">
+                            <a class="" href="/premium/">Premium</a>
+                        </div>
+                    </div>
+                    <div class="spacing excess"></div>
+                    <div>
+                        <div class="row quart">
+                            <a href="/contact/">Contact Us</a>
+                        </div>
+                    </div>
+                    <div class="ex-spacing excess"></div>
+                    <div>
+                        <div class="row quart">
+                            <a href="/privacy/">Privacy Policy</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center enuf enufh">Explore popular industries</div>
+            <div class="row lcomp">
+                {% for a in dc %}
+                <a href="{{a.link}}" class="text-center enugl col-lg-2 col-md-4 col-sm-6">{{a.name}}</a>
+                {% endfor %}
+            </div>
+            <div class="row year-footer">
+                <span class="col-12">2022</span>
+            </div>
+        </div>
+
+        {% if request.user.is_authenticated is False %}
+
+        <div class="popup popup--tablet-le-bottom" id="sign-up-modal">
+            <div class="popup__wrapper">
+                <button class="js-popup-close popup__close"></button>
+                <div class="custom-scrollbar popup__inner popup__inner--with-p">
+                    <form id="signUpForm" method="post" action="{% url 'account_signup' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <div class="popup-form popup__form">
+                            <div class="popup-form__head">
+                                <h2 class="popup-form__title">Sign up</h2>
+                            </div>
+                            <div class="popup-form__body">
+                                <div class="popup-form__item">
+                                    <label class="popup-form__label">First Name</label>
+                                    <input type="text" name="first_name" required class="input popup-form__input" placeholder="First Name" style="color: rgb(86, 90, 92); background-color: white;" />
+                                    <p class="signup-errors" style="font-size: small; color: red; padding: 0; margin: 0;" id="signup-first_name-errors"></p>
+                                </div>
+                                <div class="popup-form__item">
+                                    <label class="popup-form__label">Last Name</label>
+                                    <input type="text" name="last_name" required class="input popup-form__input" placeholder="Last Name" style="color: rgb(86, 90, 92); background-color: white;" />
+                                    <p class="signup-errors" style="font-size: small; color: red; padding: 0; margin: 0;" id="signup-last_name-errors"></p>
+                                </div>
+                                <div class="popup-form__item">
+                                    <label class="popup-form__label">Business Email</label>
+                                    <input type="email" name="email" autofocus required name="login" class="input popup-form__input" placeholder="Business Email" />
+                                    <p class="signup-errors" style="font-size: small; color: red; padding: 0; margin: 0;" id="signup-email-errors"></p>
+                                </div>
+                                <div class="popup-form__item">
+                                    <label class="popup-form__label">Password</label>
+                                    <div class="password-input">
+                                        <input type="password" name="password1" autocomplete="new-password" required class="input password-input__input popup-form__input" placeholder="Password" />
+                                        <button class="password-input__change-button"></button>
+                                    </div>
+                                    <p class="popup-form__help-text">Please, use 8 or more characters</p>
+                                    <p class="signup-errors" style="font-size: small; color: red; padding: 0; margin: 0;" id="signup-password1-errors"></p>
+                                </div>
+                                <div class="popup-form__item">
+                                    <label class="popup-form__label">Confirm password</label>
+                                    <div class="password-input">
+                                        <input type="password" name="password2" autocomplete="new-password" required class="input password-input__input popup-form__input" placeholder="Confirm password" />
+                                        <button class="password-input__change-button"></button>
+                                    </div>
+                                    <p class="signup-errors" style="font-size: small; color: red; padding: 0; margin: 0;" id="signup-password2-errors"></p>
+                                </div>
+                                <div class="popup-form__item popup-form__item--mt">
+                                    <div class="popup-form__checkbox">
+                                        <label class="checkbox">
+                                            <input type="checkbox" name="agreement" class="checkbox__input" />
+                                            <span class="checkbox__body"></span>
+                                        </label>
+                                        <p class="popup-form__checkbox-label">By creating an account, you agree to accept <a href="#">Kona Equity Terms of Service</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="popup-form__controls">
+                                <button class="button popup-form__controls-item popup-form__controls-item--small" disabled id="signUpSubmit">Create account</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script src="{% static 'js/freemails.js' %}"></script>
+
+        <div class="modal fade p-0" id="LoginModal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <div class="row w-100">
+                            <div class="col text-center form-heading">
+                                Sign In
+                            </div>
+                        </div>
+                        <button type="button" class="close" data-dismiss="modal"><img style="width: 80%;" src="{% static 'web_photos/menu-close.svg' %}" /></button>
+                    </div>
+
+                    <div class="modal-body p-3">
+                        <p id="invalid_login"></p>
+                        <!--                <form id="login_form" method="post" action="{% url 'account_login' %}">-->
+                        <form id="signInPopupForm">
+                            {% csrf_token %}
+                            <div class="popup-form__item" style="color: red; font-size: smaller; text-align: center;" id="sign-in-popup-error"></div>
+                            <div class="form-group">
+                                <label for="id_email">Email:</label>
+                                <div class="styledTB">
+                                    <input type="text" class="logforms emaily" name="login" autofocus autocapitalize="none" autocomplete="email" maxlength="150" required id="id_emaily" />
+                                    <div class="searchBDir"></div>
+                                </div>
+                                <p id="login_errors"></p>
+                            </div>
+                            <div class="form-group">
+                                <label for="id_password1">Password:</label>
+                                <div class="styledTB">
+                                    <input type="password" class="logforms" name="password" autocomplete="current-password" required id="id_passwordy" />
+                                    <div id="pwdy" class="searchBDir pwd-thingy"></div>
+                                </div>
+                                <p id="password_errors"></p>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="id_remember" name="remember" />
+                                <label class="form-check-label" for="id_remember">Remember Me</label>
+                                <p id="remember_errors"></p>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6 talk text-center mpadi">
+                            <span>No account?</span><br />
+                            <a id="gotoup" href="JavaScript:Void(0);">Sign Up</a>
+                        </div>
+                        <div class="col-6 mipadi mx-auto my-auto">
+                            <div id="continuebtn" class="strtedcon" onclick="logIn();">
+                                Continue
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="{% static 'js/new.min.js' %}"></script>
+        {% block script %}{% endblock %}
+        <script>
+                  function create_post() {
+                  var fd = new FormData($("#signup_form").get(0));
+                  $("#disabled").html(loadingTag);
+                  $.ajax({
+                      url : "{% url 'register' %}",
+                      type : "POST",
+                      contentType: false,
+                      processData: false,
+                      data : fd,
+                      success: function(response) {
+                      var jsonResponse = response;
+                      console.log(jsonResponse)
+                      if (response["errors"] == "None"){
+                          location.reload();
+                      }
+                      $("input").each(function(){
+                          var name = $(this).attr("name");
+                          $(".form-group p").css("color", "red");
+                          if(name == "csrfmiddlewaretoken")
+                          return;
+
+                          for(x in jsonResponse["errors"][name]){
+                          var cap = $(this).siblings(".searchBDir");
+                          $(cap).attr("class", "searchBDir");
+                          $(cap).addClass("wrong");
+                          $(this).css("border", "2px solid #FF5A5F");
+                          var error = jsonResponse["errors"][name][x];
+                          $("#"+name+"_errors").append(error + '\n');
+                          }
+                      })
+                      $("#disabled").html("Continue");
+                      },
+                      error: function(response){
+                          alert("Something went wrong. Please try again later.")
+                      }
+                  });
+              }
+
+              function login_post() {
+                  var fd = new FormData($("#login_form").get(0));
+                  $("#disabledl").html(loadingTag);
+                  $("#invalid_login").html("")
+                  $.ajax({
+                      url : "{% url 'account_login' %}",
+                      type : "POST",
+                      contentType: false,
+                      processData: false,
+                      data : fd,
+                      success: function(response) {
+                          location.reload();
+                      },
+                      error: function(response){
+                      var jsonResponse = response["responseJSON"];
+                      $("#invalid_login").html("Invalid credentials. Please try again.");
+                      $("#disabledl").html("Continue");
+                      }
+
+                  });
+              }
+
+              function logIn() {
+                  $('#sign-in-popup-error').text("");
+                  var contbtn = document.getElementById("continuebtn");
+                  var fd = new FormData($("#signInPopupForm").get(0));
+                  console.log(fd)
+                  contbtn.disabled = true;
+                  contbtn.setAttribute('style', 'cursor:not-allowed !important;');
+                  contbtn.innerHTML = "<span class=\"spinner-border spinner-border-sm\"></span> Please wait...";
+                  // $(".strtedcon")
+                  $.ajax({
+                      url: "/accounts/login/", // the endpoint
+                      type: "POST", // http method=
+                      contentType: false,
+                      processData: false,
+                      data: fd,
+                      success: function (response) {
+                          location.reload();
+                      },
+                      error: function (response) {
+                          var jsonResponse = response["responseJSON"];
+                          console.log(jsonResponse);
+                          for (idx in jsonResponse.form["errors"]) {
+                              $('#sign-in-popup-error').append(jsonResponse.form["errors"][idx] + "\n");
+                          }
+                          if(jsonResponse.form["errors"].length<1){
+                              $('#sign-in-popup-error').append("Please check your email, it may be in a wrong format." + "\n");
+                          }
+                          contbtn.disabled = false;
+                          contbtn.style.cursor = "pointer";
+                          contbtn.innerHTML = "Continue";
+                      }
+
+                  });
+              }
+
+              function handleFileSelect(evt) {
+                  reader = new FileReader();
+                  reader.onloadstart = function(){
+                      var k = $("#file-upload-button");
+                      $(k).html("Loading...");
+                      $(k).css("background-color", "#00D1C1");
+                      $(k).css("opacity", 0.5);
+                      $(k).css("border-color", "#00D1C1");
+                  }
+                  reader.onload = function(e){
+                      var k = $("#file-upload-button");
+                      $('#profile-picture').attr('src', e.target.result);
+                      setTimeout(function(){
+                          if (Validate(document.getElementById("id_profile_photo"))){
+                          $(k).html("Done");
+                          $(k).css("background-color", "#8CE071");
+                          $(k).css("opacity", "1.0");
+                          $(k).css("border-color", "#8CE071");
+                      }
+                      else{
+                          $(k).html("Add photo");
+                          $(k).css("background-color", "#FF5A5F");
+                          $(k).css("opacity", "1.0");
+                          $(k).css("border-color", "#FF5A5F");
+                      }
+                      }, 350)
+                  }
+                  reader.readAsDataURL(evt.target.files[0]);
+              }
+
+              function favCheck(){
+                $(".fav").click(function(){
+                  {% if request.user.is_authenticated %}
+                  var kl = parseInt($(this).attr("data-id"));
+                  var go = $(this).attr("data-selected");
+                  var p = this;
+
+                  if (go == "true"){
+                      $.ajax({
+                      headers: { "X-CSRFToken": "{{csrf_token}}" },
+                      url : "{% url 'remfav' %}",
+                      type : "POST",
+                      data : {
+                          id: kl
+                      },
+                      dataType: "json",
+                      success: function(response){
+                          if (response.status == "success"){
+                              $(p).attr("data-selected", "false");
+                              $(p).removeClass("yes");
+                              $(p).addClass("no");
+                          }
+                      }
+                  });
+                  }
+                  else{
+                      $.ajax({
+                      headers: { "X-CSRFToken": "{{csrf_token}}" },
+                      url : "{% url 'addfav' %}",
+                      type : "POST",
+                      data : {
+                          id: kl
+                      },
+                      dataType: "json",
+                      success: function(response){
+                          if (response.status == "success"){
+
+                              $(p).attr("data-selected", "true");
+                              $(p).removeClass("no");
+                              $(p).addClass("yes");
+                          }
+                      }
+                  });
+              }
+              {% else %}
+              $("#SignupModal").modal("show");
+              {% endif %}
+              });
+              }
+            function popitUp(){
+              {% if pop %}
+              $("#calltoaction").slideToggle(600);
+              // $("#popup-close").on("click", function(){
+              //     $("#calltoaction").slideToggle(600);
+              // });
+              {% else %}
+              console.log("No pop. Until next time.");
+              {% endif %}
+            }
+            function openNav() {
+                document.getElementById("myNav").style.height = "100%";
+                element = document.getElementsByTagName("body")[0];
+                element.classList.add("noscroll");
+            }
+
+            function closeNav() {
+                document.getElementById("myNav").style.height = "0%";
+                element = document.getElementsByTagName("body")[0];
+                element.classList.remove("noscroll");
+            }
+        </script>
+    </body>
+</html>

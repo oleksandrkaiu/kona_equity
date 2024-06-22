@@ -1,0 +1,125 @@
+.search-item{
+    border:2px solid white;
+    padding: 10px;
+    padding-left: 20px;
+    font-size: 20px;
+    height: 60px;
+    font-family: normie-stuff;
+    font-style: normal;
+    font-weight: 450;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+    /* width: 62%; */
+    color: #FFFFFF !important;
+    border-top: 0.5px solid white;
+    position: relative !important;
+    z-index: 9999 !important;
+    background-color: #00D1C1;
+}
+
+.search-item img{
+    width: 40px;
+    height: 40px;
+}
+
+.staw{
+    padding-left: 10px !important;
+}
+
+.search-item:hover{
+    font-size: 23px;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.main-active{
+    font-size: 23px;
+    font-weight: 900;
+}
+
+#search-main.form-control:focus, #search-main-m.form-control:focus{
+    color:white;
+    outline:none;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+    transition:0.5s;
+    border-radius: 0px !important;
+}
+
+.sea:focus-within{
+    border-radius: 0px;
+    transition: 0.5s;
+}
+
+#search-main.form-control::-webkit-input-placeholder, #search-main-m.form-control::-webkit-input-placeholder {
+color: white;
+}
+
+#search-main.form-control::-moz-placeholder, #search-main-m.form-control::-moz-placeholder {
+color: white;
+}
+
+#search-main.form-control:-ms-input-placeholder, #search-main-m.form-control:-ms-input-placeholder {
+color: white;
+}
+
+#search-main.form-control:placeholder, #search-main-m.form-control:placeholder {
+color: white;
+}
+
+#search-main.form-control, #search-main-m.form-control{
+color: white;
+}
+
+
+
+@media screen and (max-width : 660px){
+    /* .s-cont{
+        position: absolute;
+        top: 745px;
+        width: 112.9%;
+    } */
+    .search-item{
+        font-size: 16px;
+        line-height: 18px;
+    }
+    .search-item:hover{
+        font-size: 18px;
+        font-weight: 900;
+        cursor: pointer;
+    }
+
+    .main-active{
+        font-size: 18px;
+        font-weight: 900;
+    }
+}
+
+@media screen and (min-width: 500px) and (max-width:660px){
+    /* .s-cont{
+        position: absolute;
+        top: 885px;
+    } */
+}
+
+@media screen and (min-width: 661px) and (max-width:900px)
+{
+    .search-item{
+        width: 75%;
+        font-size: 16px;
+        line-height: 18px;
+    }
+    .search-item:hover{
+        font-size: 18px;
+        font-weight: 900;
+        cursor: pointer;
+    }
+
+    .main-active{
+        font-size: 18px;
+        font-weight: 900;
+    }
+}
+

@@ -1,0 +1,36 @@
+.key-info
+    display: grid
+    grid-template-columns: 1fr 2fr
+    grid-gap: 14px
+
+    @include big-tablet-le
+        grid-template-columns: 1fr
+        grid-gap: 24px
+
+    &__main
+        justify-self: end
+
+        @include big-tablet-le
+            justify-self: start
+
+    &__list
+        margin: 0
+        padding: 0
+        list-style: none
+        display: grid
+        grid-gap: 14px
+
+    &__list-item
+        font-size: 14px
+
+        strong
+            font-family: 'Circular Std', sans-serif
+            font-weight: 400
+            color: var(--color-black-secondary)
+
+    &__tags
+        &:not(:first-child)
+            margin-top: 26px
+
+            @include big-tablet-le
+                margin-top: 22px

@@ -1,0 +1,442 @@
+{% extends "base_generic.html" %}
+{% load static %}
+
+{% block title %}
+
+    <title>About Us | Kona Equity</title>
+    <meta name="description" content="Learn more about Kona Equity's dealsourcing platform that analyzes millions of
+                                  data points on revenue, growth, employees, and technologies to help you see
+                                  tomorrow’s opportunities, today.">
+    <link rel="canonical" href="https://www.konaequity.com/about/" />
+{% endblock %}
+
+{% block meta %}
+<link rel="stylesheet" href="{% static 'css/glide.core.css' %}">
+<link rel="stylesheet" href="{% static 'css/glide.theme.css' %}">
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<link rel="stylesheet" href="{% static 'css/menusearch.css' %}">
+<link rel="stylesheet" href="{% static 'css/find.css' %}">
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+<link rel="stylesheet" href="{% static 'css/aboutoriginal.css' %}">
+<script type="text/javascript">
+  (function(e,t){var n=e.amplitude||{_q:[],_iq:{}};var r=t.createElement("script")
+  ;r.type="text/javascript"
+  ;r.integrity="sha384-tzcaaCH5+KXD4sGaDozev6oElQhsVfbJvdi3//c2YvbY02LrNlbpGdt3Wq4rWonS"
+  ;r.crossOrigin="anonymous";r.async=true
+  ;r.src="https://cdn.amplitude.com/libs/amplitude-8.5.0-min.gz.js"
+  ;r.onload=function(){if(!e.amplitude.runQueuedFunctions){
+  console.log("[Amplitude] Error: could not load SDK")}}
+  ;var i=t.getElementsByTagName("script")[0];i.parentNode.insertBefore(r,i)
+  ;function s(e,t){e.prototype[t]=function(){
+  this._q.push([t].concat(Array.prototype.slice.call(arguments,0)));return this}}
+  var o=function(){this._q=[];return this}
+  ;var a=["add","append","clearAll","prepend","set","setOnce","unset","preInsert","postInsert","remove"]
+  ;for(var c=0;c<a.length;c++){s(o,a[c])}n.Identify=o;var u=function(){this._q=[]
+  ;return this}
+  ;var l=["setProductId","setQuantity","setPrice","setRevenueType","setEventProperties"]
+  ;for(var p=0;p<l.length;p++){s(u,l[p])}n.Revenue=u
+  ;var d=["init","logEvent","logRevenue","setUserId","setUserProperties","setOptOut","setVersionName","setDomain","setDeviceId","enableTracking","setGlobalUserProperties","identify","clearUserProperties","setGroup","logRevenueV2","regenerateDeviceId","groupIdentify","onInit","logEventWithTimestamp","logEventWithGroups","setSessionId","resetSessionId"]
+  ;function v(e){function t(t){e[t]=function(){
+  e._q.push([t].concat(Array.prototype.slice.call(arguments,0)))}}
+  for(var n=0;n<d.length;n++){t(d[n])}}v(n);n.getInstance=function(e){
+  e=(!e||e.length===0?"$default_instance":e).toLowerCase()
+  ;if(!Object.prototype.hasOwnProperty.call(n._iq,e)){n._iq[e]={_q:[]};v(n._iq[e])
+  }return n._iq[e]};e.amplitude=n})(window,document);
+
+  amplitude.getInstance().init("be66799cc85da3545fc1acf9144ee66a");
+</script>
+<script>
+var eventProperties = {
+ 'page': window.location.pathname
+};
+amplitude.getInstance().logEvent('aboutpage:shown', eventProperties);
+</script>
+<style>
+    button.col-1.accordion.p-0 {
+        display: none;
+    }
+    body{
+        color:#383838;
+    }
+    @media only screen and (max-width: 991px){
+        .m-text{
+            line-height:40px;
+        }
+        .min-text {
+            font-size: 16px;
+            line-height: 21px;
+            padding-left: 5%;
+            padding-right: 5%;
+            }
+        }
+    .logo-homeword {
+        color: #6B6F76;
+        width: 15%;
+        font-family: 'big-heading';
+        font-size: 24px;
+        min-width: 184px;
+        letter-spacing: -1px;
+    }
+    .navbar-brand {
+        display: inline-block;
+        padding-top: 0.3125rem;
+        padding-bottom: 0.3125rem;
+        margin-right: 1rem;
+        font-size: 1.25rem;
+        line-height: inherit;
+        white-space: nowrap;
+    }
+    .navbar {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        padding: 0.5rem 1rem;
+    }
+    .nav-item.quart a{
+        color:#383838;
+    }
+    @media only screen and (min-width: 768px){
+    .whiteish{
+        padding-right:40px!important;
+    }
+    }
+    .navbar, .intro-about{background-color:white!important;}
+    .whiteish{color:#6B6F76!important;}
+    .m-text{text-transform:none;}
+    .min-text{padding-bottom:52px;}
+    .help {
+  min-height: 64vh;
+  display: flex;
+  flex-direction: column;
+  background-color:white;
+}
+.help h2 {
+  text-align: center;
+  margin: 0;
+  padding: 1rem 0;
+}
+.help-content {
+  display: flex;
+  flex: 1 0 100%;
+  flex-wrap: wrap;
+  text-align: center;
+  font-size: 2rem;
+}
+.cell {
+  display: flex;
+  flex: 1 0 50%;
+  width: 50%;
+  padding: 10px;
+  background:#fff;
+}
+.one,
+.four {
+  background: #fff;
+}
+.mid {
+  margin: auto;
+  font-size:6vw;
+  font-family:'big-heading';
+}
+.midsmall{display:block;font-size:2vw;}
+.one .mid,.two .mid{
+  margin:auto auto 0;
+}
+.three .mid,.four .mid{
+  margin:0 auto auto;
+}
+.oouy{background-color:#F5F5F7;}
+.accordion, .questions{background-color:#00d1c1;}
+.q-text{color:white;border-top:1px solid white;}
+.superman-work{background-color:white;padding-top:5%;}
+.signupbutton{
+    width:18rem;
+    background:linear-gradient(90deg, #078E9B 6.9%, #0D8A96 47.8%, #007A86 80.39%);
+    box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    color:white;
+    padding:18px;
+    display:block;
+    margin:0 auto;
+    font-size:1.4rem;
+    text-align:center;
+    text-shadow: rgb(0 0 0 / 25%) 0px 3px;
+    font-weight:500;
+}
+.signupbutton:hover{
+    color:white;
+    box-shadow: #138e97 0px 1px 4px;
+}
+.navbar-light .navbar-toggler-icon {
+    background-image: url(https://www.konaequity.com/static/web_photos/burgermenu2.svg);
+}
+@media only screen and (max-width: 575px){
+        #menu-bar {
+            width: 75%!important;
+        }
+        .midsmall{font-size:3vw;}
+        .mid{font-size:10vw;}
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<nav class="navbar navbar-expand-md navbar-light" style="padding-left: 6%; padding-right: 6%;background-color:#00D1C1;">
+    <a class="navbar-brand logo-home logo-homeword" href="/" style="font-size: 2rem; text-decoration: none;">Kona Equity</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse mx-md-auto" id="navbarSupportedContent">
+        <ul class="nav navbar-nav mx-sm-auto">
+            <li class="nav-item quart mx-auto" style="text-align: center !important;">
+                <a class="nav-link whiteish" href="/about/">About</a>
+            </li>
+
+            <li class="nav-item quart mx-auto drop-custom">
+                <div class="dropdown">
+                    <a class="dropbtn whiteish" href="/find/">Explore</a>
+                    <div class="dropdown-content">
+                        {% for a in dc %}
+                        <a href="{{a.link}}" class="dropdowns">{{a.name}}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item quart mx-auto" style="text-align: center !important;">
+                <a class="nav-link whiteish" href="/premium/">Premium</a>
+            </li>
+            <li class="nav-item quart mx-auto" style="text-align: center !important;">
+                <a class="nav-link whiteish" href="/contact/">Contact us</a>
+            </li>
+        </ul>
+
+        <ul class="navbar-nav nav ml-auto pull-sm-right justify-content-center">
+            {% if not request.user.is_authenticated %}
+            <li class="nav-item active quart mx-auto">
+                <a class="nav-link" href="/login" style="cursor: pointer !important;">Login</a>
+            </li>
+
+            <li class="nav-item quart mx-auto">
+                <a class="nav-link text-center" href="/signup/cold-join" style="width: 100px; background-color: #007a86; color: white!important; margin-left: 10px; border-radius: 8px;">
+                    Sign up
+                </a>
+            </li>
+            {% else %}
+            <li class="nav-item quart mx-auto" style="text-align: center !important;">
+                <a class="nav-link" href="/dashboard/">Edit profile</a>
+            </li>
+            <li class="nav-item quart mx-auto" style="text-align: center !important;">
+                <a class="nav-link" href="/watchlist/">Prospects</a>
+            </li>
+            <li class="nav-item quart mx-auto" style="text-align: center !important;">
+                <a class="nav-link logmeout" href="JavaScript:void(0);">Logout</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+<div class="container-fluid intro-about" style="padding-top:8%">
+    <div class="row">
+        <div class="col-lg-12 my-auto" style="padding-bottom:10%;">
+            <img src="https://www.konaequity.com/static/backend_django_v2/images/main/logo-color.svg" style="margin:0 auto!important; display:block;width:65px;padding-bottom:24px;">
+            <h1 class="m-text" style="text-align:center;color:#383838;">
+                About Kona Equity
+            </h1>
+            <div class="min-text" style="text-align:center;width:47%;margin:0 auto!important;color:#383838;min-width:320px;">
+                <span style="padding-bottom:56px;">Welcome to Kona Equity, the largest company search tool. We make it faster for companies to find eachother.</span>
+            </div>
+                {% if not request.user.is_authenticated %}
+                <a href="/signup/cold-join" class="signupbutton">Sign up for free</a>
+                {% else %}
+                {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid quest">
+    <div class="row">
+        <div class="may-ask" style="background-color: #F5F5F7;">
+            <div class="upb">
+                Questions you can answer using Kona Equity
+            </div>
+            <div class="lowb">
+                The Kona Equity market intelligence platform analyzes millions of data points on revenue, growth,
+                employees, and technologies to help you see tomorrow’s opportunities, today.
+                Our mission is to provide a 360-degree view of every company.
+            </div>
+            <div class="lowb">
+                Our team works every day to build technology that helps corporations guess less and win more.
+                We aggregate and analyze massive amounts of data and use machine learning, algorithms, and
+                data visualization to help answer strategic questions using data.
+            </div>
+        </div>
+        <div class="questions">
+            {% for an in ex %}
+            <div class="question row">
+                <div class="accordion col-11 q-text my-auto">
+                    {{an.text}}
+                </div>
+                <button class="col-1 accordion p-0">
+                    <img src="{% static 'web_photos/q-down.svg' %}">
+                </button>
+                <div class="w-100 panel p-0">
+                    <div class="row h-100 mx-auto">
+                        <div class="p-0 col-lg-1 marker-thing my-auto">
+                            <img class="left-glide"  src="{% static 'web_photos/left-car.svg' %}">
+                        </div>
+                        <div class="col-lg-10 carousel-mid p-0">
+                            <div id="intro{{forloop.counter}}" class="glide">
+                                <div class="glide__track" data-glide-el="track">
+                                <ul class="glide__slides">
+                                    {% for e in an.target %}
+                                    <li class="glide__slide">
+                                        <div class="card shadow top-company mx-auto text-center">
+                                            {% if e.fav %}
+                                                <div class="row searchBDir fav yes" data-id="{{e.id}}" data-selected="true">
+                                            {% else %}
+                                                <div class="row searchBDir fav no" data-id="{{e.id}}" data-selected="false">
+                                            {% endif %}
+                                            </div>
+                                            <div class="row" style="height: 45%;">
+                                                <div class="my-auto p-0 mx-auto">
+                                                <a target="_blank" href="/company/{{e.identifier}}/"><img class="top-img" src="https://logo.clearbit.com/{{e.domain}}" onerror="this.src='/static/profile_photos/generic.png'"></a>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="height: 35%;">
+                                                <div class="col-12">
+                                                <a target="_blank" href="/company/{{e.identifier}}/" class="top-name">{{e.name}}</a>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                <a href="/company/{{e.identifier}}/" class="top-details">${{e.annual_revenue}}</a>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                <a href="/company/{{e.identifier}}/" class="top-details">{{e.num_emp}} employees</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-0 my-auto col-lg-1 marker-thing">
+                            <img class="right-glide" src="{% static 'web_photos/right-car.svg' %}">
+                        </div>
+                        </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div class="container-fluid criteria help">
+    <div class="help-content">
+    <div class="cell one">
+      <div class="mid">2020<span class="midsmall">founded</span></div>
+    </div>
+    <div class="cell two">
+      <div class="mid">2.5m<span class="midsmall">companies in US & Canada</span></div>
+    </div>
+    <div class="cell three">
+      <div class="mid">1.3m<span class="midsmall">executive contacts</span></div>
+    </div>
+    <div class="cell four">
+      <div class="mid">120k<span class="midsmall">visitors per month</span></div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid oouy">
+    <div class="row desk-work">
+        <div class="col-lg-7 col-md-7 sjut">
+            <div class="upb">The Kona Advantage</div>
+            <div class="lowb">
+                <p>Kona helps keep your finger on the pulse of every opportunity. Identify and target your ideal companies faster by leveraging high-quality data.</p>
+                <p>We ingest massive datasets including researcher submitted information to give you proprietary insights.
+                We then provide data visualizations & storytelling layers on the data that helps you get to answers.
+                To predict future trends on where the world is going. Kona Equity’s G Score provides early predictive
+                intelligence into emerging company health and momentum so you can identify tomorrow’s winners and future threats today.</p>
+            </div>
+        </div>
+        <div class="col-lg-5 col-md-5 text-center">
+            <img class="flacvf" src="{% static 'web_photos/circleslogo.svg' %}">
+        </div>
+    </div>
+    <div class="row superman-work">
+        <div class="col-lg-6 col-md-6 text-center">
+            <img class="flkio" src="{% static 'web_photos/sunsetcircles.svg' %}" style="padding:4%;">
+        </div>
+        <div class="col-lg-6 col-md-6 njhu">
+            <div class="upb">Picking Winners from Losers Using the G Score</div>
+            <div class="lowb">
+                <p>G Score was created by former Harvard Ph.D. student, Partha Mohanram for strategizing which companies to invest in.
+                Mohanram set out to identify a series of accounting and other business-related financial metrics that would separate
+                glamour/growth companies with the potential for excess return from those that didn’t. Kona Equity has repurposed the
+                G Score to work with small private businesses.</p>
+                <p>The G Score is an eight-point scale where firms are given a score of 1 for each of the criteria that they pass.
+                A company that passes all eight criteria will obtain a G Score of 8, while firms that pass none get a G Score of 0.
+                Mohanram’s approach compares a company against the sector or industry median. The model has proven to be one of,
+                if not the best systematic model in the past twenty years.</p>
+                <p>Our software algorithmically analyzes this data to help see where the world is going.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block script %}
+<script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
+<script src="{% static 'js/autocomplete.js' %}"></script>
+<script src="{% static 'js/about.js' %}"></script>
+<script src="{% static 'js/utils.js' %}"></script>
+<script>
+    function main(){
+        var inp = document.getElementById("id_input")
+        autocomplete(inp);
+
+        logmeout();
+        dropys();
+        openSome();
+        validato();
+        checkSome();
+        favCheck();
+        mobileSignup();
+        popitUp();
+
+        var panel = $(".panel").first();
+        $(panel).css("display", "block");
+        setGlide(panel)
+        $(".accordion").click(function(){
+            var panel = $(this).parent().find(".panel");
+            if($(panel).css("display") == "none"){
+                $(".panel").slideUp(400);
+                $(panel).slideDown(400, function(){
+                    setGlide(panel)
+                });
+            }
+        });
+
+    }
+
+    if (window.addEventListener) {
+      window.addEventListener('load', main);
+   } else if (window.attachEvent) {
+      window.attachEvent('onload', main);
+   } else {
+      window.onload = main;
+   }
+
+</script>
+{% endblock %}

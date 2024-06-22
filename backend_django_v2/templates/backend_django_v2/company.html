@@ -1,0 +1,1986 @@
+{% extends 'expandable/base.html' %}
+{% load static %}
+{% block title %} {{company.name}} - ${{revenue_abbreviation}} | Kona Equity {% endblock %}
+{% block head %}
+<meta property="og:title" content="{{company.name}} - {{company.annual_revenue}} Revenue | Kona Equity">
+<meta name="description"
+  content="{{company.name}} ({{company.domain}}) in {{company.city}}, {{company.state}}. {{company.description|truncatechars:145}} View more company details, employee count and revenue data on Kona Equity.">
+<meta property="og:description"
+  content="Discover {{company.name}} ({{company.domain}}) located in {{company.city}}, {{company.state}}, profitability and growth compared to their industry and so much more.">
+<meta property="og:type" content="website">
+<meta name="keywords"
+  content="{{company.name}}, Kona Equity, Kona, Private Equity, web summary, employee history, revenue history, acquirer, acquisition">
+<meta property="og:keywords"
+  content="{{company.name}}, Kona Equity, Kona, Private Equity, web summary, employee history, revenue history, acquirer, acquisition">
+<meta property="og:image" content="{% static 'profile_photos/favicon.ico' %}">
+<meta name="robots" content="index, follow">
+<meta name="format-detection" content="telephone=no">
+<meta property="og:site_name" content="Kona Equity">
+<meta property="og:url" content="https://www.konaequity.com/company/{{company.identifier}}/">
+<link rel="canonical" href="https://www.konaequity.com/company/{{company.identifier}}/" content="https://www.konaequity.com/company/{{company.identifier}}/">
+<link
+    rel="icon"
+    href="/static/profile_photos/favicon.ico"
+    type="image/gif"
+    sizes="32x32"
+/>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GXS2W1JXVR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GXS2W1JXVR');
+</script>
+<script src="https://www.googleoptimize.com/optimize.js?id=OPT-P69KL7V"></script>
+<!-- Clarity tracking code for https://www.konaequity.com/ -->
+<script>
+(function(c,l,a,r,i,t,y){
+c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "56y5lp4wnt");
+</script>
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "legalname": "{{company.name}}",
+    "image": "https://logo.clearbit.com/{{company.domain}}",
+    "url": "https://www.konaequity.com/company/{{company.identifier}}/",
+    {% if company.description %}
+    "description":"{{company.description}}",
+    {% endif %}
+    {% if company.year_founded %}
+    "foundingDate":"{{company.year_founded}}",
+    {% endif %}
+    {% if company.num_emp %}
+    "numberOfEmployees":"{{company.num_emp}}",
+    {% endif %}
+    {% if company.naics %}
+    "naics":"{{company.naics}}",
+    {% endif %}
+    {% if company.sic %}
+    "isicV4":"{{company.sic}}",
+    {% endif %}
+    "address": {
+      "@type": "PostalAddress",
+      {% if company.address_2 %}
+      "streetAddress": "{{company.address_2}}",
+      {% endif %}
+      {% if company.address %}
+      "addressLocality": "{{company.address}}",
+      {% endif %}
+      {% if company.state %}
+      "addressRegion": "{{company.state}}",
+      {% endif %}
+      {% if company.postal %}
+      "postalCode": "{{company.postal}}",
+      {% endif %}
+      {% if company.country %}
+      "addressCountry": "{{company.country}}",
+      {% endif %}
+    "sameAs": [
+      {% if company.fb_page %}
+      "{{company.fb_page}}",
+      {% endif %}
+      {% if company.li_page %}
+      "{{company.li_page}}",
+      {% endif %}
+      {% if company.twitter_handle %}
+      "https://www.twitter.com/{{company.twitter_handle}}"
+      {% endif %}
+    ]
+    }
+  }
+</script>
+<script>
+  (function(e,t){var n=e.amplitude||{_q:[],_iq:{}};var r=t.createElement("script")
+  ;r.type="text/javascript"
+  ;r.integrity="sha384-tzcaaCH5+KXD4sGaDozev6oElQhsVfbJvdi3//c2YvbY02LrNlbpGdt3Wq4rWonS"
+  ;r.crossOrigin="anonymous";r.async=true
+  ;r.src="https://cdn.amplitude.com/libs/amplitude-8.5.0-min.gz.js"
+  ;r.onload=function(){if(!e.amplitude.runQueuedFunctions){
+  console.log("[Amplitude] Error: could not load SDK")}}
+  ;var i=t.getElementsByTagName("script")[0];i.parentNode.insertBefore(r,i)
+  ;function s(e,t){e.prototype[t]=function(){
+  this._q.push([t].concat(Array.prototype.slice.call(arguments,0)));return this}}
+  var o=function(){this._q=[];return this}
+  ;var a=["add","append","clearAll","prepend","set","setOnce","unset","preInsert","postInsert","remove"]
+  ;for(var c=0;c<a.length;c++){s(o,a[c])}n.Identify=o;var u=function(){this._q=[]
+  ;return this}
+  ;var l=["setProductId","setQuantity","setPrice","setRevenueType","setEventProperties"]
+  ;for(var p=0;p<l.length;p++){s(u,l[p])}n.Revenue=u
+  ;var d=["init","logEvent","logRevenue","setUserId","setUserProperties","setOptOut","setVersionName","setDomain","setDeviceId","enableTracking","setGlobalUserProperties","identify","clearUserProperties","setGroup","logRevenueV2","regenerateDeviceId","groupIdentify","onInit","logEventWithTimestamp","logEventWithGroups","setSessionId","resetSessionId"]
+  ;function v(e){function t(t){e[t]=function(){
+  e._q.push([t].concat(Array.prototype.slice.call(arguments,0)))}}
+  for(var n=0;n<d.length;n++){t(d[n])}}v(n);n.getInstance=function(e){
+  e=(!e||e.length===0?"$default_instance":e).toLowerCase()
+  ;if(!Object.prototype.hasOwnProperty.call(n._iq,e)){n._iq[e]={_q:[]};v(n._iq[e])
+  }return n._iq[e]};e.amplitude=n})(window,document);
+
+  amplitude.getInstance().init("be66799cc85da3545fc1acf9144ee66a");
+</script>
+<script>
+var eventProperties = {
+ 'page': window.location.pathname
+};
+amplitude.getInstance().logEvent('companypage:shown', eventProperties);
+</script>
+<form id="logout" method="post" action="{% url 'account_logout' %}">
+  {% csrf_token %}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+</form>
+<style>
+  .unlock-btn{
+    background: #00d1c2;
+    border: 1px solid #00d1c2;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    padding: 4px 11px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .unlock-btn:hover{
+    background: #03a89d;
+    border: 1px solid #03a89d;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    padding: 4px 11px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .link-text{
+    display:block;
+    text-decoration:none;
+    color:#1080a2;
+    padding-bottom: 12px;
+    font-size: 14px;
+}
+.link-title{
+    margin-bottom:10px;
+    font-weight:600;
+}
+.stats__item{
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+@media only screen and (max-width: 500px) {
+    .stats {display:block;
+    }
+}
+
+</style>
+{% endblock head %}
+{% block content %}
+<div>
+  <header class="header">
+    <div class="header__wrapper">
+      <div class="container">
+        <div class="header__inner">
+          <div class="header__main">
+            <a href="/" class="header__logo">
+              <picture class="logo">
+                  {% if request.user.profile.paid %}
+                    <style>
+                        .header__main{grid-template-columns: 100px 1fr!important;}
+                         @media (max-width: 767px){
+                            .header__inner {grid-gap: 75px;}
+                            }</style>
+                    <img src="{% static 'web_photos/logopremium.svg' %}" alt="Kona Equity logo"
+                  class="logo__img" onclick="window.location.href='/';" />
+                {% else %}
+                <img src="{% static 'backend_django_v2/images/main/logo-color.svg' %}" alt="Kona Equity logo"
+                  class="logo__img" onclick="window.location.href='/';" />
+                  {% endif %}
+              </picture>
+            </a>
+            <nav class="header__nav header__main-nav">
+              <ul class="header__nav-list">
+                <li class="header__nav-item">
+                  <a href="/about/" class="header__nav-link">About</a>
+                </li>
+
+                <li class="header__nav-item">
+                  <a href="/find/" class="header__nav-link">Explore</a>
+                </li>
+                <li class="header__nav-item">
+                  <a href="/premium/" class="header__nav-link">Premium</a>
+                </li>
+                <li class="header__nav-item">
+                  <a href="/contact/" class="header__nav-link">Contact us</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+          <div class="header__secondary">
+            <form style="position: relative;" id="searchBar" action="/find/--/" method="GET"
+              class="search-form header__search header__main-search">
+              <input id="searchText" class="input header__search-input search__input" placeholder="Find companies" type="text" />
+              <button class="header__search-button" type="submit"></button>
+              <div id="searchResult" class="searchDropDown search__result">
+
+              </div>
+            </form>
+
+            {% if request.user.is_authenticated %}
+            <div class="header__controls header__main-controls">
+              <div class="header__controls-item">
+                <a href="{% url 'dashboard' %}" class="button-inline">Profile</a>
+              </div>
+              <div class="header__controls-item">
+                <a href="{% url 'watchlist' %}" class="button-inline">Prospects</a>
+              </div>
+              <div class="header__controls-item">
+                <a href="javascript:void(0)" class="button-inline logmeout">Logout</a>
+              </div>
+
+            </div>
+            {% else %}
+            <div class="header__controls header__main-controls">
+              <div class="header__controls-item">
+                <a href="/login" class="button-inline">Sign in</a>
+              </div>
+              <div class="header__controls-item">
+                <a href="/signup/cold-join" class="button button--primary header__controls-button">Sign up</a>
+              </div>
+            </div>
+            {% endif %}
+
+
+            <button class="menu-button header__menu-button" id="hamburgerMenu">
+              <span></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="header-drop-menu">
+      <nav class="header__nav">
+        <ul class="header__nav-list">
+          <li class="header__nav-item">
+            <a href="/about/" class="header__nav-link">About</a>
+          </li>
+          <li class="header__nav-item">
+            <a href="/find/" class="header__nav-link">Explore</a>
+          </li>
+          <li class="header__nav-item">
+            <a href="/premium/" class="header__nav-link">Premium</a>
+          </li>
+          <li class="header__nav-item">
+            <a href="/contact/" class="header__nav-link">Contact us</a>
+          </li>
+        </ul>
+      </nav>
+
+      <form class="header__search">
+        <input class="input header__search-input search__input" placeholder="2.3M companies worldwide" type="text" id="searchBoxPhone" />
+        <button class="header__search-button" type="submit"></button>
+        <div id="searchResultPhone" class="searchDropDown search__result">
+
+        </div>
+      </form>
+
+      {% if not request.user.is_authenticated %}
+      <div class="header__controls">
+        <div class="header__controls-item">
+          <p class="label">Have an account?</p>
+          <a href="/login" class="button-inline button-inline--primary">Sign in</a>
+        </div>
+        <div class="header__controls-item">
+          <a href="/signup/cold-join" class="button button--primary header__controls-button">Sign up</a>
+        </div>
+      </div>
+      {% else %}
+      <div class="header__controls">
+        <div class="header__controls-item">
+          <a href="{% url 'dashboard' %}" class="button-inline">Profile</a>
+        </div>
+        <div class="header__controls-item">
+          <a href="{% url 'watchlist' %}" class="button-inline">Prospects</a>
+        </div>
+        <div class="header__controls-item">
+          <a href="javascript:void(0)" class="button-inline logmeout">Logout</a>
+        </div>
+      </div>
+      {% endif %}
+
+
+    </div>
+  </header>
+
+<div class="company-content">
+    <div class="container">
+      <div class="company-content__inner">
+        <aside class="company-content__primary-sidebar">
+          <section class="company-info">
+            <h1 class="company-info__title">{{company.name}}</h1>
+            <h2 class="company-info__sub-title">
+              {{company.city}}, {{company.state}}
+            </h2>
+
+            <div class="company-info__claim">
+              {% csrf_token %}
+              <a href="javascript:void(0);" class="company-info__claim-link"> Claim this company</a>
+            </div>
+
+            <ul class="company-info__stats">
+              <li class="company-info__stats-item company-info__stats-item--stats">
+                <strong>Revenue:</strong> $<span class="ins_comm">{{company.annual_revenue}}</span>
+              </li>
+              <li class="
+                  company-info__stats-item company-info__stats-item--people
+                ">
+                <strong>Employees:</strong> {{company.num_emp}}
+              </li>
+            </ul>
+
+            <div class="company-info__website">
+              <a href="https://{{company.domain}}" target="_blank"
+                class="company-info__website-link">{{company.domain}}</a>
+            </div>
+          </section>
+
+          <div class="company-meta">
+            <div class="swiper-container company-meta__slider">
+              <div class="swiper-wrapper company-meta__wrapper">
+                <div class="swiper-slide company-meta__item">
+                  <picture class="company-meta__icon">
+                    <img src="{% static 'backend_django_v2/images/icons/calendar.svg' %}" alt="Last Updated"
+                      class="company-meta__icon-img" />
+                  </picture>
+
+                  <h3 class="company-meta__title">Last Updated</h3>
+                  <p class="company-meta__value">{{buffer.lmod}}</p>
+                </div>
+
+                {%if company.google_industry %}
+                <div class="swiper-slide company-meta__item">
+                  <picture class="company-meta__icon">
+                    <img src="{% static 'backend_django_v2/images/icons/bag.svg' %}" alt="Industry"
+                      class="company-meta__icon-img" />
+                  </picture>
+
+                  <h3 class="company-meta__title">Industry</h3>
+                  <p class="company-meta__value"><a href="/find/?google_industry={{go.google}}">{{company.google_industry}}</a></p>
+                </div>
+                {% endif %}
+                <!-- Check if company has industry -->
+                {% if company.industry %}
+                <div class="swiper-slide company-meta__item">
+                  <picture class="company-meta__icon">
+                    <img src="{% static 'backend_django_v2/images/icons/category.svg' %}" alt="Category"
+                      class="company-meta__icon-img" />
+                  </picture>
+
+                  <h3 class="company-meta__title">Category</h3>
+                  <p class="company-meta__value"><a href="/find/{{company.industry}}--/">{{company.industry}}</a></p>
+                </div>
+                {% endif %} {% if company.city or company.state %}
+                <div class="swiper-slide company-meta__item">
+                  <picture class="company-meta__icon">
+                    <img src="{% static 'backend_django_v2/images/icons/marker.svg' %}" alt="Location"
+                      class="company-meta__icon-img" />
+                  </picture>
+
+                  <h3 class="company-meta__title">Location</h3>
+                  {% if company.city and company.state %}
+                  <p class="company-meta__value">
+                    <a href="/find/--{{company.state}}/?city={{company.city}}">{{company.city}}, {{company.state}}</a>
+                  </p>
+                  {% elif company.city %}
+                  <p class="company-meta__value">
+                    <a href="/find/--/?city={{company.city}}">{{company.city}}</a>
+                  </p>
+                  {% else %}
+                  <p class="company-meta__value">
+                    <a href="/find/--{{company.state}}/">{{company.state}}</a>
+                  </p>
+                  {% endif %}
+
+
+                </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+
+          <section class="bookmark  {% if company.fav %} bookmark--active {% endif %} ">
+
+            <div class="bookmark__icon save-to-watchlist">
+              {% csrf_token %}
+              <input type="hidden" id="watchlist-status" {% if company.fav %}value="yes" {% else %} value="no" {% endif %} />
+              </div>
+
+            {% if company.fav %}
+            <p class="bookmark__label">
+              This company is part of your <a href="/watchlist">prospects</a>
+            </p>
+            {% else %}
+            <p class="bookmark__label">
+              You can add this company to your <a href="/watchlist">prospects</a> to get updates
+            </p>
+            {% endif %}
+
+
+          </section>
+
+          <section class="competitors">
+            <div class="competitors__head">
+              <h2 class="competitors__title">Competitors</h2>
+            </div>
+            <div class="competitors__body">
+              <div class="swiper-container competitors__slider">
+                <div class="swiper-wrapper competitors__wrapper">
+                  {% for e in comps %}
+                  <div class="swiper-slide competitors__item">
+                    <div class="company-item company-item--vertical">
+                      <picture class="company-item__logo">
+                        <img src="https://logo.clearbit.com/{{e.domain}}"
+                          onerror="this.src='/static/profile_photos/generic.png'" alt="{{e.name}}"
+                          class="company-item__logo-img" />
+                      </picture>
+
+                      <div class="company-item__info">
+                        <a href="{% url 'backend_django_v2:company' id=e.identifier %}" target="_blank"
+                          class="company-item__title">{{e.name}}</a>
+                        {% if e.year_founded %}
+                        <p class="company-item__category">
+                          Founded in {{e.year_founded}}
+                        </p>
+                        {% endif %}
+                      </div>
+                    </div>
+                  </div>
+                  {% endfor %}
+                  {% if not comps %}
+                  <div class="swiper-slide">N/A</div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section hide-tablet-le">
+            <div class="section__head section__head--small-p">
+              <h2 class="section__title">Visitors review</h2>
+            </div>
+            <div class="section__body section__body--small-p">
+              {% comment %}
+              <div class="likes-block">
+                <h4 class="label label--big likes-block__label">
+                  Do you like this company?
+                </h4>
+                <div class="likes-block__controls">
+                  <button class="
+                      likes-block__controls-item
+                      likes-block__controls-item--dislike
+                    "></button>
+                  <button class="
+                      likes-block__controls-item
+                      likes-block__controls-item--like
+                      likes-block__controls-item--active
+                    "></button>
+                </div>
+              </div>
+              {% endcomment %}
+              <ul class="likes-info {% if not user_like %} likes-hor {% endif %}">
+
+                <li class="likeCompany likes-info__item likes-info__item--like" style="cursor: pointer;"
+                  {% if user_like and user_like.liked %} data-liked="true" {% endif %}>
+                  {% csrf_token %}
+                  <span class="likes-text-info" {% if not user_like %} style="display: none;" {% endif %}>
+                  <span class="likes-count">{{likes}}</span>
+                   people liked this company
+                  </span>
+                </li>
+                <li class="dislikeCompany likes-info__item likes-info__item--dislike" style="cursor: pointer;"
+                  {% if user_like and not user_like.liked %} data-disliked="true" {% endif %}>
+                  {% csrf_token %}
+                  <span class="likes-text-info" {% if not user_like %} style="display: none;" {% endif %}>
+
+                  <span class="likes-count">{{dislikes}}</span>
+                  people disliked this company
+
+                  </span>
+                </li>
+              </ul>
+
+
+            </div>
+          </section>
+
+          <section class="section hide-tablet-le">
+            <div class="section__head section__head--small-p">
+              <h2 class="section__title">Next step</h2>
+            </div>
+            <div class="section__body section__body--small-p">
+              <ul class="styled-checked-list">
+                {% if not company.fav %}
+                <li class="styled-checked-list__item">
+                  Save <a href="javascript:void(0)" class="save-to-watchlist"> {% csrf_token %} {{company.name}}</a> to
+                  your prospects
+                </li>
+                {% endif %}
+                {% if company.industry %}
+                <li class="styled-checked-list__item">
+                  Explore other companies in
+                  <a href="/find/{{go.industry}}--/" target="_blank">the {{company.industry}} category</a>
+                </li>
+                {% endif %} {% if company.google_industry %}
+                <li class="styled-checked-list__item">
+                  Explore other companies in
+                  <a href="/find/?google_industry={{go.google}}" target="_blank">the {{company.google_industry}}
+                    industry</a>
+                </li>
+                {% endif %} {% if company.city %}
+                <li class="styled-checked-list__item">
+                  Explore other companies in
+                  <a href="/find/--{{company.state}}/?city={{company.city}}" target="_blank">{{company.city}}</a>
+                </li>
+                {% endif %} {% if company.state %}
+                <li class="styled-checked-list__item">
+                  Explore other companies in
+                  <a href="/find/--{{company.state}}/" target="_blank">{{company.state}}</a>
+                </li>
+                {% endif %}
+              </ul>
+            </div>
+          </section>
+        </aside>
+
+        <main class="company-content__main">
+          <section class="section">
+            <div class="section__head">
+              <h2 class="section__title">Summary</h2>
+
+              <div class="section__head-controls">
+                <button id="summary-edit-btn" class="
+                    section__head-controls-item
+                    section__head-controls-item--edit
+                  ">
+                  Edit
+                </button>
+              </div>
+            </div>
+            <div class="section__body">
+              <div class="summary">
+                <div class="summary__head">
+                  <div class="company-item">
+                    <picture class="company-item__logo">
+                      <img src="https://logo.clearbit.com/{{company.domain}}"
+                        onerror="this.src='/static/profile_photos/generic.png'" alt="{{company.name}}"
+                        class="company-item__logo-img" />
+                    </picture>
+
+                    <div class="company-item__info">
+                      <h3 class="company-item__title">{{company.name}}</h3>
+                      {% if company.year_founded %}
+                      <p class="company-item__description">
+                        Founded in {{company.year_founded}}
+                      </p>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="summary__body">
+                  {% if company.description %}
+                  <div class="summary__main">
+                    <h4 class="summary__title">Description</h4>
+                    <p class="summary__description">{{company.description}}</p>
+                  </div>
+                  {% endif %}
+                  <div class="summary__secondary">
+                    <div class="summary__secondary-item">
+                      <h4 class="summary__title">Strengths</h4>
+                      <ul class="summary__signs">
+                        {% for s in sng %}
+                        <li class="summary__signs-item summary__signs-item--plus">
+                          {{s}}
+                        </li>
+                        {% endfor %} {% if not sng %}
+                        <li class="summary__signs-item summary__signs-item--plus">
+                          N/A
+                        </li>
+                        {% endif %}
+                      </ul>
+                    </div>
+                    <div class="summary__secondary-item">
+                      <h4 class="summary__title">Weaknesses</h4>
+                      <ul class="summary__signs">
+                        {% for w in wek %}
+                        <li class="summary__signs-item summary__signs-item--minus">
+                          {{w}}
+                        </li>
+                        {% endfor %} {% if not wek %}
+                        <li class="summary__signs-item summary__signs-item--minus">
+                          N/A
+                        </li>
+                        {% endif %}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section__head">
+              <h2 class="section__title">Annual Revenue</h2>
+
+              <div class="section__head-controls">
+                <button id="annual-rev-edit-btn" class="
+                    section__head-controls-item
+                    section__head-controls-item--edit
+                  ">
+                  Edit
+                </button>
+              </div>
+            </div>
+
+            <div class="section__body revsection">
+
+              <div class="chart-info">
+                <div class="chart-info__head">
+                  <h3 class="chart-info__head-sub-title">
+                    {{company.name}}'s annual revenue
+                  </h3>
+                  <h4 class="chart-info__head-title">$<span class="ins_comm">{{company.annual_revenue}}</span></h4>
+                  <p class="chart-info__head-description">
+                    Based on Kona Equity data
+                  </p>
+                </div>
+
+                <div class="chart-info__body">
+                  <ul class="chart-info__aside">
+                    {% if company.revenue_per_employee != "-" %}
+
+                    <li class="chart-info__aside-item">
+                      <h4 class="chart-info__title">Revenue per employee</h4>
+                      <p class="chart-info__value">$<span class="ins_comm">{{company.revenue_per_employee}}</span></p>
+                    </li>
+                    {% endif %}
+                    {% if company.revenue_variance != "-" %}
+
+                    <li class="chart-info__aside-item">
+                      <h4 class="chart-info__title">
+                        Variance of revenue growth
+                      </h4>
+                      <p class="chart-info__value">{{company.revenue_variance}}</p>
+                    </li>
+                    {% endif %}
+                    {% if company.a_revenue_since_founding  and company.a_revenue_since_founding != "-" %}
+
+                    <li class="chart-info__aside-item">
+                      <h4 class="chart-info__title">
+                        Annual revenue growth since founding
+                      </h4>
+                      <p class="chart-info__value">$<span class="ins_comm">{{company.a_revenue_since_founding}}</span>
+                      </p>
+                    </li>
+                    {% endif %}
+                    {% if company.revenue_growth_first_to_current != "-" %}
+
+                    <li class="chart-info__aside-item">
+                      <h4 class="chart-info__title">
+                        Revenue growth rate from first known quarter to current
+                      </h4>
+                      <p class="chart-info__value">{{company.revenue_growth_first_to_current}}%</p>
+                    </li>
+                    {% endif %}
+                  </ul>
+                  <div class="chart-info__main" style="position: relative;">
+                    <canvas class="chart-info__canvas" style="position: relative; z-index: 1;"
+                      id="annual-rev-chart"></canvas>
+                  </div>
+                </div>
+              </div>
+            {% if request.user.is_authenticated %}
+              {% else%}
+              <!--<style>
+                  .section__body.revsection > *:not(.sign-up-btn) {
+                         background: aliceblue;
+                         filter: grayscale(0.5) blur(10px);
+                        }
+              </style>
+              <a href="#" class="button button--primary header__controls-button sign-up-btn" style="margin-top:10px;">Join now to see all revenue data</a>-->
+              {% endif %}
+
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section__head">
+              <h2 class="section__title">Employee Count</h2>
+
+              <div class="section__head-controls">
+                <button id="emp-count-edit-btn" class="
+                    section__head-controls-item
+                    section__head-controls-item--edit
+                  ">
+                  Edit
+                </button>
+              </div>
+            </div>
+            <div class="section__body revsection">
+              <div class="chart-info">
+                <div class="chart-info__head">
+                  <h3 class="chart-info__head-title">{{company.num_emp}} employees</h3>
+                </div>
+
+                <div class="chart-info__body">
+                  <ul class="chart-info__aside">
+                   {% if company.emp_growth_first_to_current != "-" %}
+
+                    <li class="chart-info__aside-item">
+                      <h4 class="chart-info__title">
+                        Employee growth rate from first known quarter to current
+                      </h4>
+                      <p class="chart-info__value">{{company.emp_growth_first_to_current}}%</p>
+                    </li>
+                    {% endif %}
+                    {% if company.current_employees != "-" %}
+
+                    <li class="chart-info__aside-item">
+                      <h4 class="chart-info__title">
+                        Current employees on Linkedin
+                      </h4>
+                      <p class="chart-info__value">{{company.current_employees}}</p>
+                    </li>
+                    {% endif %}
+                    {% if company.churn_employees != "-" %}
+
+                    <li class="chart-info__aside-item">
+                      <h4 class="chart-info__title">Churned employees</h4>
+                      <p class="chart-info__value">{{company.churn_employees}}</p>
+                    </li>
+                    {% endif %}
+                    {% if company.churn_rate != "-" %}
+
+                    <li class="chart-info__aside-item">
+                      <h4 class="chart-info__title">Churn rate percentage</h4>
+                      <p class="chart-info__value">{{company.churn_rate}}%</p>
+                    </li>
+                    {% endif %}
+                  </ul>
+                  <div class="chart-info__main" style="position: relative;">
+                    <canvas class="chart-info__canvas" id="employees-canvas"
+                      style="position: relative; z-index: 1;"></canvas>
+                  </div>
+                </div>
+              </div>
+              {% if request.user.is_authenticated %}
+              {% else%}
+              <!--<a href="#" class="button button--primary header__controls-button sign-up-btn" style="margin-top:10px;">Join now to see employee data</a>-->
+              {% endif %}
+            </div>
+          </section>
+          {% if contacts|length > 0 %}
+          <section class="section">
+            <div class="section__head">
+              <h2 class="section__title">Executives</h2>
+              <div class="section__head-controls">
+                    <button id="emp-exe-edit-btn" class="
+                        section__head-controls-item
+                        section__head-controls-item--edit
+                      ">
+                        Edit
+                    </button>
+                </div>
+          </div>
+            <div class="section__body">
+                {% for contact in contacts %}
+                    <p style="font-weight:bold;">{{ contact.firstName }}&nbsp;{{ contact.lastName }}</p>
+                    <p>{{ contact.jobTitle }}</p>
+                    {% if request.user.profile.paid %}
+                    <p>{{ contact.email }}</p>
+                    {% else %}
+                    <a href="/premium" class="link-text">{{ contact.email|slice:':1'}}**@{{company.domain}}</a>
+                    <a href="/premium/"><button class="unlock-btn" style="padding:10px 30px;">Unlock Email</button></a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+          </section>
+          {% endif %}
+          <section class="section">
+            <div class="section__head section-head-tooltip gscore-header">
+              <h2 class="section__title">
+                G Score - {{buffer.g_data|length}}
+                <button class="section-head-tooltip__open-button gscore-button"></button>
+              </h2>
+
+              <div class="section__head-controls">
+                <button class="
+                    section__head-controls-item
+                    section__head-controls-item--close
+                    section-head-tooltip__close-button
+                    gscore-close
+                  "></button>
+              </div>
+
+              <div class="section-head-tooltip__body">
+                <p class="section-head-tooltip__text">
+                  The G Score is an eight-point scale where firms are given a
+                  score of 1 for each of the criteria that they pass. The G
+                  score compares a company against the industry median to find
+                  those that are healthy and growing.
+                </p>
+              </div>
+            </div>
+            <div class="section__body">
+              <ul class="styled-list">
+                {% for g in buffer.g_data %}
+                <li class="styled-list__item">
+                  <strong class="styled-list__item-label">{{g.name}}</strong>
+                  {{g.desc}}
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </section>
+          {% if company.rank != "-" or company.page_views != "-" or company.daily_time != "-" or company.bounce_rate != "-" %}
+          <section class="section">
+            <div class="section__head">
+              <h2 class="section__title">Web Analysis</h2>
+            </div>
+            <div class="section__body">
+              <ul class="stats">
+                {% if company.rank != "-" %}
+                <li class="stats__item">
+                  <h4 class="stats__title">Rank</h4>
+                  <p class="stats__value">{{company.rank}}</p>
+                </li>
+                {% endif %}
+                {% if company.page_views != "-" %}
+                <li class="stats__item">
+                  <h4 class="stats__title">Page views per visitor</h4>
+                  <p class="stats__value">{{company.page_views}}</p>
+                </li>
+                {% endif %}
+                {% if company.daily_time != "-" %}
+                <li class="stats__item">
+                  <h4 class="stats__title">Daily time</h4>
+                  <p class="stats__value">{{company.daily_time}}</p>
+                </li>
+                {% endif %}
+                {% if company.bounce_rate != "-" %}
+                <li class="stats__item">
+                  <h4 class="stats__title">Bounce Rate</h4>
+                  <p class="stats__value">{{company.bounce_rate}}</p>
+                </li>
+                {% endif %}
+              </ul>
+            </div>
+          </section>
+          {% endif %}
+          <section class="section">
+            <div class="section__head">
+              <h2 class="section__title">Location</h2>
+
+              <div class="section__head-controls">
+                <button id="location-edit-btn" class="
+                    section__head-controls-item
+                    section__head-controls-item--edit
+                  ">
+                  Edit
+                </button>
+              </div>
+            </div>
+            <div class="section__body">
+              <div class="location-wrapper">
+                <address class="location">
+                  {{company.address}}&nbsp;{{company.address_2}} <br />
+                  {% spaceless %}
+                  {% if company.city %}
+                  <a class="clra"
+                    href="/find/--/?city={{company.city}}">{{company.city}}</a>{% if company.state %},{% endif %}
+                  {% else %}
+                  {{company.city}}{% if company.state %},{% endif %}
+                  {% endif %}
+                  {% if company.state %}
+                  <a class="clra" href="/find/--{{company.state}}/">{{company.state}}</a>
+                  {% else %}
+                  {{company.state}}
+                  {% endif %}
+                  {% endspaceless %}
+                  &nbsp;{{company.postal}}<br />
+                </address>
+              </div>
+            </div>
+          </section>
+{% if request.user.profile.paid %}
+{% else %}
+          <section class="section">
+            <div class="section__head section__head--danger" style="background-color:#007a84;">
+              <h2 class="section__title">Unlock unlimited leads</h2>
+            </div>
+            <div class="section__body">
+              <div class="info info--danger">
+                <p class="info__text">
+                 Get access to millions of contacts, companies, emails, and more!
+                </p>
+                <a href="/premium"><button class="unlock-btn" style="background: #007a84;border: 1px solid #007a84;padding: 10px 30px;">Continue to Kona Equity Premium</button></a>
+                <!--<div style="text-align:left;">
+{#                    <a class="typeform-share button" href="https://form.typeform.com/to/YyXPVhEg?typeform-medium=embed-snippet" data-mode="drawer_right" style="display:inline-block;text-decoration:none;background-color:#00D1C1;color:white;cursor:pointer;font-family:Helvetica,Arial,sans-serif;font-size:16px;line-height:50px;text-align:center;margin:0;height:50px;padding:0px 33px;border-radius:25px;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:bold;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;" target="_blank">Start Now </a>#}
+                    <div>
+                          <form id="email-test-form">
+                                {% csrf_token %}
+                                <input type="email" id="test-email" class="pl-5 mb-5 form-control input" placeholder="Enter your business email" style="height: 40px; width:215px;margin-right:10px;margin-bottom:10px;margin-top:10px" required />
+                                <input type="hidden" id="test-id" value="14" class="pl-5 mb-5 form-control" placeholder="  Test ID" style="height: 40px" required />
+                                <input id="email-test-submit" type="submit" class="btn mb-5 form-control custom-form-submit" value="Get in touch" style="height: 40px; background-color: #007a86; border: none; color: white; border-radius: 10px; width: 163px; margin: 0px; cursor: pointer;" />
+                          </form>
+                      </div>
+                </div>-->
+              </div>
+            </div>
+          </section>
+{% endif %}
+          {% if keys.items %}
+          <section class="section key-info-section">
+            <div class="section__head">
+              <h2 class="section__title">Key Information</h2>
+
+              <div class="section__head-controls">
+                <button id="key-info-edit-btn" class="
+                    section__head-controls-item
+                    section__head-controls-item--edit
+                  ">
+                  Edit
+                </button>
+              </div>
+            </div>
+            <div class="section__body">
+              <div class="key-info">
+                <div class="key-info__list">
+                  {% if keys.Name %}
+                  <li class="key-info__list-item">
+                    Name: <strong>{{keys.Name}}</strong>
+                  </li>
+                  {% endif %}
+                  {% if keys.Category %}
+                  <li class="key-info__list-item">
+                    Category: <a href="/find/{{keys.Category}}--/"><strong>{{keys.Category}}</strong></a>
+                  </li>
+                  {% endif %}
+                  {% if keys.Industry %}
+                  <li class="key-info__list-item">
+                    Industry: <a href="/find/?google_industry={{keys.Industry}}--"><strong>{{keys.Industry}}</strong></a>
+                  </li>
+                  {% endif %}
+                </div>
+
+                <div class="key-info__main">
+                  <ul class="socials">
+                    {% if keys.Website %}
+                    <li class="socials__item">
+                      <a href="{{keys.Website}}" target="_blank" class="socials__link">Webiste</a>
+                    </li>
+                    {% endif %}
+                    {% if keys.Facebook %}
+                    <li class="socials__item">
+                      <a href="{{keys.Facebook}}" target="_blank"
+                        class="socials__link socials__link--facebook">Facebook</a>
+                    </li>
+                    {% endif %}
+                    {% if keys.LinkedIn %}
+                    <li class="socials__item">
+                      <a href="{{keys.LinkedIn}}" target="_blank"
+                        class="socials__link socials__link--linkedin">Linkedin</a>
+                    </li>
+                    {% endif %}
+                    {% if keys.Twitter %}
+                    <li class="socials__item">
+                      <a href="https://twitter.com/{{keys.Twitter}}" target="_blank"
+                        class="socials__link socials__link--twitter">Twitter</a>
+                    </li>
+                    {% endif %}
+                  </ul>
+
+                  <ul class="tags key-info__tags">
+                    {% if keys.splitTags %}
+                    <li class="tags__item">
+                      {% for tag in keys.splitTags %}
+                      <p class="tags__link">#{{tag}}</p>
+                      {% endfor %}
+                    </li>
+                    {% endif %}
+                  </ul>
+                </div>
+
+                <div class="key-info__list">
+                  {% if keys.SIC %}
+                  <li class="key-info__list-item">
+                    SIC: <strong>{{keys.SIC}}</strong>
+                  </li>
+                  {% endif %}
+                  {% if keys.NAICS %}
+                  <li class="key-info__list-item">
+                    NAICS: <strong>{{keys.NAICS}}</strong>
+                  </li>
+                  {% endif %}
+                </div>
+                <div style="font-size:10px;">Disclaimer: These numbers are estimates and any other company information is based off our proprietary algorithms and by no means should be accepted as 100% factual. Kona Equity is in no way affiliated with {{company.name}}.</div>
+              </div>
+            </div>
+          </section>
+          {% endif %}
+          <section class="section key-info-section">
+                <div class="section__head">
+                    <h2 class="section__title">See similar companies</h2>
+                </div>
+            <div class="section__body">
+                <ul class="stats" style="grid-template-columns:repeat(auto-fill,minmax(200px, 1fr));gap:20px;grid-auto-flow:dense;">
+                    {% if company.city %}
+                    <li class="stats__item">
+                        <h3 class="link-title">By City</h4>
+                        <a href="/find/--{{company.state}}/?city={{company.city}}" class="link-text">{{company.city}}</a>
+                        {% if company.google_industry %}
+                        <a href="/find/--{{company.state}}/?city={{company.city}}&google_industry={{go.google}}&arx=5000000" class="link-text">Small {{company.google_industry}} in {{company.city}}</a>
+                        <a href="/find/--{{company.state}}/?city={{company.city}}&google_industry={{go.google}}&arn=5000000" class="link-text">Mid-size {{company.google_industry}} in {{company.city}}</a>
+                        {% endif %}
+                        {% if company.industry %}
+                        <a href="/find/{{go.industry}}--{{company.state}}/?city={{company.city}}" class="link-text">{{company.industry}} in {{company.city}}</a>
+                        <a href="/find/{{go.industry}}--{{company.state}}/?city={{company.city}}&arx=5000000" class="link-text">Small {{company.industry}} in {{company.city}}</a>
+                        <a href="/find/{{go.industry}}--{{company.state}}/?city={{company.city}}&arn=5000000" class="link-text">Mid-size {{company.industry}} in {{company.city}}</a>
+                        {% endif %}
+                    </li>
+                    {% endif %}
+                    {% if company.state %}
+                    <li class="stats__item">
+                        <h3 class="link-title">By State</h4>
+                        <a href="/find/--{{company.state}}" class="link-text">{{company.state}}</a>
+                        <a href="/find/--{{company.state}}/?arx=5000000" class="link-text">Small companies in {{company.state}}</a>
+                        {% if company.industry %}
+                        <a href="/find/{{company.industry}}--{{company.state}}/" class="link-text">{{company.industry}} in {{company.state}}</a>
+                        <a href="/find/{{company.industry}}--{{company.state}}/?arx=5000000" class="link-text">Small {{company.industry}} in {{company.state}}</a>
+                        <a href="/find/{{company.industry}}--{{company.state}}/?arn=5000000" class="link-text">Mid-size {{company.industry}} in {{company.state}}</a>
+                        {% endif %}
+                        {% if company.google_industry %}
+                        <a href="/find/--{{company.state}}/?google_industry={{go.google}}&arx=5000000" class="link-text">Small {{company.google_industry}} in {{company.state}}</a>
+                        <a href="/find/--{{company.state}}/?google_industry={{go.google}}&arn=5000000" class="link-text">Mid-size {{company.google_industry}} in {{company.state}}</a>
+                        {% endif %}
+                    </li>
+                    {% endif %}
+                    {% if company.industry %}
+                    <li class="stats__item">
+                        <h3 class="link-title">By Category</h4>
+                        <a href="/find/{{go.industry}}--/" class="link-text">{{company.industry}}</a>
+                        <a href="/find/{{go.industry}}--/?arx=5000000" class="link-text">Small {{company.industry}}</a>
+                        <a href="/find/{{go.industry}}--/?arn=5000000" class="link-text">Mid-size {{company.industry}}</a>
+                        {% if not company.google_industry %}
+                        {% if buffer.g_data|length %}
+                        <a href="/find/?gn={{buffer.g_data|length}}&gx={{buffer.g_data|length}}" class="link-text">G Score of {{buffer.g_data|length}}</a>
+                        {% endif %}
+                        {% endif %}
+                    </li>
+                    {% endif %}
+                    {% if company.google_industry %}
+                    <li class="stats__item">
+                        <h3 class="link-title">By Industry</h4>
+                        <a href="/find/?google_industry={{go.google}}" class="link-text">{{company.google_industry}}</a>
+                        <a href="/find/?google_industry={{go.google}}&arx=5000000" class="link-text">Small {{company.google_industry}}</a>
+                        <a href="/find/?google_industry={{go.google}}&arn=5000000" class="link-text">Mid-size {{company.google_industry}}</a>
+                        {% if company.industry %}
+                        <a href="/find/{{go.industry}}--/?google_industry={{go.google}}" class="link-text">{{company.industry}} and {{company.google_industry}}</a>
+                        {% endif %}
+                        {% if buffer.g_data|length %}
+                        <a href="/find/?gn={{buffer.g_data|length}}&gx={{buffer.g_data|length}}" class="link-text">G Score of {{buffer.g_data|length}}</a>
+                        {% endif %}
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </section>
+        </main>
+
+        <main class="company-content__secondary-sidebar">
+          <section class="section">
+            <div class="section__head">
+              <h2 class="section__title">Next step</h2>
+            </div>
+            <div class="section__body">
+              <ul class="styled-checked-list">
+                {% if not company.fav %}
+                <li class="styled-checked-list__item">
+                  Save <a href="javascript:void(0)" class="save-to-watchlist"> {% csrf_token %} {{company.name}}</a> to
+                  your prospects
+                </li>
+                {% endif %}
+                {% if company.industry %}
+                <li class="styled-checked-list__item">
+                  Explore other companies in
+                  <a href="/find/{{go.industry}}--/" target="_blank">the {{company.industry}} category</a>
+                </li>
+                {% endif %} {% if company.google_industry %}
+                <li class="styled-checked-list__item">
+                  Explore other companies in
+                  <a href="/find/?google_industry={{go.google}}" target="_blank">the {{company.google_industry}}
+                    industry</a>
+                </li>
+                {% endif %} {% if company.city %}
+                <li class="styled-checked-list__item">
+                  Explore other companies in
+                  <a href="/find/--{{company.state}}/?city={{company.city}}" target="_blank">{{company.city}}</a>
+                </li>
+                {% endif %} {% if company.state %}
+                <li class="styled-checked-list__item">
+                  Explore other companies in
+                  <a href="/find/--{{company.state}}/" target="_blank">{{company.state}}</a>
+                </li>
+                {% endif %}
+              </ul>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section__head">
+              <h2 class="section__title">Visitors review</h2>
+            </div>
+            <div class="section__body">
+              {% comment %}
+              <div class="likes-block">
+                <h4 class="label label--big likes-block__label">
+                  Do you like this company?
+                </h4>
+                <div class="likes-block__controls">
+                  <button class="
+                      likes-block__controls-item
+                      likes-block__controls-item--dislike
+                    "></button>
+                  <button class="
+                      likes-block__controls-item
+                      likes-block__controls-item--like
+                      likes-block__controls-item--active
+                    "></button>
+                </div>
+              </div>
+              {% endcomment %}
+              <ul class="likes-info {% if not user_like %} likes-hor {% endif %}">
+                <li class="likeCompany likes-info__item likes-info__item--like" style="cursor: pointer;"
+                  {% if user_like and user_like.liked %} data-liked="true" {% endif %}>
+                  {% csrf_token %}
+                  <span class="likes-text-info" {% if not user_like %} style="display: none;" {% endif %}>
+
+                  <span class="likes-count">{{likes}}</span>
+                   people liked this company
+                  </span>
+                </li>
+                <li class="dislikeCompany likes-info__item likes-info__item--dislike" style="cursor: pointer;"
+                  {% if user_like and not user_like.liked %} data-disliked="true" {% endif %}>
+                  {% csrf_token %}
+                  <span class="likes-text-info" {% if not user_like %} style="display: none;" {% endif %}>
+
+                  <span class="likes-count">{{dislikes}}</span>
+                  people disliked this company
+
+                  </span>
+                </li>
+
+              </ul>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__main">
+          <div class="footer__info">
+            <a href="/" class="footer__info-main">
+              <picture class="logo">
+                <img src="{% static 'backend_django_v2/images/main/logo-light.svg' %}" alt="Kona Equity logo"
+                  class="logo__img" />
+              </picture>
+            </a>
+            <div class="footer__info-secondary">
+              <h2 class="footer__info-title">Kona Equity</h2>
+              <p class="footer__info-copyright">2022</p>
+              <a href="/privacy/" class="footer__link footer__info-link">Privacy Policy</a>
+            </div>
+          </div>
+
+          <nav class="footer__primary-nav">
+            <ul class="footer__primary-nav-list">
+              <li class="footer__primary-nav-item">
+                <a href="/about/" class="footer__link footer__primary-nav-link">About</a>
+              </li>
+              <li class="footer__primary-nav-item">
+                <a href="/premium/" class="footer__link footer__primary-nav-link">Premium</a>
+              </li>
+              <li class="footer__primary-nav-item">
+                <a href="/contact/" class="footer__link footer__primary-nav-link">Contact us</a>
+              </li>
+              <li class="
+                  footer__primary-nav-item footer__primary-nav-item--only-phone
+                ">
+                <a href="/privacy/" class="footer__link footer__primary-nav-link">Privacy Policy</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <div class="footer__secondary">
+          <h3 class="footer__secondary-title">Explore popular industries</h3>
+
+          <nav class="footer__nav">
+            <ul class="footer__nav-list">
+              {% for a in dc %}
+              <li class="footer__nav-item">
+                <a href="{{a.link}}" class="footer__link footer__nav-link">{{a.name}}</a>
+              </li>
+              {% endfor %}
+
+            </ul>
+          </nav>
+        </div>
+
+        <p class="footer__copyright">2022</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function abbreviate_number(num) {
+      if (num === null) {
+        return null;
+      }
+      if (num === 0) {
+        return '0';
+      }
+      fixed = 2
+      var b = (num).toPrecision(2).split("e"),
+        k = b.length === 1 ? 0 : Math.floor(Math.min(b[1].slice(1), 14) / 3),
+        c = k < 1 ? num.toFixed(0 + fixed) : (num / Math.pow(10, k * 3)).toFixed(1 + fixed),
+        d = c < 0 ? c : Math.abs(c),
+        e = d + " " + ['', 'K', 'M', 'B', 'T'][k];
+      return e;
+    }
+
+    function numberWithCommas(x) {
+      if (!x || x == null || x == "None") {
+        return "-";
+      }
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    var value = document.getElementsByClassName("ins_comm");
+    for (var i = 0; i < value.length; i++) {
+      value[i].innerHTML = numberWithCommas(parseInt(value[i].innerHTML));
+    }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+
+  {% if buffer.go_revenue %}
+  <script>
+    const chart_data = "{{buffer.cs_chart_data}}";
+    const chart_labels = "{{buffer.cs_chart_labels}}";
+    var chartLabels = chart_labels.split(",");
+    var chartData = [];
+    if (chart_data) {
+      chartData = chart_data.split(",").map(x => +x);
+    }
+
+    const e_data = "{{buffer.e_chart_data}}";
+    const e_labels = "{{buffer.e_chart_labels}}";
+    var eLabels = e_labels.split(",");
+    var eData = [];
+    if (e_data) {
+      eData = e_data.split(",").map(x => +x);
+    }
+    var ctx = document.getElementById('annual-rev-chart').getContext('2d');
+    var config = {
+      type: 'line',
+      data: {
+        labels: chartLabels,
+        datasets: [{
+          label: 'Revenue',
+          backgroundColor: '#00D1C1',
+          borderColor: '#00D1C1',
+          data: chartData,
+          fill: false,
+        }, ],
+      },
+      options: {
+        layout: {
+          padding: {
+            top: 5,
+            left: 5,
+            right: 5,
+            bottom: 10,
+          },
+        },
+        legend: {
+          display: false,
+        },
+        responsive: true,
+        tooltips: {
+          mode: 'index',
+          intersect: false,
+          callbacks: {
+            label: function (tooltipItem, data) {
+              var label = data.datasets[tooltipItem.datasetIndex].label || '';
+
+              if (label) {
+                label += ': ';
+              }
+              label += abbreviate_number(tooltipItem.yLabel);
+              return label;
+            },
+          },
+        },
+        hover: {
+          mode: 'nearest',
+          intersect: true,
+        },
+        scales: {
+          xAxes: [{
+            gridLines: {
+              display: false,
+            },
+            display: true,
+            scaleLabel: {
+              display: true,
+              labelString: 'Quarter',
+            },
+          }, ],
+          yAxes: [{
+            gridLines: {
+              display: false,
+            },
+            display: false,
+            scaleLabel: {
+              display: true,
+              labelString: 'Revenue',
+            },
+          }, ],
+        },
+      },
+    };
+    new Chart(ctx, config);
+  </script>
+  {% endif %}
+
+  {% if buffer.go_employee %}
+  <script>
+    var cty = document.getElementById('employees-canvas').getContext('2d');
+    var econfig = {
+      type: 'line',
+      data: {
+        labels: eLabels,
+        datasets: [{
+          label: 'Employees',
+          backgroundColor: '#FF5A5F',
+          borderColor: '#FF5A5F',
+          data: eData,
+          fill: false,
+        }, ],
+      },
+      options: {
+        layout: {
+          padding: {
+            top: 5,
+            left: 5,
+            right: 5,
+            bottom: 10,
+          },
+        },
+        legend: {
+          display: false,
+        },
+        responsive: true,
+        tooltips: {
+          mode: 'index',
+          intersect: false,
+          callbacks: {
+            label: function (tooltipItem, data) {
+              var label = data.datasets[tooltipItem.datasetIndex].label || '';
+
+              if (label) {
+                label += ': ';
+              }
+              label += abbreviate_number(tooltipItem.yLabel);
+              return label;
+            },
+          },
+        },
+        hover: {
+          mode: 'nearest',
+          intersect: true,
+        },
+        scales: {
+          xAxes: [{
+            gridLines: {
+              display: false,
+            },
+            display: true,
+            scaleLabel: {
+              display: true,
+              labelString: 'Quarter',
+            },
+          }, ],
+          yAxes: [{
+            gridLines: {
+              display: false,
+            },
+            display: false,
+            scaleLabel: {
+              display: true,
+              labelString: 'Revenue',
+            },
+          }, ],
+        },
+      },
+    };
+    new Chart(cty, econfig);
+  </script>
+  {% endif %}
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+{% include 'backend_django_v2/includes/edit-success-popup.html' %}
+
+
+{% include 'backend_django_v2/includes/edit-summary-popup.html' with name=company.name desc=company.description year=company.year_founded %}
+{% include 'backend_django_v2/includes/edit-employee-count-popup.html' with chart=company.employee_quarter_chart%}
+{% include 'backend_django_v2/includes/edit-key-info-popup.html' with keys=keys%}
+{% include 'backend_django_v2/includes/edit-annual-revenue-popup.html' with chart=company.revenue_quarter_chart %}
+{% include 'backend_django_v2/includes/edit-location-popup.html' with country="United States" state=company.state city=company.city address=company.address zip=company.postal %}
+{% include 'backend_django_v2/includes/sign-up-popup.html' %}
+{% include 'backend_django_v2/includes/sign-in-popup.html' %}
+{% if not request.user.is_authenticated %}
+{% include 'backend_django_v2/includes/join-popup.html' %}
+{% endif %}
+{% include 'backend_django_v2/includes/after-dislike-popup.html' %}
+{% include 'backend_django_v2/includes/after-like-popup.html' %}
+{% include 'backend_django_v2/includes/sign-in-before-edit-company-popup.html' %}
+{% include 'backend_django_v2/includes/sign-in-before-save-company-popup.html' %}
+{% include 'backend_django_v2/includes/after-first-end-scroll-popup.html' %}
+{% include 'backend_django_v2/includes/claim-success-popup.html' %}
+{% include 'backend_django_v2/includes/claim-fail-popup.html' %}
+{% include 'backend_django_v2/includes/email-test-popup.html' %}
+{% include 'backend_django_v2/includes/email-test-popup.html' %}
+{% include 'backend_django_v2/includes/emp-executive-popup.html' with contacts=contacts %}
+
+<script>
+  const joinModal = document.querySelector("#join-popup");
+  const signinModal = document.querySelector(`#sign-in-modal`);
+  const signUpModal = document.querySelector(`#sign-up-modal`);
+  const signInBeforeEditModal = document.querySelector('#signInBeforeEdit');
+  const signInBeforeSaveModal = document.querySelector('#signin-before-save');
+  const dislikeModal = document.querySelector('#dislikePopup');
+  const likeModal = document.querySelector('#likePopup');
+  const modals = document.querySelectorAll('.popup');
+  var firstVisitModal = document.querySelector("#first-visit-popup");
+  var logged = "{{request.user.is_authenticated}}";
+  var claimFail = document.querySelector("#claimFail");
+  var claimSuccess = document.querySelector("#claimSuccessPopup");
+  var searchTimer = null;
+  var searchInputs = document.querySelectorAll(".search__input");
+
+  searchInputs.forEach((searchInput) => {
+    searchInput.addEventListener("input", function(e) {
+      clearTimeout(searchTimer);
+      console.log(e);
+      searchTimer = setTimeout(function() {
+        search(searchInput.value, searchInput);
+      }, 350);
+    });
+  });
+
+  var searchUrl = "{% url 'ajax_autocomplete' %}";
+  {% comment %} var searchResultContainer = document.querySelector("#searchResult"); {% endcomment %}
+
+  function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+      parent.removeChild(parent.firstChild);
+    }
+  }
+
+  var searchResult = [];
+
+  $(".search__input").focusin(function () {
+    if (!searchResult || searchResult.length === 0) {
+      return;
+    }
+    $(".search__result").show();
+  });
+
+  $(".search__input").focusout(function () {
+    setTimeout(function () {
+      $(".search__result").hide();
+    }, 500);
+  });
+
+
+  function search(query, searchInput) {
+    var a, b;
+
+    searchResultContainer = searchInput.parentElement.querySelector(".search__result");
+
+    if (!query) {
+      removeAllChildNodes(searchResultContainer);
+      searchResult = [];
+      $(".search__result").hide();
+      return;
+    }
+
+    $.ajax({
+      url: searchUrl,
+      data: {
+        'search': query
+      },
+      dataType: 'json',
+      success: function (data) {
+        arr = data.list;
+        removeAllChildNodes(searchResultContainer);
+        if (arr.length === 0) {
+          a = document.createElement("div");
+          a.className = "searchResultItem";
+          a.innerHTML =
+            `<img src="/static/profile_photos/generic.png" <span class="noSearchResult">No Results</span>`;
+          searchResultContainer.appendChild(a);
+          searchResult = [a];
+          $("#searchText").trigger("focusin");
+        }
+        // a = document.createElement("DIV");
+        // a.setAttribute("class", "searchResultItem");
+        // a.innerHTML = ` <a
+        //           href="/find/--/?name=${arr[i]}"><img src="/static/web_photos/category.svg" onerror="this.src='/static/web_photos/category.svg'"/><span>Company names containing insurance</span></a>`;
+        // searchResultContainer.appendChild(a);
+
+        // a = document.createElement("DIV");
+        // a.setAttribute("class", "searchResultItem");
+        // a.innerHTML = ` <a
+        //           href="/find/--/?desc=${arr[i]}"><img src="/static/web_photos/gps.svg" onerror="this.src='/static/web_photos/gps.svg'"/><span>Pages containing insurance</span></a>`;
+        // searchResultContainer.appendChild(a);
+
+        for (i = 0; i < arr.length; i++) {
+        //   var firstIndex = arr[i].name.toLowerCase().indexOf(query);
+        //   var textLength = query.length;
+          var highlightedText = '<div><img src="https://logo.clearbit.com/'+arr[i].domain+'" onerror="this.src=\'/static/profile_photos/generic.png\'" alt="' + arr[i].name + '" style="display:inline-block;padding-right:5px" />' + arr[i].name;
+          a = document.createElement("DIV");
+          a.setAttribute("class", "searchResultItem");
+        //   a.setAttribute("href", '/company/' + arr[i].identifier);
+        // b.setAttribute("class", "search-item");
+          a.innerHTML = ` <a
+                    href="/company/${arr[i].identifier}"><span>${highlightedText}</span></a>`;
+
+          searchResultContainer.appendChild(a);
+        }
+        searchResult = arr || [];
+        $("#searchText").trigger("focusin");
+      }
+    });
+  }
+
+
+  function closeAllModals() {
+    modals.forEach(modal => {
+      modal.classList.remove('popup--active');
+      modal.classList.remove('popup--active--animation');
+    });
+    $("#claimCompanyHeader").hide();
+  }
+
+  $("#hamburgerMenu").click(function () {
+    if ($('.header-drop-menu').css('visibility') == 'hidden') {
+      $('.header-drop-menu').css('visibility', 'visible');
+      $('.header-drop-menu').css('opacity', '1');
+    } else {
+      $('.header-drop-menu').css('visibility', 'hidden');
+      $('.header-drop-menu').css('opacity', '0');
+    }
+
+  });
+
+  function openClaimFail() {
+    claimFail.classList.add('popup--active');
+  }
+
+  function openClaimSuccess() {
+    claimSuccess.classList.add('popup--active');
+  }
+
+  function showSignInBeforeSave() {
+    signInBeforeSaveModal.classList.add('popup--active');
+  }
+
+  function showFirstVisitModal() {
+    firstVisitModal.classList.add('popup--active');
+  }
+
+  function openDislikeModal() {
+    dislikeModal.classList.add('popup--active');
+  }
+
+  function openLikeModal() {
+    likeModal.classList.add('popup--active');
+  }
+
+  function closeSingInBeforeEdit() {
+    signInBeforeEditModal.classList.remove('popup--active');
+  }
+
+  function openSignInBeforeEdit() {
+    signInBeforeEditModal.classList.add('popup--active');
+  }
+
+  function closeJoinPopUp() {
+    joinModal.classList.remove("popup--active")
+  }
+
+  function openJoinPopup() {
+    joinModal.classList.add("popup--active")
+  }
+
+  function openSignInModal() {
+    closeAllModals();
+    signinModal.classList.add('popup--active');
+    closeJoinPopUp();
+  }
+
+  function openSignUpModal() {
+    closeAllModals();
+    signUpModal.classList.add('popup--active');
+    closeJoinPopUp();
+  }
+
+  function openClaimModal() {
+    closeAllModals();
+    $("#claimCompanyHeader").show();
+    signUpModal.classList.add('popup--active');
+  }
+
+
+  var companyLike = document.querySelectorAll('.likeCompany');
+  var dislikeCompany = document.querySelectorAll('.dislikeCompany');
+
+  function checkIfUserLike() {
+    // Check if companyLike has a data attribute
+    if (companyLike[0].dataset.liked === "true") {
+      return true;
+    }
+    return false;
+  }
+
+  function checkIfUserDisliked() {
+    // Check if companyLike has a data attribute
+    if (dislikeCompany[0].dataset.disliked === "true") {
+      return true;
+    }
+    return false;
+  }
+
+  var like_url = "{% url 'backend_django_v2:like_company' id=company.id %}"
+
+
+  $(document).on('click', '.likeCompany', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    e.stopImmediatePropagation();
+
+    if (logged != "true" && logged != "True") {
+      openSignInModal();
+      return;
+    }
+
+    if (checkIfUserLike($(this))) {
+      return;
+    }
+
+    $.ajax({
+      url: like_url,
+      type: 'POST',
+      data: {
+        csrfmiddlewaretoken: $(this).find('input[name=csrfmiddlewaretoken]').val(),
+        like_type: "like"
+      },
+      success: (data) => {
+        $(".likeCompany").attr("data-liked", "true");
+        $(".dislikeCompany").removeClass("item__liked");
+        $(".likeCompany").addClass("item__liked");
+        if (checkIfUserDisliked()) {
+          $(".dislikeCompany .likes-count").text(parseInt($(".dislikeCompany .likes-count").first()
+              .text()) -
+            1);
+        }
+        $(".likeCompany .likes-count").text(parseInt($(".likeCompany .likes-count").first().text()) + 1);
+        $(".likes-info").removeClass("likes-hor");
+        $(".likes-text-info").show();
+        $(".dislikeCompany").attr("data-disliked", null);
+        openLikeModal();
+      }
+    });
+  });
+
+  $(document).on('click', '.dislikeCompany', function (e) {
+    console.log("click");
+    e.preventDefault();
+    e.stopPropagation();
+    e.stopImmediatePropagation();
+    if (logged != "true" && logged != "True") {
+      openSignInModal();
+      return;
+    }
+
+    if (checkIfUserDisliked($(this))) {
+      return;
+    }
+    $.ajax({
+      url: like_url,
+      type: 'POST',
+      data: {
+        csrfmiddlewaretoken: $(this).find('input[name=csrfmiddlewaretoken]').val(),
+        like_type: "dislike"
+      },
+      success: (data) => {
+        $(".dislikeCompany").attr("data-disliked", "true");
+        $(".dislikeCompany").addClass("item__liked");
+        $(".likeCompany").removeClass("item__liked");
+
+        if (checkIfUserLike()) {
+          $(".likeCompany .likes-count").text(parseInt($(".likeCompany .likes-count").first().text()) -
+            1);
+        }
+        $(".dislikeCompany .likes-count").text(parseInt($(".dislikeCompany .likes-count")
+          .first().text()) + 1);
+        $(".likes-info").removeClass("likes-hor");
+        $(".likes-text-info").show();
+
+        $(".likeCompany").attr("data-liked", null);
+        openDislikeModal();
+      }
+    });
+  });
+</script>
+<script>
+  const popupCloses = document.querySelectorAll('.popup__close');
+  popupCloses.forEach(popupClose => {
+    popupClose.addEventListener('click', (e) => {
+      e.preventDefault();
+      const parent = e.target.closest('.popup');
+      parent.classList.remove('popup--active');
+      parent.classList.remove('popup--active--animation');
+    });
+  });
+
+  const keys = ["annual-rev", "emp-count", "key-info", "location", "summary", "emp-exe"];
+
+  var saveToWatchList = document.querySelectorAll('.save-to-watchlist');
+
+
+  $(".save-to-watchlist").click((e) => {
+    e.preventDefault();
+    if (logged != "true" && logged != "True") {
+      showSignInBeforeSave();
+      return;
+    }
+    var isFav = $("#watchlist-status").val();
+    console.log(isFav);
+    var url = isFav == "yes" ? "/remfav/" : "/addfav/";
+    $.ajax({
+      url: url,
+      type: 'POST',
+      data: {
+        id: '{{company.id}}',
+        csrfmiddlewaretoken: $('.save-to-watchlist > input[name=csrfmiddlewaretoken]').val(),
+      },
+      success: (data) => {
+        window.location.reload();
+      }
+    });
+  });
+
+
+  var getDomain = (val) => {
+    var prefix = 'http://';
+    if (val.substr(0, prefix.length) !== prefix) {
+      val = prefix + val;
+    }
+
+    var host = new URL(val).host;
+    return host.match(/[^.]+\.[^.]+$/)[0];
+  };
+
+
+  if (logged === "True") {
+    for (const key of keys) {
+      const editButton = document.querySelector(`#${key}-edit-btn`);
+      // Add click event listener to open modal
+      editButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        const modal = document.querySelector(`#${key}-modal`);
+        modal.classList.add('popup--active');
+      });
+    }
+
+    $(".company-info__claim").click(function () {
+      var email = "{{request.user.email}}";
+      var urlDomain = getDomain("{{company.domain}}");
+      var emailDomain = getDomain(`http://${email}`);
+
+      var url = "{% url 'backend_django_v2:claim_company' %}";
+
+      $.ajax({
+        url: url,
+        type: 'POST',
+        data: {
+          id: '{{company.id}}',
+          csrfmiddlewaretoken: $('.company-info__claim > input[name=csrfmiddlewaretoken]').val(),
+        },
+        success: (data) => {
+          if (data.status == "error") {
+            if (data.message == "mismatched domains") {
+              openClaimFail();
+            }
+          } else {
+            openClaimSuccess();
+          }
+        }
+      });
+
+    });
+
+  } else {
+
+    // Show join modal
+    var visit_count = localStorage.getItem('visit_count');
+    if (visit_count == null){
+      localStorage.setItem('visit_count', 1);
+      visit_count = 1;
+    } else {
+      visit_count = parseInt(visit_count) + 1;
+      localStorage.setItem('visit_count', visit_count);
+    }
+
+    if(visit_count >= 3){
+      $("#join-popup").addClass("popup--active--animation");
+    }
+
+    $(".company-info__claim").click(function () {
+      openClaimModal();
+    });
+
+    const signInButtons = document.querySelectorAll('.sign-in-btn');
+    signInButtons.forEach(signInButton => {
+      signInButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        openSignInModal();
+      });
+    });
+
+    const signUpButtons = document.querySelectorAll('.sign-up-btn');
+    signUpButtons.forEach(signUpButton => {
+      signUpButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        openSignUpModal();
+      });
+    });
+
+
+    for (const key of keys) {
+      const editButton = document.querySelector(`#${key}-edit-btn`);
+      // Add click event listener to open modal
+      editButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        openSignInBeforeEdit();
+      });
+    }
+  }
+
+
+
+  $(".logmeout").click(function () {
+    $("#logout").submit();
+  });
+</script>
+
+<script>
+  // scroll event to show first visit
+
+
+
+
+  $(window).scroll(function () {
+    timeout = null;
+    var target = $(".footer").offset().top;
+
+    if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+      // Check localstorage
+      if (!localStorage.getItem('first_visit')) {
+        showFirstVisitModal();
+        localStorage.setItem('first_visit', true);
+      }
+    }
+  });
+
+
+  // gscore tooltip
+  $(".gscore-button").click(function () {
+    $(".gscore-header").addClass("section-head-tooltip--active");
+  })
+
+  $(".gscore-close").click(function () {
+    $(".gscore-header").removeClass("section-head-tooltip--active");
+  });
+</script>
+<script>
+$(document).ready(function () {
+var emailTestModal = document.querySelector("#email-test-modal");
+var modals = document.querySelectorAll('.popup');
+
+function openSuccessModal() {
+emailTestModal.classList.add('popup--active');
+}
+
+function closeAllModals() {
+modals.forEach(modal => {
+modal.classList.remove('popup--active');
+});
+}
+
+$('#email-test-form').on('submit', function (e) {
+e.preventDefault();
+const test_id = $("#test-id").val();
+const test_email = $("#test-email").val();
+var data = {
+csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+email: test_email,
+test_id: test_id,
+};
+var url = "{% url 'backend_django_v2:company' id=company.identifier %}";
+
+$.ajax({
+url: url,
+method: 'POST',
+data: data,
+success: function (response) {
+if (response.status === 'success') {
+closeAllModals();
+openSuccessModal();
+
+console.log('Success');
+} else {
+console.log('Error', response);
+alert("Something went wrong");
+}
+}
+});
+});
+});
+</script>
+<script type="text/javascript"> window.urlReg = "{% url 'register' %}" </script>
+<script src="{% static 'js/signup2022.js' %}"></script>
+{% endblock %}

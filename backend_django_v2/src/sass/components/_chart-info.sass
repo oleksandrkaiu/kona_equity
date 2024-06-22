@@ -1,0 +1,64 @@
+.chart-info
+    &__head
+        display: grid
+        grid-template-columns: 1fr
+        grid-gap: 8px
+
+    &__head-title
+        margin: 0
+        font-family: 'Circular Std', sans-serif
+        font-size: 24px
+        color: var(--color-primary)
+
+    &__head-sub-title
+        font-size: 16px
+        margin: 0
+        color: var(--color-black-secondary)
+
+    &__head-description
+        font-size: 10px
+        margin: 0
+        color: var(--color-grey-primary)
+
+    &__body
+        display: grid
+        grid-template-columns: 50fr 96fr
+        grid-gap: 32px
+
+        @include big-tablet-le
+            grid-template-columns: 1fr
+            grid-gap: 28px
+
+        &:not(:first-child)
+            margin-top: 24px
+
+    &__aside
+        list-style: none
+        padding: 0
+        margin: 0
+        display: grid
+        grid-template-columns: 1fr
+        grid-gap: 16px
+
+    &__aside-item
+        display: grid
+        grid-template-columns: 1fr
+        grid-gap: 2px
+
+    &__title
+        font-size: 14px
+        margin: 0
+
+    &__value
+        font-family: 'Circular Std', sans-serif
+        color: var(--color-black-secondary)
+        font-size: 16px
+        margin: 0
+
+    &__main
+        min-width: 0
+
+    &__canvas
+        width: 100%
+        height: 100%
+        object-fit: contain

@@ -1,0 +1,48 @@
+.likes-block
+    display: flex
+    flex-direction: column
+    align-items: center
+
+    @include tablet-le
+        align-items: start
+
+    @include phone-le
+        align-items: center
+
+    &__controls
+        display: grid
+        grid-template-columns: max-content max-content
+        grid-gap: 16px
+
+        &:not(:first-child)
+            margin-top: 14px
+
+    &__controls-item
+        @extend %reset-button-styles
+        width: 56px
+        height: 32px
+        border-radius: 10px
+        background-color: #fff
+        background-image: url(images/icons/like-color.svg)
+        background-position: center
+        background-repeat: no-repeat
+        box-shadow: 0 2px 1px rgba(#000, .1)
+        cursor: pointer
+
+        &:hover
+            background-color: #fafafa
+
+        &:disabled
+            background-color: var(--color-gray-secondary)
+            background-image: url(images/icons/like-light.svg)
+
+        &--dislike
+            transform: rotate(180deg)
+            box-shadow: 0 -2px 1px rgba(#000, .1)
+
+        &--active
+            background-color: var(--color-secondary)
+            background-image: url(images/icons/like-light.svg)
+
+            &:hover
+                background-color: var(--color-thirty)

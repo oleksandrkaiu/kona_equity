@@ -1,0 +1,26 @@
+.input
+    display: inline-block
+    color: var(--color-black-primary)
+    background-color: #fff
+    border-radius: 8px
+    font-size: 16px
+    font-weight: 400
+    border: none
+    padding: 7px 16px
+    -webkit-appearance: none
+    appearance: none
+    box-shadow: 0 0 3px rgba(#000, .25)
+    resize: vertical
+
+    &::placeholder
+        color: var(--color-grey-primary)
+
+    &:focus
+        outline-color: var(--color-gray-primary)
+
+    &--select
+        padding-right: 32px
+        background-image: url(images/icons/chevron-grey.svg)
+        background-position: right 12px center
+        background-repeat: no-repeat
+        background-size: 14px auto

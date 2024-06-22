@@ -1,0 +1,101 @@
+<div class="popup popup--tablet-le-bottom" id="sign-in-modal">
+    <div class="popup__wrapper">
+        <button class="js-popup-close popup__close"></button>
+        <div class="custom-scrollbar popup__inner popup__inner--with-p">
+            <form id="signInPopupForm">
+                {% csrf_token %}
+                <div class="popup-form popup__form">
+                    <div class="popup-form__head">
+                        <h2 class="popup-form__title">Sign in</h2>
+                    </div>
+                    <div class="popup-form__body">
+                        <div class="popup-form__item" style="color: red; font-size: smaller; text-align: center;"
+                            id="sign-in-popup-error">
+                        </div>
+                        <div class="popup-form__item">
+                            <label class="popup-form__label">Email</label>
+                            <input type="email" name="login" required class="input popup-form__input" placeholder="Email">
+                        </div>
+                        <div class="popup-form__item">
+                            <label class="popup-form__label">Password</label>
+                            <div class="password-input">
+                                <input type="password" name="password" required
+                                    class="input password-input__input popup-form__input" placeholder="Password">
+                                <button class="password-input__change-button"></button>
+                            </div>
+                        </div>
+                        <div class="popup-form__item popup-form__item--mt">
+                            <div class="popup-form__checkbox">
+                                <label class="checkbox">
+                                    <input type="checkbox" name="remember" class="checkbox__input">
+                                    <span class="checkbox__body"></span>
+                                </label>
+                                <p class="popup-form__checkbox-label">Remember me</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="popup-form__controls">
+                        <div class="popup-form__controls-text popup-form__controls-text--center">
+                            <p class="label popup-form__controls-text-label">No account yet?</p>
+                            <a href="javascript:void(0)" id="open-sign-up-modal"
+                                class="button-inline button-inline--primary">Sign Up</a>
+                        </div>
+
+                        <button style="cursor:pointer" id="continuebtn"
+                            class="button popup-form__controls-item popup-form__controls-item--small">Continue</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        $('#signInPopupForm').on('submit', function (event) {
+            event.preventDefault();
+            logIn();
+        });
+
+        $('#open-sign-up-modal').on('click', function () {
+            const signInModal = document.querySelector(`#sign-in-modal`);
+            const signUnModal = document.querySelector(`#sign-up-modal`);
+            signInModal.classList.remove('popup--active');
+            signUnModal.classList.add('popup--active');
+        });
+    });
+
+    function logIn() {
+        $('#sign-in-popup-error').text("");
+        var contbtn = document.getElementById("continuebtn");
+        var fd = new FormData($("#signInPopupForm").get(0));
+        contbtn.disabled = true;
+        contbtn.style.cursor = "not-allowed";
+        contbtn.innerHTML = "<span class=\"spinner-border spinner-border-sm\"></span> Wait...";
+        $.ajax({
+            url: "{% url 'account_login' %}", // the endpoint
+            type: "POST", // http method=
+            contentType: false,
+            processData: false,
+            data: fd,
+            success: function (response) {
+                location.reload();
+            },
+            error: function (response) {
+                var jsonResponse = response["responseJSON"];
+                console.log(jsonResponse);
+                for (idx in jsonResponse.form["errors"]) {
+                    $('#sign-in-popup-error').append(jsonResponse.form["errors"][idx] + "\n");
+                }
+                if(jsonResponse.form["errors"].length<1){
+                    $('#sign-in-popup-error').append("Please check your email, it may be in a wrong format." + "\n");
+                }
+                contbtn.disabled = false;
+                contbtn.style.cursor = "pointer";
+                contbtn.innerHTML = "Continue";
+            }
+
+        });
+    }
+</script>
